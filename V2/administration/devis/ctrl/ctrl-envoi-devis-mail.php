@@ -60,6 +60,12 @@ switch($donneesDevis['expedition']){
     break;
 }
 
+if($donneesDevis['totalTVA'] == ""){
+    $texteTVA = "0.00";
+}else{
+    $texteTVA = number_format($donneesDevis['totalTVA'] / 100,"2",".","");
+}
+
 //CONTENUE DU MAIL
 $contentDevis = '
 <!-- LINE -->
@@ -90,9 +96,7 @@ $contentDevis .= '
             </tr>
             </table>
     </td>
-</tr>';
-
-$contentDevis .= '
+</tr>
 <!-- PARAGRAPH -->
 <tr>
     <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 500px; font-size: 12px; font-weight: 400; line-height: 100%;
@@ -105,95 +109,88 @@ $contentDevis .= '
             <th valign="middle" style="padding-top: 10px; padding-bottom: 10px; width: 80%; bgcolor=#AFFFFF ">Achat(s) / Demande(s)</th>
             <th align="center" valign="top" style="padding-top: 10px; padding-bottom: 10px;">Prix HT</th>';
 
-    //lignes des achats
-    foreach($donneesLignesDocumentAchat as $ligneAchat){
-        $sqlJeuAchat = $bdd-> query("SELECT * FROM catalogue WHERE idCatalogue =".$ligneAchat['idCatalogue']);
-        $donneesJeuAchat = $sqlJeuAchat-> fetch();
+            //lignes des achats
+            foreach($donneesLignesDocumentAchat as $ligneAchat){
+                $sqlJeuAchat = $bdd-> query("SELECT * FROM catalogue WHERE idCatalogue =".$ligneAchat['idCatalogue']);
+                $donneesJeuAchat = $sqlJeuAchat-> fetch();
 
-        $contentDevis .='     
-        <tr>
-        <td align="left" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 80%; font-size: 14px;
-            padding-top: 10px; padding-bottom: 10px;
-            color: #000000;
-            font-family: sans-serif;">
-                <p>Jeu d\'occasion:<br/><b>'.$donneesJeuAchat['nom'].' '.$donneesJeuAchat['editeur'].'</b></p>
-                <p>'.$ligneAchat['detailsComplet'].'</p>     
-        </td>
-        <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 20%; font-size: 14px;
-        padding-top: 10px; padding-bottom: 10px;
-        color: #000000;
-        font-family: sans-serif;">
-                '.number_format(($ligneAchat['prix'] * $tva / 100),"2",".","").'
-        </td>
-        </tr>'; 
-    }
+                $contentDevis .='     
+                <tr>
+                <td align="left" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 80%; font-size: 14px;
+                    padding-top: 10px; padding-bottom: 10px;
+                    color: #000000;
+                    font-family: sans-serif;">
+                        <p>Jeu d\'occasion:<br/><b>'.$donneesJeuAchat['nom'].' '.$donneesJeuAchat['editeur'].'</b></p>
+                        <p>'.$ligneAchat['detailsComplet'].'</p>     
+                </td>
+                <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 20%; font-size: 14px;
+                padding-top: 10px; padding-bottom: 10px;
+                color: #000000;
+                font-family: sans-serif;">
+                        '.number_format(($ligneAchat['prix'] * $tva / 100),"2",".","").'
+                </td>
+                </tr>'; 
+            }
 
-    foreach($donneesLignesDocument as $ligne){
-        $sqlJeu = $bdd-> query("SELECT * FROM catalogue WHERE idCatalogue =".$ligne['idJeu']);
-        $donneesJeu = $sqlJeu-> fetch();
+            //ligne des jeux au detail
+            foreach($donneesLignesDocument as $ligne){
+                $sqlJeu = $bdd-> query("SELECT * FROM catalogue WHERE idCatalogue =".$ligne['idJeu']);
+                $donneesJeu = $sqlJeu-> fetch();
 
-        $contentDevis .='     
-        <tr>
-        <td align="left" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 80%; font-size: 14px;
-            padding-top: 10px; padding-bottom: 10px;
-            color: #000000;
-            font-family: sans-serif;">
-                <p><b>Votre demande pour le jeu '.$donneesJeu['nom'].':</b> '.$ligne['question'].'</p>
+                $contentDevis .='     
+                <tr>
+                <td align="left" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 80%; font-size: 14px;
+                    padding-top: 10px; padding-bottom: 10px;
+                    color: #000000;
+                    font-family: sans-serif;">
+                        <p><b>Votre demande pour le jeu '.$donneesJeu['nom'].':</b> '.$ligne['question'].'</p>
 
-                <p><b>Ma réponse:</b> '.$ligne['reponse'].'</p>
-                '.$affichageImage.'
-
-            
-        </td>
-        <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 20%; font-size: 14px;
-        padding-top: 10px; padding-bottom: 10px;
-        color: #000000;
-        font-family: sans-serif;">
-                '.number_format(($ligne['prix'] * $tva / 100),"2",".","").'
-        </td>
-        </tr>'; 
-    }
+                        <p><b>Ma réponse:</b> '.$ligne['reponse'].'</p>
+                        '.$affichageImage.'
+                </td>
+                <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 20%; font-size: 14px;
+                padding-top: 10px; padding-bottom: 10px;
+                color: #000000;
+                font-family: sans-serif;">
+                        '.number_format(($ligne['prix'] * $tva / 100),"2",".","").'
+                </td>
+                </tr>'; 
+            }
 
 $contentDevis .= '
-    <tr>
-    <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 2%; width: 40%; font-size: 14px; font-weight: bold;
-        padding-top: 10px; padding-bottom: 10px;
-        color: #000000;
-        font-family: sans-serif;" class="header">
-            Adhésion au service:
+            <tr>
+                <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 2%; width: 40%; font-size: 14px; font-weight: bold;
+                    padding-top: 10px; padding-bottom: 10px;
+                    color: #000000;
+                    font-family: sans-serif;" class="header">
+                        Adhésion au service:
+                </td>
+                <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 40%; font-size: 14px;
+                    padding-top: 10px; padding-bottom: 10px;
+                    color: #000000;
+                    font-family: sans-serif;" class="header">
+                            '.number_format(($donneesDevis['prix_preparation'] * $tva / 100),"2",".","").'
+                </td>
+                </tr>
+                <tr>
+                <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 2%; width: 40%; font-size: 14px; font-weight: bold;
+                    padding-top: 10px; padding-bottom: 10px;
+                    color: #000000;
+                    font-family: sans-serif;" class="header">
+                        '.$texteExpedition.':
+                </td>
+                <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 40%; font-size: 14px;
+                    padding-top: 10px; padding-bottom: 10px;
+                    color: #000000;
+                    font-family: sans-serif;" class="header">
+                        '.number_format(($donneesDevis['prix_expedition'] * $tva / 100),"2",".","").'
+                </td>
+            </tr>
+        </table>
     </td>
-    <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 40%; font-size: 14px;
-        padding-top: 10px; padding-bottom: 10px;
-        color: #000000;
-        font-family: sans-serif;" class="header">
-                '.number_format(($donneesDevis['prix_preparation'] * $tva / 100),"2",".","").'
-    </td>
-    </tr>
-    <tr>
-    <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 2%; width: 40%; font-size: 14px; font-weight: bold;
-        padding-top: 10px; padding-bottom: 10px;
-        color: #000000;
-        font-family: sans-serif;" class="header">
-            '.$texteExpedition.':
-    </td>
-    <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 40%; font-size: 14px;
-        padding-top: 10px; padding-bottom: 10px;
-        color: #000000;
-        font-family: sans-serif;" class="header">
-            '.number_format(($donneesDevis['prix_expedition'] * $tva / 100),"2",".","").'
-    </td>
-    </tr>
-</table></td></tr>';
-
-
-if($donneesDevis['totalTVA'] == ""){
-    $texteTVA = "0.00";
-}else{
-    $texteTVA = number_format($donneesDevis['totalTVA'] / 100,"2",".","");
-}
-// PARTIE TOTAUX
-$contentDevis .= '
+</tr>
 <!-- PARAGRAPH -->
+<!-- PARTIE DES TOTAUX -->
 <tr>
     <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 260px; font-size: 12px; font-weight: 400; line-height: 100%;
         padding-top: 10px; padding-bottom: 10px;
