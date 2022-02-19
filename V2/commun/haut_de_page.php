@@ -33,7 +33,7 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
   unset($_SESSION['animationMenuMembreBonjour']);
 }
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr" class="m-0 p-0">
   <head>
     <?php
