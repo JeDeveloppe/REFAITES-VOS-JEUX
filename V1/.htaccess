@@ -1,0 +1,198 @@
+Options +FollowSymlinks
+
+# Activez HTTPS
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} !^localhost [NC]
+    RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^/?(.*)$ https://www.refaitesvosjeux.fr/$1 [R=301,L]
+    #CONSIGNE IONOS
+    #RewriteCond %{SERVER_PORT} !=443
+    #RewriteRule ^(.*)$ https://www.refaitesvosjeux.fr/$1 [R=301,L]
+
+# url du site
+    RewriteRule ^accueil/$  /index.php [L]
+    RewriteRule ^le-projet/$    /infos/projet.php  [L]
+    RewriteRule ^comment-ca-marche/passez-une-commande/$    /infos/comment-ca-marche/commande.php  [L]
+    RewriteRule ^comment-ca-marche/expedition-retrait/$    /infos/comment-ca-marche/expedition-retrait.php  [L]
+    RewriteRule ^comment-ca-marche/tarifs/$    /infos/comment-ca-marche/tarifs.php  [L]
+    RewriteRule ^projet/avenir/$         /infos/projet/avenir.php [L]
+    RewriteRule ^projet/la-genese/$          /infos/projet/genese.php [L]
+    RewriteRule ^don-de-jeux/$    /infos/donDeJeux.php  [L]
+    RewriteRule ^don-de-jeux/les-demandes/$    /infos/donDeJeux.demandes.php  [L]
+    RewriteRule ^bouteille-a-la-mer/$   /bouteille-a-la-mer/bouteille-mer.php [L]
+    RewriteRule ^catalogue/$  /catalogue/catalogue.php [L]
+    RewriteRule ^sitemap.xml /sitemap/sitemap.php  [L]
+    RewriteRule ^connexion-inscription/ /connexion_registration/login_register.php  [L]
+    RewriteRule ^logout/$ /connexion_registration/logout.php  [L]
+    RewriteRule ^travaux/$ /travaux.php [L]
+
+    RewriteRule ^catalogue-des-jeux-complets/$  /catalogue/jeux_complets/catalogueComplet.php [L]
+    RewriteRule ^catalogue-des-jeux-complets/([a-z-])+/([a-z0-9-])+/([0-9]+)/$  /catalogue/jeux_complets/catalogueComplet-details.php?jeu=$3
+
+    RewriteRule ^jeu/([a-z-])+/([0-9]+)/([a-z0-9-])+/$  /catalogue/contenu-jeu.php?jeu=$2
+    RewriteRule ^jeu/([a-z-])+/([0-9]+)/([a-z0-9-])+/([0-9]+)/visite/$  /catalogue/contenu-jeu.php?jeu=$2&bouteille=$4&visite=mail
+
+    #PANIER
+    RewriteRule ^achats/$  /panier/panierJeuxComplet/panierJeuxComplet.php [L]
+    RewriteRule ^achats/delete/$   /panier/panierJeuxComplet/ctrl/ctrl-deleteAchats.php  [L]
+    RewriteRule ^achats/delete/([0-9]+)/$   /panier/panierJeuxComplet/ctrl/ctrl-deleteLigneAchat.php?id=$1   [L]
+    
+
+    RewriteRule ^demande-devis/$  /panier/panier.php [L]
+    RewriteRule ^demande-devis/delete/([0-9]+)/$   /panier/ctrl/ctrl-deleteLignePanier.php?id=$1   [L]
+    RewriteRule ^demande-devis/delete/$   /panier/ctrl/ctrl-deletePanier.php  [L]
+    RewriteRule ^contact/$  /contact/contact.php [L]
+    RewriteRule ^partenaires/$  /infos/partenaires.php [L]
+    RewriteRule ^conditions-generales-de-vente/$   /infos/cgv.php  [L]
+    RewriteRule ^mentions-legales/$   /infos/mentions-legales.php [L]
+    RewriteRule ^on-en-parle/medias/$   /on-en-parle/medias.php [L]
+    RewriteRule ^on-en-parle/livre-d-or/$    /on-en-parle/livreOr.php [L]
+
+    #PARTIE PAIEMENTS
+    RewriteRule ^admin/paiement/([A-Z]+)/$    /administration/paiement/PAYPLUG/etat-paiement.php [L]
+
+         
+    #PARTIE ADMIN
+    RewriteRule ^admin/test/       /administration/test.php [L]
+    RewriteRule ^R3f@iteV0sJ3u&/$  /administration/connexion/login.php [L]
+    RewriteRule ^admin-logout/$  /administration/connexion/logout.php [L]
+    RewriteRule ^admin/inscription/$  /administration/inscription.php [L]
+    RewriteRule ^admin/accueil/$    /administration/accueil.php [L]
+    RewriteRule ^admin/recherche-document/$    /administration/recherche-documents.php [L]
+    RewriteRule ^admin/sitemap/$   /administration/sitemap/sitemap.php [L]
+
+    RewriteRule ^admin/commande/accueil/$   /administration/commande/visualisation-commandes.php [L]
+    RewriteRule ^admin/commande/en-attente/$   /administration/commande/liste-message-non-transformer.php  [L]
+
+    RewriteRule ^admin/comptabilite/ /administration/comptabilite/index.php [L]
+
+    RewriteRule ^admin/jeu/demandes/$     /administration/jeu/les-plus-demandes.php [L]
+    RewriteRule ^admin/jeu/new/$      /administration/jeu/new-edition.php   [L]
+    RewriteRule ^admin/jeu/([0-9]+)/edition/$   /administration/jeu/edition.php?jeu=$1 [L]
+    RewriteRule ^admin/jeu/sans-ventes/$   /administration/jeu/commandes-nul.php  [L]
+
+    RewriteRule ^admin/client/$   /administration/client/recherche-client.php  [L]
+    RewriteRule ^admin/client/edition/([0-9]+)$   /administration/client/edition.php?client=$1
+    RewriteRule ^admin/client/liste/$   /administration/client/fichier-client.php [L]
+    RewriteRule ^admin/client/liste/([A-Z]+)/$   /administration/client/fichier-client.php?lettre=$1 [L]
+
+    RewriteRule ^admin/jeu/catalogue/complet/$   /administration/jeu/catalogue_complets.php   [L]
+    RewriteRule ^admin/jeu/catalogue/general/$   /administration/jeu/catalogue-general.php   [L]
+    RewriteRule ^admin/jeu/catalogue/complet/([A-Z]+)/$      /administration/jeu/catalogue_complets.php?lettre=$1 [L]
+    
+
+    RewriteRule ^admin/config/statistiques/$    /administration/config/stats.php   [L]
+    RewriteRule ^admin/config/parametres-du-site/$   /administration/config/configuration-site.php [L]
+
+    RewriteRule ^admin/bouteille-a-la-mer/$      /administration/bouteilleMer/index.php [L]
+    RewriteRule ^admin/bouteille-a-la-mer/les-20-dernieres/$      /administration/bouteilleMer/les-20-dernieres.php [L]
+    RewriteRule ^admin/bouteille-a-la-mer/([A-Z]+)/$      /administration/bouteilleMer/index.php?lettre=$1 [L]
+    RewriteRule ^admin/demande-de-don/     /administration/dons/index.php [L]
+    RewriteRule ^admin/livre-or/$    /administration/livreOr/index.php [L]
+
+    RewriteRule ^admin/medias/new/$   /administration/medias/new-medias.php [L]
+    RewriteRule ^admin/medias/([0-9]+)/edition/$    /administration/medias/edition-medias.php?media=$1 [L]
+
+    RewriteRule ^admin/partenaires/new/$     /administration/partenaire/new-partenaire.php [L]
+    RewriteRule ^admin/partenaires/([0-9]+)/edition/$    /administration/partenaire/edition-partenaire.php?partenaire=$1  [L]
+
+    RewriteRule ^admin/demande/creation-devis/([0-9]+)/$     /administration/demande/creation-devis-client.php?client=$1   [L]
+
+    RewriteRule ^admin/devis/edition/([A-Z]+[0-9]+)$   /administration/devis/edition.php?devis=$1    [L]
+    RewriteRule ^admin/devis/delete/([A-Z]+[0-9]+)$   /administration/devis/viewDelete.php?devis=$1    [L]
+
+    RewriteRule ^admin/categories/$      /administration/categories/categories-accueil.php   [L]
+    RewriteRule ^admin/categories/new/$      /administration/categories/new.php   [L]
+    RewriteRule ^admin/categories/edition/([0-9]+)/$   /administration/categories/edition.php?categorie=$1 [L]
+
+    RewriteRule ^admin/accessoires/$      /administration/accessoire/accessoires-accueil.php   [L]
+    RewriteRule ^admin/accessoire/new/$      /administration/accessoire/new-edition.php   [L]
+    RewriteRule ^admin/accessoire/([0-9]+)/edition/$    /administration/accessoire/edition.php?accessoire=$1 [L]
+
+    RewriteRule ^admin/paiements-en-cours/$   /administration/commande/paiements-en-cours.php   [L]
+    
+    
+ErrorDocument 404 /erreurs/erreur.php?code=404
+ErrorDocument 403 /erreurs/erreur.php?code=403
+ErrorDocument 500 /erreurs/erreur.php?code=500
+
+    
+
+
+# Insérer le fuseau horaire
+    SetEnv TZ Europe/Paris 
+
+#Protection de fichiers
+    <Files "config.php">
+    Order Allow,Deny
+    Deny from all
+    Allow from 127.0.0.1
+    </Files>
+    
+# Add correct content-type for fonts
+AddType application/vnd.ms-fontobject .eot
+AddType font/ttf .ttf
+AddType font/otf .otf
+AddType font/woff .woff
+AddType font/woff2 .woff2
+AddType image/svg+xml .svg
+
+
+# BEGIN Expire headers
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+ # Images
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+
+  # Video
+  ExpiresByType video/webm "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType video/mpeg "access plus 1 month"
+
+  # Fonts
+  ExpiresByType font/ttf "access plus 1 month"
+  ExpiresByType font/otf "access plus 1 month"
+  ExpiresByType font/woff "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 month"
+  ExpiresByType application/font-woff "access plus 1 month"
+
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+
+  # Others
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
+</IfModule>
+# END Expire headers
+
+
+
+
+# BEGIN Compression Donnees
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/shtml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+# END Compression Donnees
+
+<IfModule mod_headers.c>
+Header always set X-FRAME-OPTIONS "DENY"
+Header always set X-Content-Type-Options "nosniff"
+</IfModule>

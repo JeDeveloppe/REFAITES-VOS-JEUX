@@ -1,0 +1,49 @@
+[
+    {
+        "name": "lyracom/rest-php-sdk",
+        "version": "4.0.2",
+        "version_normalized": "4.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/lyra/rest-php-sdk.git",
+            "reference": "8d7c22c1e99b4121a00f47c46c217f6999145a01"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/lyra/rest-php-sdk/zipball/8d7c22c1e99b4121a00f47c46c217f6999145a01",
+            "reference": "8d7c22c1e99b4121a00f47c46c217f6999145a01",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.1.*"
+        },
+        "suggest": {
+            "ext-curl": "*"
+        },
+        "time": "2018-12-11T19:26:57+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Lyra REST API PHP SDK",
+        "keywords": [
+            "api",
+            "creditcard",
+            "lyra",
+            "payment",
+            "rest",
+            "sdk"
+        ]
+    }
+]

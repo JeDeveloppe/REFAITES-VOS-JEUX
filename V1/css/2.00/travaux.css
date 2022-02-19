@@ -1,0 +1,102 @@
+@keyframes puzzle {
+    0% {transform: rotate(0deg) translateX(0px);}
+    40% {transform: rotate(41deg) translateX(-250px);}
+    50% {transform: rotate(41deg) translateX(-250px);}
+    90% {transform: rotate(0deg) translateX(-650px);}
+    100% {transform: rotate(0deg) translateX(-650px);}
+  }
+  
+  @keyframes polygon_ccw {
+    0% {transform: rotate(0deg);}
+    40% {transform: rotate(-180deg);}
+    100% {transform: rotate(-180deg);}
+  }
+  
+  @keyframes polygon_cw {
+    0% {transform: rotate(0deg);}
+    40% {transform: rotate(180deg);}
+    100% {transform: rotate(180deg);}
+  }
+  
+  @keyframes wrapper_ccw {
+   0% {transform: rotate(0deg);}
+   50% {transform: rotate(0deg);}
+   90% {transform: rotate(-180deg);}
+   100% {transform: rotate(-180deg);}
+  }
+  
+  @keyframes wrapper_cw {
+   0% {transform: rotate(0deg);}
+   50% {transform: rotate(0deg);}
+   90% {transform: rotate(180deg);}
+   100% {transform: rotate(180deg);}
+  }
+  
+  svg{
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:-250px 0 0 -275px;
+  }
+  
+  .puzzle{
+    transform-origin: 326px 163px;
+    animation-name: puzzle;
+  }
+  
+  polygon{
+    stroke:#34495e;
+    stroke-width: 7px;
+  }
+  
+  polygon, .wrapper, .puzzle{
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out; 
+    animation-play-state: running;
+    animation-delay: 1s;
+  }
+  
+  .green_wrapper{
+    transform-origin: 813px 565px;
+    animation-name: wrapper_ccw;
+  }
+  
+  .green{
+    fill:#27ae60;
+    transform-origin: 488px 565px;
+    animation-name: polygon_ccw;
+  }
+  
+  .yellow_wrapper{
+    transform-origin: 811px 567px;
+    animation-name: wrapper_ccw;
+  }
+  
+  .yellow{
+    fill: #f5a731;
+    transform-origin: 486px 567px;
+    animation-name: wrapper_ccw;
+  }
+  
+  .red_wrapper{
+    transform-origin: 489px 565px;
+    animation-name: polygon_ccw;
+  }
+  
+  .red{
+    fill: #e94e45;
+    transform-origin: 164px 565px;
+    animation-name: polygon_ccw;
+  }
+  
+  .blue_wrapper{
+    transform-origin: 814px 285px;
+    animation-name: wrapper_cw;
+  }
+  
+  .blue{
+    fill: #0149af;
+    transform-origin: 489px 285px;
+    animation-name: polygon_cw;
+  }

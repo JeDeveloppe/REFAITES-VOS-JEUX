@@ -1,0 +1,234 @@
+.cookiealert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0 !important;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: all 10ms ease-out;
+  transition: all 10ms ease-out;
+  color: #ecf0f1;
+  background-color: #212327;
+}
+
+.cookiealert.show {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+  -webkit-transition-delay: 1000ms;
+          transition-delay: 1000ms;
+}
+
+.cookiealert a {
+  text-decoration: underline;
+}
+
+.cookiealert .acceptcookies {
+  margin-left: 10px;
+  vertical-align: baseline;
+}
+
+.image-upload > input {
+  display: none;
+}
+
+.divImgTableauListeMessageAdmin {
+  text-align: center;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 5%;
+  overflow: hidden;
+  margin: auto;
+}
+
+.divImgTableauListeMessageAdmin img {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-transition: object-position 0.25s;
+  transition: object-position 0.25s;
+  transition: object-position 0.25s, -o-object-position 0.25s;
+}
+
+.divImgTableauListeMessageAdmin img img:hover {
+  -o-object-position: center;
+     object-position: center;
+}
+
+.divImgCatalogueAdmin {
+  text-align: center;
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin: auto;
+}
+
+.divImgCatalogueAdmin img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.divImgPresentationAdmin .zoom {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  cursor: move;
+}
+
+.divImgPresentationAdmin .zoom > div {
+  height: 33.33%;
+  width: 33.333%;
+  z-index: 1;
+  float: left;
+  display: inline-block;
+  position: relative;
+}
+
+.divImgPresentationAdmin .zoom__top.zoom__left:hover ~ .zoom__image {
+  -webkit-transform: translate(20%, 20%) scale(1.5);
+          transform: translate(20%, 20%) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__top.zoom__centre:hover ~ .zoom__image {
+  -webkit-transform: translate(0%, 20%) scale(1.5);
+          transform: translate(0%, 20%) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__top.zoom__right:hover ~ .zoom__image {
+  -webkit-transform: translate(-20%, 20%) scale(1.5);
+          transform: translate(-20%, 20%) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__middle.zoom__left:hover ~ .zoom__image {
+  -webkit-transform: translate(20%, 0) scale(1.5);
+          transform: translate(20%, 0) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__middle.zoom__centre:hover ~ .zoom__image {
+  -webkit-transform: translate(0, 0) scale(1.5);
+          transform: translate(0, 0) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__middle.zoom__right:hover ~ .zoom__image {
+  -webkit-transform: translate(-20%, 0) scale(1.5);
+          transform: translate(-20%, 0) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__bottom.zoom__left:hover ~ .zoom__image {
+  -webkit-transform: translate(20%, -20%) scale(1.5);
+          transform: translate(20%, -20%) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__bottom.zoom__centre:hover ~ .zoom__image {
+  -webkit-transform: translate(0, -20%) scale(1.5);
+          transform: translate(0, -20%) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__bottom.zoom__right:hover ~ .zoom__image {
+  -webkit-transform: translate(-20%, -20%) scale(1.5);
+          transform: translate(-20%, -20%) scale(1.5);
+}
+
+.divImgPresentationAdmin .zoom__image {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  display: block;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.divImgPresentationExempleAdmin {
+  text-align: center;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 2%;
+  margin: auto;
+}
+
+.divImgPresentationExempleAdmin img {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-transition: object-position 0.25s;
+  transition: object-position 0.25s;
+  transition: object-position 0.25s, -o-object-position 0.25s;
+}
+
+.divImgPresentationExempleAdmin :hover {
+  position: relative;
+  -o-object-position: center;
+     object-position: center;
+  -webkit-transform: scale(5);
+          transform: scale(5);
+  z-index: 999;
+}
+
+.alertDiv {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 300px;
+  z-index: 1;
+  -webkit-animation-delay: 2000ms;
+  animation-delay: 2000ms;
+  -webkit-animation-name: magic;
+  animation-name: magic;
+  -webkit-animation-duration: 2000ms;
+  animation-duration: 2000ms;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes magic {
+  0% {
+    opacity: 1;
+    z-index: 1;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+@keyframes magic {
+  0% {
+    opacity: 1;
+    z-index: 1;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+/*# sourceMappingURL=design-admin.css.map */

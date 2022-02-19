@@ -1,0 +1,23 @@
+# Pour tous les robots interdiction de scroller les dossiers suivant
+User-agent: *
+Disallow: /administration/
+Disallow: /bdd/
+Disallow: /bouteille-a-la-mer/ctrl/
+Disallow: /captcha/
+Disallow: /catalogue/accessoires/
+Disallow: /catalogue/jeux_complets/
+Disallow: /controles/
+Disallow: /erreurs/
+Disallow: /fontawesome/
+Disallow: /FPDF/
+Disallow: /mails/
+Disallow: /PAIEMENT/
+Disallow: /PHPMailer/
+Disallow: /requetesAjax/
+Disallow: /config.php
+Disallow: /google-analytics.php
+Disallow: /README.md
+Disallow: /travaux.php
+
+Sitemap: https://www.refaitesvosjeux.fr/sitemap.xml
+
