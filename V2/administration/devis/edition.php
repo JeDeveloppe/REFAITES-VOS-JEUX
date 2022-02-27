@@ -160,7 +160,7 @@ if(!isset($_GET['devis'])){
                                                 ?>
                                                 <tr>
                                                     <td colspan="4" class="text-right align-middle">Adhésion au service:</td>
-                                                    <td class="text-right align-middle"><input type="text" name="prixPreparation" id="prixPreparation" value="<?php echo number_format(($donneesDevisExiste['prix_preparation'] * $tva )/ 100,"2",".",""); ?>" size="6" pattern="^\d+(?:[.]\d{2})$" class="text-center" onKeyUp="calculDevis()" required/></td>
+                                                    <td class="text-right align-middle"><input type="text" name="prixPreparation" id="prixPreparation" value="<?php echo number_format(($donneesDevisExiste['prix_preparation'] * $tva )/ 100,"2",".",""); ?>" size="6" pattern="^\d+(?:[.]\d{2})$" class="text-center" onKeyUp="calculDevis()" required readonly="readonly"/></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right align-middle">Frais d'envoi:

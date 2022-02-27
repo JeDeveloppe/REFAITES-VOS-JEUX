@@ -144,12 +144,12 @@ include_once("../../commun/alertMessage.php");
                 <div id="ventes_comparaison"></div>
             </div>
             <div class="col-12 mt-2 text-center d-flex flex-column">
-                <div>Les grammes: (sans DEEE)</div>
+                <div>Les grammes: (total)</div>
                 <div id="grammes"></div>
                 <div id="grammes_comparaison"></div>
             </div>
             <div class="col-12 mt-2 text-center d-flex flex-column">
-                <div>Les grammes: (avec DEEE)</div>
+                <div>Les grammes: (juste DEEE)</div>
                 <div id="grammesDeee"></div>
                 <div id="grammes_comparaisonDeee"></div>
             </div>

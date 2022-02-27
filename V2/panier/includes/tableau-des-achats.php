@@ -1,4 +1,4 @@
-<div class="row mt-2 overflow-auto">
+<div class="row mt-2 mb-4 overflow-auto">
     <div class="col-12 mt-4">
        <div class="col-12 border-bottom">Jeux d'occasion:</div>
             <div class="table-responsive">

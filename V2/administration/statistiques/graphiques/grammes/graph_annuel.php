@@ -75,7 +75,7 @@ $b1plot->SetColor("white");
 $b1plot->SetFillColor("#cc1111");
 $b1plot->value->Show();
 
-$graph->title->Set("Ventes par mois en ".$annee." \n Total grammes: ".$totalAnnuel);
+$graph->title->Set("Ventes par mois en ".$annee." \n Total du poids: ".$totalAnnuel / 1000);
 
 // Display the graph
 $graph->Stroke();

@@ -50,6 +50,8 @@ include_once("../commun/alertMessage.php");
 
     Attention : dès que vous prenez possession physiquement des produits commandés, les risques de perte ou d'endommagement des produits vous sont transférés.
 
+    <p id="cgvAdhesion">PARAGRAPHE EN ATTENTE DE REDACTION PAR ANTOINE :)</p>
+
     </div>
 
     <div class="col mt-4">

@@ -157,6 +157,7 @@ $menuAlphabet = "A";
                                         <th>Référence</th>
                                         <th>Quantité en vente</th>
                                         <th>Prix de vente TTC</th>
+                                        <th>Changer prix TTC</th>
                                         <th>Ancien prix TTC</th>
                                         <th>Information / description</th>
                                         <th>Ventes</th>
@@ -201,7 +202,8 @@ $menuAlphabet = "A";
                                                 <td class="align-middle">'.$jeuC['reference']; if($jeuC['isNeuf'] == 1){echo '<br/><span class="small bg-info text-white p-1">COMME NEUF</span>';} echo '</td>
                                                 <td class="align-middle">'.$jeuC['stock'].' '.$online.'</td>
                                                 <td class="align-middle">'.number_format(($jeuC['prixHT'] * $tva)/100 ,2).'</td>
-                                                <td class="align-middle">'.$ancienPrix.'<form action="/administration/jeu/ctrl/ctrl-complet-newPrice.php" method="get"><input type="text" class="col-3 text-center" name="nvPrixTTC" pattern="([0-9]{1,2}).([0-9]{2})" placeholder="10.00"><input type="hidden" name="idComplet" value="'.$jeuC['idJeuxComplet'].'"><button type="submit" class="btn"><i class="fas fa-save"></i></button></form></td>
+                                                <td class="align-middle"><form action="/administration/jeu/ctrl/ctrl-complet-newPrice.php" method="get"><input type="text" class="col-3 text-center" name="nvPrixTTC" pattern="([0-9]{1,2}).([0-9]{2})" placeholder="10.00"><input type="hidden" name="idComplet" value="'.$jeuC['idJeuxComplet'].'"><button type="submit" class="btn"><i class="fas fa-save"></i></button></form></td>
+                                                <td class="align-middle">'.$ancienPrix.'</td>
                                                 <td class="text-left align-middle">'.$jeuC['information'].'</td>
                                                 <td class="align-middle">'.$nbrIsVendu.'</td>
                                                 <td class="align-middle">

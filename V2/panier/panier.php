@@ -76,6 +76,14 @@ include_once("../commun/alertMessage.php");
 
 <div class="container-fluid mt-5">
     <div class="col h1 text-center mt-4">Panier</div>
+
+    <div class="col-12 mt-5 h5 text-center text-danger animated faster fadeInRight">
+        Pour toute première commande, une adhésion au service de 2€ vous sera facturée.<br/> 
+        Cette adhésion est valable 1 an.
+        <a href="/conditions-generales-de-vente/#cgvAdhesion" data-html="true" data-toggle="tooltip" data-placement="top">
+            <i class="fas fa-question-circle text-info p-2"></i>
+        </a>
+    </div>
     <?php
         if($countAchats > 0){ //SI ON ACHETE DES JEUX OCCASION 
             $hrefControlPanier = "../panier/ctrl/ctrl-panier-payer.php";

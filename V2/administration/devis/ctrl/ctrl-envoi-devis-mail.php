@@ -163,7 +163,7 @@ $contentDevis .= '
                     padding-top: 10px; padding-bottom: 10px;
                     color: #000000;
                     font-family: sans-serif;" class="header">
-                        Adhésion au service:
+                        Adhésion au service:<br/><i>Valable 1 an</i>
                 </td>
                 <td align="right" valign="middle" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 40%; font-size: 14px;
                     padding-top: 10px; padding-bottom: 10px;

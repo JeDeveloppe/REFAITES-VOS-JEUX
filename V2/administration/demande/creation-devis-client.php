@@ -32,7 +32,7 @@ if(!isset($_GET['client'])){
     }else{
         //on verifie si membre a date
         if($donneesVerifClientExiste['isAssociation'] > time()){
-            $inputAssociationValue = '<input type="text" name="prixPreparation" id="prixPreparation" value="0.00" size="6" class="text-center" pattern="^\d+(?:[.]\d{2})$"" onKeyUp="calculDevis()" required/>';
+            $inputAssociationValue = '<input type="text" name="prixPreparation" id="prixPreparation" value="0.00" size="6" class="text-center" pattern="^\d+(?:[.]\d{2})$"" onKeyUp="calculDevis()" required readonly="readonly"/>';
             $dateEndAssociation = '<span class="text-success">Jusqu\'au '.date('d/m/Y',$donneesVerifClientExiste['isAssociation']).'</span>';
         }else{
             $inputAssociationValue = '<input type="text" name="prixPreparation" id="prixPreparation" value="'.$donneesConfig[28]['valeur'].'" size="6" class="text-center" pattern="^\d+(?:[.]\d{2})$"" onKeyUp="calculDevis()" required/>';

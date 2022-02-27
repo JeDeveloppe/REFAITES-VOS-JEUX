@@ -1,9 +1,6 @@
-<div class="col-12 mt-5 h5 text-center text-danger animated faster fadeInRight">
-    <i class="fas fa-rss"></i> Pensez à regrouper vos demandes de pièces détachées!
-</div>
 <div class="row overflow-auto">
     <div class="col-12 mt-4">
-       <div class="col-12 border-bottom">Pièces détachées:</div>
+       <div class="col-12 border-bottom animated faster fadeInRight">Pièces détachées:  <span class="text-danger ml-5 h5"><i class="fas fa-rss"></i> Pensez à regrouper vos demandes de pièces détachées!</span></div>
             <table class="table table-sm table-striped mt-3 col-12">
                 <thead class="thead-dark text-center">
                     <tr>

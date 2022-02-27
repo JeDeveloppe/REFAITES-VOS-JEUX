@@ -30,7 +30,7 @@ include_once("../../../commun/alertMessage.php");
         <?php echo $descriptionPage; ?>
     </div>
     <div class="col-8 mx-auto text-right mt-3">
-      <a class="text-decoration-none" href="<?php echo $linkReverse; ?>">Voir nos partenaires <span class="wind">&#127463;&#127466;</span></a>
+      <a class="text-decoration-none" href="<?php echo $linkReverse; ?>">Donnez vos jeux en <span class="wind">&#127463;&#127466;</span></a>
     </div>
   </div>
   <div class="row mt-3">
