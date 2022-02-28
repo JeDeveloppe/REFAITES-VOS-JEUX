@@ -46,7 +46,15 @@ include_once("../commun/alertMessage.php");
                 </div>';
                 }
             ?>
-          
+                      
+            <div class="row justify-content-center">
+                <div class="input-group mb-3 col-12 col-sm-9 col-md-6">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Numéro de téléphone:</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Numéro de téléphone" value="<?php echo $donneesClient['telephone']; ?>" readonly>
+                </div>
+            </div>
             <div class="row justify-content-center">
                 <div class="input-group mb-3 col-12 col-sm-9 col-md-6">
                     <div class="input-group-prepend">
@@ -65,7 +73,7 @@ include_once("../commun/alertMessage.php");
             </div>
             <div class="row justify-content-center">
                 <div class="mb-3 col-12 col-sm-9 col-md-6 text-center">                      
-                        <a href="/connexion/password/change/?email=<?php echo $donneesClient['email']; ?>&token=<?php echo $validKey; ?>&user=<?php echo $donneesClient['idUser']; ?>" class="btn bg-refaites text-white border-primary">Je veux changer mon mot de passe !</a>
+                        <a href="/connexion/password/change/?email=<?php echo $donneesClient['email']; ?>&token=<?php echo $validKey; ?>&user=<?php echo $donneesClient['idUser']; ?>" class="btn bg-refaites text-white border-primary">Je souhaite changer mon mot de passe !</a>
                 </div>
             </div>
             <div class="row justify-content-end">

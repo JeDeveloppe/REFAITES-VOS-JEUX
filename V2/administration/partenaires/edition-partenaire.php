@@ -65,33 +65,38 @@ if(!isset($_GET['partenaire'])){
                         <form method="post" class="d-flex" action="/administration/partenaires/ctrl/ctrl-edition.php" name="formulaire" enctype="multipart/form-data">
                             <div class="card mt-3 p-0 col-md-11 mx-auto">
                                 <div class="card-body d-flex flex-wrap">
-                                    <div class="col-6">
-                                        <div class="col-12 d-flex flex-wrap p-0">
-                                            <div class="form-group col-6">
-                                                <label for="nom">Nom:<sup class="text-danger">*</sup></label>
-                                                <input class="form-control" type="text" name="nom" value="<?php echo $donneesPartenaire['nom']; ?>" placeholder="Nom du partenaire" size="60" maxlenght="60" required>
-                                            </div>
+                                    <div class="col-6 d-flex flex-wrap">
+                                        <div class="form-group col-6">
+                                            <label for="nom">Nom:<sup class="text-danger">*</sup></label>
+                                            <input class="form-control" type="text" name="nom" value="<?php echo $donneesPartenaire['nom']; ?>" placeholder="Nom du partenaire" size="60" maxlenght="60" required>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-6">
+                                            <label for="onLine">En ligne:<sup class="text-danger">*</sup></label>
+                                            <select name="onLine" class="form-control col-12" id="onLine" required>
+                                                <option value='1' <?php if($donneesPartenaire['isActif'] == 1){echo 'selected'; }?>>En ligne</option>
+                                                <option value='0' <?php if($donneesPartenaire['isActif'] == 0){echo 'selected'; }?>>Hors ligne</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-4">
                                             <label for="pays">Pays:<sup class="text-danger">*</sup></label>
                                             <select name="pays" class="form-control col-12" id="pays" required>
                                                 <option value='FR' <?php if($donneesPartenaire['pays'] == "FR"){echo 'selected'; }?>>FRANCE</option>
                                                 <option value='BE' <?php if($donneesPartenaire['pays'] == "BE"){echo 'selected'; }?>>BELGIQUE</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-4">
                                             <label for="departement">Département / province:<sup class="text-danger">*</sup></label>
                                             <select name="departement" class="form-control" id="departement" required>
                                                 <option value="<?php echo $donneesVilleFranceFree['ville_id'];?>"><?php echo $departement_province ;?></option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-4">
                                             <label for="ville">Ville:<sup class="text-danger">*</sup></label>
                                             <select class="custom-select" id="ville" name="ville" required>
                                                 <option value="<?php echo $iDvillePartenaire;?>"><?php echo $villePartenaire ;?></option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-10">
                                             <label class="col text-center">Lien du site web:<sup class="text-danger">*</sup></label>
                                             <input type="url" class="form-control" name="url" placeholder="https://www.nom-du-site.fr" value="<?php echo $donneesPartenaire['url']; ?>" required>
                                             <small class="form-text text-danger text-center">Mettre url en entier... .</small>

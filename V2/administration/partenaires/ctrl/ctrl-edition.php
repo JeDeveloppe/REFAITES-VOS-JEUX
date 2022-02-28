@@ -26,12 +26,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $vend = valid_donnees($_POST['vend']);
     $partenaire = valid_donnees($_POST['idDuPartenaire']);
     $ecommerce = valid_donnees($_POST['ecommerce']);
+    $isActif = $_POST['onLine'];
 
 
 
     //ON MET A JOUR LE PARTENAIRE
-    $sqlInfosJeu = $bdd -> prepare("UPDATE partenaires SET vend = :vend, ecommerce = :ecommerce, detachee = :detachee, complet = :complet, nom= :nom, don = :don, description = :description, id_villes_free = :idVille, pays = :pays, url = :url, collecte = :collecte  WHERE idPartenaire = :partenaire");
-    $sqlInfosJeu-> execute(array("vend" => $vend, "ecommerce" => $ecommerce, "detachee" => $detachee, "complet" => $complet, "nom" => $nom, "don" => $don, "description" => $description, "idVille" => $ville, "partenaire" => $partenaire, "url" => $url, "collecte" => $collecte, "pays" => $pays));
+    $sqlInfosJeu = $bdd -> prepare("UPDATE partenaires SET isActif = :actif, vend = :vend, ecommerce = :ecommerce, detachee = :detachee, complet = :complet, nom= :nom, don = :don, description = :description, id_villes_free = :idVille, pays = :pays, url = :url, collecte = :collecte  WHERE idPartenaire = :partenaire");
+    $sqlInfosJeu-> execute(array("actif"=> $isActif, "vend" => $vend, "ecommerce" => $ecommerce, "detachee" => $detachee, "complet" => $complet, "nom" => $nom, "don" => $don, "description" => $description, "idVille" => $ville, "partenaire" => $partenaire, "url" => $url, "collecte" => $collecte, "pays" => $pays));
 
 
     //ON TESTE L'IMAGE

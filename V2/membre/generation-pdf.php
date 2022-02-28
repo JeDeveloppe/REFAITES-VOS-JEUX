@@ -169,7 +169,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     //LIGNE FORFAIT DE BASE
     $pdf->SetY($position_detail + 8);
     $pdf->SetX(8);
-    $pdf->MultiCell(168,8,utf8_decode("Forfait de base / Adhésion RVJ:"),1,'R');
+    $pdf->MultiCell(168,8,utf8_decode("Adhésion RVJ:"),1,'R');
     $pdf->SetY($position_detail + 8);
     $pdf->SetX(176);
     $pdf->MultiCell(24,8,number_format($donneesDocument['prix_preparation'] / 100 * $tva,2),1,'R');

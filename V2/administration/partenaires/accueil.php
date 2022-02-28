@@ -50,6 +50,11 @@ $MAX_SIZE_FILE = $donneesConfig[2]['valeur'] * 1024 * 1024;
                                 $sqlVilleFranceFree->execute(array($partenaire['id_villes_free']));
                                 $donneesVilleFranceFree = $sqlVilleFranceFree->fetch();
 
+                                if($partenaire['isActif'] == true){
+                                    $isOnLine = '<i class="fas fa-circle text-success"></i>';
+                                }else{
+                                    $isOnLine = '<i class="fas fa-circle text-danger"></i>';
+                                }
                                 if($partenaire['ecommerce'] == false){
                                     $colorEcommerce = '<i class="fas fa-times text-danger"></i>';
                                 }else{
@@ -81,7 +86,7 @@ $MAX_SIZE_FILE = $donneesConfig[2]['valeur'] * 1024 * 1024;
                                 }
                                 echo '<tr>
                                         <td class="align-middle">'.$flag.'</td>
-                                        <td class="align-middle">'.$partenaire['nom'].'</td>
+                                        <td class="align-middle">'.$partenaire['nom'].' '.$isOnLine.'</td>
                                         <td class="align-middle">'.$departement_province.' - '.$donneesVilleFranceFree['ville_nom'].'</td>
                                         <td class="align-middle">'.$colorDon.'</td>
                                         <td class="align-middle">'.$colorEcommerce.'</td>

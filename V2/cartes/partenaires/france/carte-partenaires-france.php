@@ -7,17 +7,19 @@ $descriptionPage = "Cette page répertorie tous les partenaires du service. Il s
 include_once("../../../bdd/connexion-bdd.php");
 
 if(preg_match('#/don-de-jeux/#',$_SERVER['REQUEST_URI'])){
-  $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? AND don = ? ORDER BY nom");
+  $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? AND don = ? AND isActif = 1 ORDER BY nom");
   $sqlPartenaires->execute(array("FR",1));
   $h1 = "Donner ses jeux en France &#127467;&#127479;";
   $titreDeLaPage = "Donner ses jeux en France - ".$GLOBALS['titreDePage'];
   $linkReverse = '/don-de-jeux/partenaires/belgique/';
+  $texteReverse = "Donner ses jeux en ";
 }else{
-  $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? ORDER BY nom");
+  $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? AND isActif = 1 ORDER BY nom");
   $sqlPartenaires->execute(array("FR"));
   $h1 = "Nos partenaires Français &#127467;&#127479;";
   $titreDeLaPage = "Nos partenaires en France - ".$GLOBALS['titreDePage'];
   $descriptionPage = "A définir";
+  $texteReverse = "Nos partenaires ";
   $linkReverse = '/carte-des-partenaires/belgique/';
 }
 include_once("../../../commun/haut_de_page.php");
@@ -30,7 +32,7 @@ include_once("../../../commun/alertMessage.php");
         <?php echo $descriptionPage; ?>
     </div>
     <div class="col-8 mx-auto text-right mt-3">
-      <a class="text-decoration-none" href="<?php echo $linkReverse; ?>">Donnez vos jeux en <span class="wind">&#127463;&#127466;</span></a>
+      <a class="text-decoration-none" href="<?php echo $linkReverse; ?>"><?php echo $texteReverse; ?><span class="wind">&#127463;&#127466;</span></a>
     </div>
   </div>
   <div class="row mt-3">

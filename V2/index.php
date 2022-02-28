@@ -45,7 +45,7 @@ include_once("./commun/alertMessage.php");
             <br/>
             <img class="col-5 col-md-3 col-lg-2 position-relative" src="/images/design/franceAccueil.png">
             <?php
-                $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? ");
+                $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? AND isActif = 1");
                 $sqlPartenaires->execute(array("FR"));
                 $nbrPartenaires = $sqlPartenaires->rowCount();
             ?>
