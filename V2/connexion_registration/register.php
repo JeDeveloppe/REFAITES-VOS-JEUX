@@ -43,14 +43,16 @@ $donneesOptGroup = $sqlOptgroup-> fetch();
                                 <div class="col-6 col-sm-8 col-md-6 form-group mb-3">
                                     <label for="pays">Pays:<sup class="text-danger">*</sup></label>
                                     <select name="pays" class="form-control col-12" id="pays" required>
-                                        <option value=''>...</option>
+                                        <option value=''>Choisir un pays...</option>
                                         <option value='FR'>FRANCE</option>
                                         <option value='BE'>BELGIQUE</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-8 col-md-6 form-group mb-3">
                                     <label for="cp">Département / Province:<sup class="text-danger">*</sup></label>
-                                    <select name="cp" class="form-control col-12" id="departements" required></select>
+                                    <select name="cp" class="form-control col-12" id="departements" required>
+                                        <option value=''>En attente du pays...</option>
+                                    </select>
                                 </div>
                      
                            

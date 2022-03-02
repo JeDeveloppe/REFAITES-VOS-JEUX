@@ -125,9 +125,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $nbrEmail = $reqMail->rowCount();
 
                 if($nbrEmail > 0){ // si adresse mail existe on ne peut pas re-creer le membre
-                    $_SESSION['alertMessage'] = "Inscription impossible: cette adresse email existe déjà !";
-                    $_SESSION['alertMessageConfig'] = "danger";
-                    header("Location: /connexion-inscription/");
+                    $_SESSION['alertMessage'] = "Inscription déja faite: réglamer un mot de passe !";
+                    $_SESSION['alertMessageConfig'] = "warning";
+                    header("Location: /first-connexion/");
                     exit();
         
                 }
