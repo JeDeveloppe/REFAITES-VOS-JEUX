@@ -105,8 +105,8 @@ $cpClient = $donneesClientLivraison['cpLivraison'] ?? "";
         </div>
         <div class="col-10 col-lg-3 mx-auto text-center">
             <div class="btn-group pt-lg-3" role="group">
-                <button type="submit" class="btn btn-info">Trier</button>
-                <a href="/catalogue-jeux-occasion/" class="btn btn-danger">Remettre à zéro</a>
+                <button type="submit" class="btn btn-info">Rechercher</button>
+                <a href="/catalogue-jeux-occasion/" class="btn btn-danger">Supprimer les filtres</a>
             </div>
         </div>
     </form>
@@ -316,7 +316,7 @@ if($nbrJeuxComplets > 0){
                     }
 }// fin de resultat
 else{
-    $sqlPartenaires = $bdd->query("SELECT * FROM partenaires WHERE complet = 1 AND idPartenaire != 10 ORDER BY RAND()");
+    $sqlPartenaires = $bdd->query("SELECT * FROM partenaires WHERE complet = 1 AND ecommerce = 1 AND idPartenaire != 10 ORDER BY RAND()");
     $donneesPartenaires = $sqlPartenaires->fetchAll();
 
     echo '<div class="row px-xl-9 justify-content-start mt-5">';

@@ -16,8 +16,8 @@ if(!preg_match('#^14#',$donneesClient['cpLivraison'])){
     $textRetrait = '<span class="text-success">Possible sur Caen !</span>';
 }
 if($donneesClient['isAssociation'] == 0){
-    $textAssociation = "NON - ";
-    $dateFinAssociation = "Il n'a pas encore eu d'achat sur la version 2...";
+    $textAssociation = "NON ";
+    $dateFinAssociation = "";
 }else if($donneesClient['isAssociation'] < time()){
     $textAssociation = "NON - ";
     $dateFinAssociation = "Valable jusqu' au ".date('d.m.Y', $donneesClient['isAssociation']);

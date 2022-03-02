@@ -10,10 +10,10 @@ include_once("./commun/haut_de_page.php");
 include_once("./commun/alertMessage.php");
 ?>
 
-<section class="mt-5 text-center container">
+<section class="mt-4 text-center container">
     <div class="row mt-5">
         <div class="col-11 mx-auto mt-4">
-            <div class="lead text-muted">Un service pour compléter ses jeux de socièté, en acheter d'occasion et donner ceux dont on ne veut plus (même incomplets).
+            <div class="lead text-secondary">Un service pour compléter ses jeux de socièté, en acheter d'occasion et donner ceux dont on ne veut plus (même incomplets).
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@ include_once("./commun/alertMessage.php");
         <a href="/catalogue-pieces-detachees/" class="m-2 text-decoration-none">
             <div class="jumbotron jb1-accueil m-0 text-center d-flex flex-wrap justify-content-center align-items-center">
                 <span class="h3 text-white col-12 p-0">Pièces détachées</span>
-                <span class="h4 text-white">Envoi &#127467;&#127479; & &#127463;&#127466;</span>
+                <span class="h5 text-white">Envoi 🇫🇷 & 🇧🇪 </span>
             </div>
         </a>
         <a href="/catalogue-jeux-occasion/" class="m-2 text-decoration-none">
@@ -35,7 +35,7 @@ include_once("./commun/alertMessage.php");
         <a href="/don-de-jeux/partenaires/france/" class="m-2 text-decoration-none">
             <div class="jumbotron jb3-accueil m-0 text-center d-flex flex-wrap justify-content-center align-items-center">
                 <span class="h3 text-white col-12 p-0">Donner ses jeux</span>
-                <span class="h4 text-white">&#127467;&#127479; & &#127463;&#127466;</span>
+                <span class="h5 text-white">🇫🇷 & 🇧🇪 </span>
             </div>
         </a>
     </div>

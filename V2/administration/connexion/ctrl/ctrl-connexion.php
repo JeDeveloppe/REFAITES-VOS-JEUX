@@ -39,7 +39,7 @@
                 $updateTimeVisite->execute(array('time' => time(), 'email' => $mail));
 
                 $_SESSION['pseudo'] = $donnees['pseudo'];
-                $_SESSION['userId'] = $donnees['idUser'];
+                $_SESSION['sessionId'] = $donnees['idUser'];
                 $_SESSION['levelUser'] = $donnees['userLevel'];
                 $_SESSION['validKey'] = $donnees['validKey'];
 

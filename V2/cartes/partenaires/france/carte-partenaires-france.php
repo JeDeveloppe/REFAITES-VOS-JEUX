@@ -3,10 +3,10 @@
 include_once("../../../config.php");
 include("../../../controles/fonctions/cleanUrl.php");
 
-$descriptionPage = "Cette page répertorie tous les partenaires du service. Il s’agit de personnes, d’initiatives ou d’entreprises qui s’inscrivent dans la même démarche autour du jeu, du développement durable, du réemploi et de la réduction des déchets. Déposez vos jeux complets ou incomplets partout en France !";
 include_once("../../../bdd/connexion-bdd.php");
 
 if(preg_match('#/don-de-jeux/#',$_SERVER['REQUEST_URI'])){
+  $descriptionPage = "Cette page répertorie tous les partenaires français du service qui collectent et valorisent les jeux d’occasion. En fonction des partenaires, vous pouvez donner vos jouets, vos peluches, vos puzzles ainsi que vos jeux de société complets ou incomplets. Une belle occasion de faire un geste écocitoyen en prolongeant la vie de ces objets !";
   $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? AND don = ? AND isActif = 1 ORDER BY nom");
   $sqlPartenaires->execute(array("FR",1));
   $h1 = "Donner ses jeux en France &#127467;&#127479;";
@@ -14,11 +14,11 @@ if(preg_match('#/don-de-jeux/#',$_SERVER['REQUEST_URI'])){
   $linkReverse = '/don-de-jeux/partenaires/belgique/';
   $texteReverse = "Donner ses jeux en ";
 }else{
+  $descriptionPage = "Cette page répertorie tous les partenaires français du service. Il s’agit de personnes, d’organismes ou d’entreprises qui s’inscrivent dans la même démarche autour du jeu, du développement durable, du réemploi et de la réduction des déchets. Auprès de ces partenaires vous pouvez acheter, louer ou donner des jeux d’occasion !";
   $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? AND isActif = 1 ORDER BY nom");
   $sqlPartenaires->execute(array("FR"));
   $h1 = "Nos partenaires Français &#127467;&#127479;";
   $titreDeLaPage = "Nos partenaires en France - ".$GLOBALS['titreDePage'];
-  $descriptionPage = "A définir";
   $texteReverse = "Nos partenaires ";
   $linkReverse = '/carte-des-partenaires/belgique/';
 }
@@ -47,7 +47,7 @@ include_once("../../../commun/alertMessage.php");
   </div>
   <div class="row mt-5">
     <div class="col-11 col-md-9 col-lg-6 mx-auto text-center p-0">
-      <a class="text-decoration-none h5" href="/contact/">Vous avez envie de figurer sur cette carte ?<br/>Prenez contact avec nous !</a>
+      <a class="h5" href="/contact/">Vous avez envie de figurer sur cette carte ?<br/>Prenez contact avec nous !</a>
     </div>
   </div>
 </div>
@@ -67,7 +67,7 @@ foreach($donneesPartenaires as $partenaire){
 
   //affichage details des ventes
   if($partenaire['complet'] == 1 || $partenaire['detachee'] == 1){
-    $detailsVente= "<b>Le service vend:</b><br/>";
+    $detailsVente= "<b>Le service vend:</b><br/>".$partenaire['vend'];
   }else{
     $detailsVente = "";
   }
@@ -97,7 +97,10 @@ foreach($donneesPartenaires as $partenaire){
       "lng" => $donneesVilleFranceFree['lng'],
       "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['ville_departement'].')',
       "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p><p style="width:100%; text-align:center">'.$partenaire['url'].'</p>',
-      "url" => $partenaire['url']
+      "url" => $partenaire['url'],
+      "type" => "image",
+      "image_url" => "https://www.refaitesvosjeux.fr/images/design/SiteEcommerce.png",
+      "size" => "45"
     ]);
   }
 }

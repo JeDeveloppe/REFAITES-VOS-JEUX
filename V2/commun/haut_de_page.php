@@ -110,18 +110,18 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
             </button>
             <div class="collapse navbar-collapse " id="navbarColor02">
               <div class="col-12 d-flex justify-content-end">
-                <ul class="navbar-nav h6"> 
+                <ul class="navbar-nav font-weight-bold"> 
                   <li class="nav-item mx-md-1 border-bottom">
-                    <a class="nav-link text-primary" href="/catalogue-pieces-detachees/">Pièces détachées</a>
+                    <a class="nav-link" href="/catalogue-pieces-detachees/">Pièces détachées</a>
                   </li>
                   <li class="nav-item mx-md-1 border-bottom">
-                    <a class="nav-link text-primary" href="/catalogue-jeux-occasion/">Jeux d'occasion</a>
+                    <a class="nav-link" href="/catalogue-jeux-occasion/">Jeux d'occasion</a>
                   </li>
                   <li class="nav-item mx-md-1 border-bottom">
-                    <a class="nav-link text-primary" href="/don-de-jeux/partenaires/france/">Donner ses jeux</a>
+                    <a class="nav-link" href="/don-de-jeux/partenaires/france/">Donner ses jeux</a>
                   </li>
                   <li class="nav-item mx-md-1 border-bottom">
-                    <a class="nav-link text-primary" href="/nous-soutenir/">Nous soutenir</a>
+                    <a class="nav-link" href="/nous-soutenir/">Nous soutenir</a>
                   </li>
                   <?php
                     if(isset($_SESSION['levelUser'])){
@@ -143,7 +143,7 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
                       }
                   ?>
                   <li class="nav-item mx-md-1 border-bottom mt-1 mt-md-0" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Panier">
-                        <a class="nav-link text-primary position-relative <?php echo $textPanier; ?>" href="<?php echo $lienUrlPanier; ?>"><i class="fas fa-shopping-bag text-refaites <?php if($nbreDeMessage > 0){echo 'fa-box-open-scale';}?>"></i><b class="text-right"><?php echo $textPanier; ?></b></a>
+                        <a class="nav-link text-primary position-relative <?php echo $textPanier; ?>" href="<?php echo $lienUrlPanier; ?>"><i class="fas fa-shopping-bag text-refaites<?php if($nbreDeMessage > 0){echo 'fa-box-open-scale';}?>"></i><b class="text-right"><?php echo $textPanier; ?></b></a>
                       </li>
                 </ul>
               </div>

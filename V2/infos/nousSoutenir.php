@@ -9,27 +9,16 @@ include_once("../commun/alertMessage.php");
 
 ?>
 <div class="container-fluid mt-5">
-    <h1 class="col-12 text-center mt-4">Nous soutenir</h1>
-    <!-- <div class="row mt-5">
-        <div class="col-12 text-center ">
-            <ul class="nav nav-pills d-inline-block">
-                <li class="nav-item bg-vos jumbotron p-1 d-inline float-left">
-                    <a class="nav-link float-left" href="/don-de-jeux/">Comment ?</a>
-                </li>
-                <li class="nav-item bg-vos jumbotron p-1 d-inline float-left ml-2">
-                    <a class="nav-link" href="/don-de-jeux/les-demandes/">Le service recherche...</a>
-                </li>
-            </ul>
-        </div>
-    </div> -->
-    <div class="row my-3">
+    <h1 class="col-12 text-center mt-2">Nous soutenir</h1>
+ 
+    <div class="row">
         <div class="col-11 col-lg-8 mx-auto">
         
-            <p class="text-center my-5">
+            <p class="text-center my-3">
                 Que vous soyez un particulier, un professionnel du monde du jeu ou du réemploi, ce projet a besoin de vous pour se pérenniser et se développer.
             </p> 
               
-            <article class="my-5">
+            <article class="my-4">
                 <h4 class="text-info">Acheter des jeux :</h4>
 
                 <p class="mt-2 text-justify">
@@ -41,9 +30,9 @@ include_once("../commun/alertMessage.php");
             <article class="my-5">
                 <h4 class="text-info">Donner des jeux :</h4>
 
-                <ul class="my-2">
-                    <li class="pt-3">Le service récupère les jeux complets et incomplets ainsi que les pièces détachées (pions, dés, sabliers…).
-                        <ol><span class="text-danger">Nous ne récupérons pas les puzzles et les jouets.</span></ol>
+                <ul>
+                    <li>Le service récupère les jeux complets et incomplets ainsi que les pièces détachées (pions, dés, sabliers…).
+                        <ol><span class="text-danger">Nous ne récupérons pas les puzzles ni les jouets.</span></ol>
                     </li>
                     <li class="pt-3">Si vous êtes sur Caen, vous pouvez les déposer à la Coop 5 pour 100 – 33 route de Trouville – Caen.</li>
                     <li class="pt-3">Si vous êtes d’une autre région vous pouvez les envoyer par voie postale ou colissimo à l’adresse suivante :
@@ -67,14 +56,14 @@ include_once("../commun/alertMessage.php");
                 <h4 class="text-info">Agrandir le réseau:</h4>
 
                 <p class="mt-2 text-justify">
-                    Le service cherche à développer le réseau autour du réemploi du jouet: vendeur de pièces détachées, de jeux complets ou point de collecte.<br/>
+                    Le service cherche à développer le réseau autour du réemploi du jouet: vendeurs de pièces détachées, de jeux complets ou points de collecte.<br/>
                     Vous souhaitez devenir l'un de nos <a class="text-info" href="/carte-des-partenaires/france/">partenaires</a> ? N'hésitez pas à nous contacter !
                 </p>
 
                 <div class="row mt-3 justify-content-center">
                     <div class="col-8 col-md-4 card mt-4 shadow">
                         <video controls autoplay loop>
-                            <source src="/images/animationFrance.mp4" type="video/mp4">
+                            <source src="/images/photos/animationFrance.mp4" type="video/mp4">
                         </video> 
                     </div>
                 </div>

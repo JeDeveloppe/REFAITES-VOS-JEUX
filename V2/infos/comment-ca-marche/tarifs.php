@@ -118,7 +118,7 @@ include_once("../../bdd/table_config.php");
                     </tr>
                     <tr>
                         <td>Plateau de jeu</td>
-                        <td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">❌</td>
+                        <td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">Suivant format</td>
                     </tr>
                     <tr>
                         <td>Règle du jeu</td>

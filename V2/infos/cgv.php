@@ -1,4 +1,3 @@
-
 <?php
 @session_start ();
 include_once("../config.php");
@@ -10,7 +9,7 @@ include_once("../commun/alertMessage.php");
 
 <div class="container-fluid mt-5">
     <h1 class="col mt-4 text-center">Conditions générales de vente</h1>
-    <div class="col text-center small">Date de dernière mise à jour : 20/02/2022</div>
+    <div class="col text-center small">Date de dernière mise à jour : 01/03/2022</div>
 
     <div class="col mt-4 mb-4"> 
         <div class="col mt-4 ml-4">
@@ -50,7 +49,11 @@ include_once("../commun/alertMessage.php");
 
     Attention : dès que vous prenez possession physiquement des produits commandés, les risques de perte ou d'endommagement des produits vous sont transférés.
 
-    <p id="cgvAdhesion">PARAGRAPHE EN ATTENTE DE REDACTION PAR ANTOINE :)</p>
+    <p id="cgvAdhesion" class="mt-3">Adhésion:</p>
+    
+    Le service fonctionne avec un système d’adhésion. Pour toute première commande, une adhésion au service de 2€ est facturée. Cette adhésion est valable 1 an, de date à date. La date de début correspond à la date du premier achat. Cette adhésion n’est pas facturée pour les commandes suivantes passées durant l’année. Après expiration au bout d’1 an, l’adhésion est de nouveau facturée lors de l’achat suivant.
+
+    Cette adhésion permet de prendre en charge une partie des frais liés à la plateforme de paiement en ligne. Elle représente également un soutien au projet et valorise le temps consacré par nos équipes à la valorisation des jeux.
 
     </div>
 

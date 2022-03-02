@@ -28,7 +28,7 @@ include_once("../commun/alertMessage.php");
 
 <div class="container-fluid mt-5">
 
-    <?php require_once('./menuMembre.php'); ?>
+    <?php require_once('./menuMembre.php');?>
 
     <div class="row mt-3" id="secteurfacturation">
         <form method="POST" action="/membre/ctrl/ctrl-adresses.php" class="card col-11 mx-auto col-sm-9 col-md-8 col-lg-6 p-0">

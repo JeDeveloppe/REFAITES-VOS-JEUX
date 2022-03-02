@@ -89,7 +89,7 @@ if(isset($_GET['recherche'])){
 
         echo '<div class="row px-xl-9 justify-content-start">';
         echo '<div class="col-12 text-center">
-            <p class="h2">Nous n\'avons pas ce jeu en stock.</p>
+            <p class="h2">Nous n\'avons pas ce jeu en stock pour le moment.</p>
             <p class="h5">Vous pouvez suivre nos arrivages sur la page Facebook !</p>    
             <p class="h5 mt-5">Ou tenter votre chance chez l\'un de nos partenaires:</p>
         </div>';

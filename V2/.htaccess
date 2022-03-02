@@ -63,7 +63,7 @@ Options +FollowSymlinks
     RewriteRule ^demande-devis/delete/([0-9]+)/$   /panier/ctrl/ctrl-deleteLignePanier.php?id=$1   [L]
 
     RewriteRule ^contact/$  /contact/contact.php [L]
-    RewriteRule ^conditions-generales-de-vente/$   /infos/cgv.php  [L]
+    RewriteRule ^conditions-generales-de-vente/$   /infos/cgv.php [L]
     RewriteRule ^mentions-legales/$   /infos/mentions-legales.php [L]
   
 

@@ -1,11 +1,6 @@
 <?php
 @session_start ();
 
-
-$sqlTimeline = $bdd-> prepare("SELECT * FROM historique WHERE actif = ? ORDER BY date DESC");
-$sqlTimeline-> execute(array(1));
-$donneesTimeline = $sqlTimeline-> fetchAll();
-
 //NOMBRE DE JEUX SAUVER
 $sqlSauver = $bdd -> query('SELECT * FROM documents_lignes WHERE idDocument IN (SELECT idDocument FROM documents WHERE numero_facture != "")');
 $nbrJeuxSauver = $sqlSauver->rowCount();

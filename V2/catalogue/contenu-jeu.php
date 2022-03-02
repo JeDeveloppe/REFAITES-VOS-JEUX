@@ -59,17 +59,17 @@ if(!isset($_GET['jeu'])){
                 ?>
 
                 <div class="container mt-5">
+                    <!-- RETOUR CATALOGUE -->
+                    <div class="col-12 text-right"><a href="<?php echo $retour_url;?>" class="btn btn-warning bg-vos"><?php echo $retour_texte; ?></a></div>
                     <!-- titre -->
-                    <h1 class="col-12 text-center mt-5"><?php echo $donneesJeu['nom']; ?></h1>
+                    <h1 class="col-12 text-center mt-2 mt-sm-0"><?php echo $donneesJeu['nom']; ?></h1>
                     <?php
                         if(isset($_SESSION['levelUser']) && $_SESSION['levelUser'] == 4){
-                            echo '<div class="col-12 text-center mb-5">'.$donneesJeu['editeur'].' - '.$donneesJeu['annee'].' - <a href="/admin/jeu/'.$donneesJeu['idCatalogue'].'/edition/"><i class="fas fa-cog text-gray-dark"></i></a></div>';
+                            echo '<div class="col-12 text-center mb-2">'.$donneesJeu['editeur'].' - '.$donneesJeu['annee'].' - <a href="/admin/jeu/'.$donneesJeu['idCatalogue'].'/edition/"><i class="fas fa-cog text-gray-dark"></i></a></div>';
                         }else{
-                            echo '<div class="col-12 text-center mb-5">'.$donneesJeu['editeur'].' - '.$donneesJeu['annee'].'</div>';
+                            echo '<div class="col-12 text-center mb-2">'.$donneesJeu['editeur'].' - '.$donneesJeu['annee'].'</div>';
                         }
                     ?>
-                    <!-- RETOUR CATALOGUE -->
-                    <div class="col-12 mb-5"><a href="<?php echo $retour_url;?>" class="btn btn-warning bg-vos"><?php echo $retour_texte; ?></a></div>
             
                     <!-- BLOC PRESENTATION DU JEU  -->
                     <div class="row" id="<?php echo $donneesJeux['idCatalogue'];?>">
@@ -163,7 +163,7 @@ if(!isset($_GET['jeu'])){
                                             </tr>
                                             <tr>
                                                 <td>Plateau de jeu</td>
-                                                <td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">❌</td>
+                                                <td class="text-center">✅</td><td class="text-center">✅</td><td class="text-center">Suivant format</td>
                                             </tr>
                                             <tr>
                                                 <td>Règle du jeu</td>
