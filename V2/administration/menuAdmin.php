@@ -47,38 +47,25 @@ $countCommandesApreparer = $sqlCommandesApreparer -> rowCount();
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">JEUX</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="/admin/jeu/demandes/pieces/"><i class="fas fa-thermometer-three-quarters"> Les 20 plus demandés (pièces)</i></a>
-      <a class="dropdown-item" href="/admin/jeu/demandes/occasion/"><i class="fas fa-thermometer-three-quarters"> Les 20 plus demandés (occasions)</i></a>
       <a class="dropdown-item" href="/admin/jeu/new/"><i class="fas fa-plus"> Nouveau jeu</i></a>
       <a class="dropdown-item" href="/admin/jeu/catalogue/complet/"><i class="fas fa-square-full"> Les jeux complets</i></a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="/admin/jeu/demandes/pieces/"><i class="fas fa-thermometer-three-quarters"> Les 20 plus demandés (pièces)</i></a>
+      <a class="dropdown-item" href="/admin/jeu/demandes/occasion/"><i class="fas fa-thermometer-three-quarters"> Les 20 plus demandés (occasions)</i></a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="/admin/jeu/catalogue/general/"><i class="fas fa-database"> Catalogue général</i></a>
     </div>
   </li>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CATEGORIES / ACC</a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/admin/categories/"><i class="fas fa-plus"> Gestion des catégories</i></a>
-        <a class="dropdown-item" href="/admin/accessoires/"><i class="fas fa-plus"> Gestion des accessoires</i></a>
-      </div>
-  </li>
-  <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">DIVERS</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="/admin/bouteille-a-la-mer/"><i class="fas fa-wine-bottle"> Bouteilles à la mer</i></a>
-        <a class="dropdown-item" href="/admin/demande-de-don/"><i class="fas fa-hand-holding-heart"> Les demandes de don</i></a>
         <a class="dropdown-item" href="/admin/partenaires/"><i class="fas fa-handshake"> Gestion des partenaires</i></a>
         <a class="dropdown-item" href="/admin/config/parametres-du-site/"><i class="fas fa-laptop-code"> Configuration</i></a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/admin/bouteille-a-la-mer/"><i class="fas fa-wine-bottle"> Bouteilles à la mer (historique)</i></a>
       </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/admin/sitemap/"><i class="fas fa-globe-europe"> Sitemap</i></a>
+    <a class="nav-link" href="/sitemap.xml" target="_blank"><i class="fas fa-globe-europe"> Sitemap</i></a>
   </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">RENE</a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="/admin/test/"><i class="fas fa-vial"> Liste Gr</i></a></i>
-      </div>
-  </li>
-
 </ul>

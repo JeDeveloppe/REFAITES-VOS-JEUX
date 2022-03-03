@@ -115,6 +115,10 @@ if(!isset($_GET['jeuOccasion'])){
                                                 <p>État de la boite: <?php echo $donneesJeuComplet['etatBoite']; ?></p>
                                                 <p>État du matériel: <?php echo $donneesJeuComplet['etatMateriel']; ?></p>
                                                 <p>Règle du jeu: <?php echo $donneesJeuComplet['regleJeu']; ?></p>
+                                                <?php if($donneesJeuComplet['information'] != ""){
+                                                    echo '<p><em>Informations:</em><br/><span class="ml-5">'.$donneesJeuComplet['information'].'</span></p>';
+                                                }
+                                                ?>
                                                 <p>
                                                     <?php
                                                         if($donneesJeu['nbrJoueurs'] == 1){

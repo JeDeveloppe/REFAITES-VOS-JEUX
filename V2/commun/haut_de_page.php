@@ -4,7 +4,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/config.php");
 require_once($_SERVER["DOCUMENT_ROOT"].'/controles/fonctions/modeTravauxOn.php');
 require($_SERVER["DOCUMENT_ROOT"]."/bdd/connexion-bdd.php");
 //require($_SERVER["DOCUMENT_ROOT"]."/controles/fonctions/validation_donnees.php");
-require($_SERVER["DOCUMENT_ROOT"]."/sitemap/sitemap.generateur.php");
+//require($_SERVER["DOCUMENT_ROOT"]."/sitemap/sitemap.generateur.php");
 require($_SERVER["DOCUMENT_ROOT"]."/bdd/table_config.php");
 
 if(!isset($_SESSION['sessionId'])){
