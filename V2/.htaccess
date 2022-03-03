@@ -11,14 +11,19 @@ Options +FollowSymlinks
     #RewriteRule ^(.*)$ https://www.refaitesvosjeux.fr/$1 [R=301,L]
 
 # url du site
-    RewriteRule ^accueil/$  /index.php [L]
+    #anciennes urls
+    RewriteRule ^comment-ca-marche/passer-une-commande/$   /anciennesUrl/commande.php    [L]
+    RewriteRule ^comment-ca-marche/expedition-retrait/$    /anciennesUrl/expedition-retrait.php  [L]
+    RewriteRule ^medias-presse/$   /anciennesUrl/medias.php [L]
+    RewriteRule ^partenaires/$   /anciennesUrl/partenaires.php [L]
+    RewriteRule ^catalogue/$      /catalogue/catalogue.php  [L]
+    
+
+
     RewriteRule ^le-projet/$    /infos/projet.php  [L]
-    RewriteRule ^comment-ca-marche/passer-une-commande/$    /infos/comment-ca-marche/passerUneCommande.php  [L]
+    RewriteRule ^accueil/$  /index.php [L]
     RewriteRule ^comment-ca-marche/tarifs/$    /infos/comment-ca-marche/tarifs.php  [L]
     RewriteRule ^projet/qui-sommes-nous/      /infos/projet/quiSommesNous.php [L]
-
-    # RewriteRule ^comment-ca-marche/expedition-retrait/$    /infos/comment-ca-marche/expedition-retrait.php  [L]
-
 
     RewriteRule ^nous-soutenir/$    /infos/nousSoutenir.php  [L]
     RewriteRule ^don-de-jeux/partenaires/france/$       /cartes/partenaires/france/carte-partenaires-france.php  [L]
@@ -26,7 +31,6 @@ Options +FollowSymlinks
 
     RewriteRule ^carte-des-partenaires/france/$       /cartes/partenaires/france/carte-partenaires-france.php  [L]
     RewriteRule ^carte-des-partenaires/belgique/$       /cartes/partenaires/belgique/carte-partenaires-belgique.php  [L]
-
 
     RewriteRule ^catalogue-pieces-detachees/$  /catalogue/catalogue.php [L]
     RewriteRule ^sitemap.xml /sitemap/sitemap.php  [L]
@@ -36,7 +40,6 @@ Options +FollowSymlinks
     RewriteRule ^connexion/forgotPassword/$ /connexion_registration/password-resend.php  [L]
     RewriteRule ^connexion/password/change/$  /connexion_registration/change.php  [L]
     RewriteRule ^logout/$ /connexion_registration/logout.php  [L]
-    RewriteRule ^medias-presse/$   /on-en-parle/medias.php [L]
     RewriteRule ^carte-des-partenaires/([a-z])+/$       /cartes/cartePartenaires.php?pays=$1  [L]
     RewriteRule ^travaux/$ /travaux.php [L]
 
