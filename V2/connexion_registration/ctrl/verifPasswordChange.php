@@ -22,8 +22,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         require('../../config.php');
         require('../../bdd/connexion-bdd.php');
 
-        $req = $bdd->prepare('SELECT * FROM clients WHERE email = :email');
-        $req->execute(array('email' => $mail));
+        $req = $bdd->prepare('SELECT * FROM clients WHERE email = :email AND idUser = :token');
+        $req->execute(array('email' => $mail, 'token' => $tokenUser));
         $donnees = $req->fetch();
 
         if(is_array($donnees)){ // si adresse mail existe on peut enregistrer

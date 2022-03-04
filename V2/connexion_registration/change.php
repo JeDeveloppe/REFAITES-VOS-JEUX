@@ -1,7 +1,7 @@
 <?php
 @session_start ();
 
-if(!isset($_GET['token']) || !isset($_GET['email']) || !isset($_GET['user'])){
+if(!isset($_GET['email']) || !isset($_GET['user'])){
     $_SESSION['alertMessage'] = "Variable manquante !";
     $_SESSION['alertMessageConfig'] = "warning";
     header("Location: /");
@@ -9,20 +9,6 @@ if(!isset($_GET['token']) || !isset($_GET['email']) || !isset($_GET['user'])){
 }else{
     $email = $_GET['email'];
     $tokenUser = $_GET['user'];
-    $token = $_GET['token'];
-}
-
-if(!isset($_SESSION['tokenPasswordChange'])){
-    $_SESSION['alertMessage'] = "TokenPasswordChange manquant !";
-    $_SESSION['alertMessageConfig'] = "danger";
-    header("Location: /");
-    exit();  
-}
-if($_SESSION['tokenPasswordChange'] !== $token){
-    $_SESSION['alertMessage'] = "TokenPasswordChange invalide !";
-    $_SESSION['alertMessageConfig'] = "danger";
-    header("Location: /");
-    exit();  
 }
 
 include_once("../config.php");

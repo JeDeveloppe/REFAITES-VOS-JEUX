@@ -181,7 +181,7 @@ include_once("../../bdd/table_config.php");
         <div class="col-11 col-md-9 col-xl-6 mx-auto text-justify my-4">
             <div class="col-12">Les paiements sont effectués par carte bancaire via des pages sécurisées.</div> 
             <div class="col-12 text-center mt-3">
-                <img src="/PAIEMENT/<?php echo $GLOBAL['servicePaiement']; ?>/logo-<?php echo $GLOBAL['servicePaiement'];?>.png" alt="Paiement avec <?php echo $GLOBAL['servicePaiement']; ?>"/>
+                <img class="img-thumbnail" src="/PAIEMENT/<?php echo $GLOBAL['servicePaiement']; ?>/logo-<?php echo $GLOBAL['servicePaiement'];?>.png" alt="Paiement avec <?php echo $GLOBAL['servicePaiement']; ?>"/>
             
             </div>
             <div class="col-12 mt-5">Après le paiement de la commande il vous est possible de demander une facture.</div>

@@ -24,19 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if(is_array($donnees)){ // si adresse mail existe on peut comparer les mots de passe saisie et celui de la base de donnee
 
-            function random_strings($length_of_string) 
-            { 
-                // String of all alphanumeric character 
-                $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@'; 
-            
-                // Shufle the $str_result and returns substring 
-                // of specified length 
-                return substr(str_shuffle($str_result),0, $length_of_string); 
-            } 
-
-            $validKey = random_strings(64);
-            $_SESSION['tokenPasswordChange'] = $validKey;
-                 
+                           
                 //CONTENUE DU MAIL
                 $contentMail = '
                 <!-- LINE -->
@@ -62,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             max-width: 560px; margin-top:5px" class="container">
                             <th valign="top" style="padding-top: 10px">Voilà le lien pour modifier votre mot de passe:</th>
                             <tr>
-                            <td align="center" style="padding-top: 10px;"><a href="'.$GLOBALS['domaine'].'/connexion/password/change/?email='.$donnees['email'].'&token='.$validKey.'&user='.$donnees['idUser'].'">Modifier mon mot de passe !</a></td>
+                            <td align="center" style="padding-top: 10px;"><a href="'.$GLOBALS['domaine'].'/connexion/password/change/?email='.$donnees['email'].'&user='.$donnees['idUser'].'">Modifier mon mot de passe !</a></td>
                             </tr>
                             </table>
                     </td>
