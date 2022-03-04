@@ -7,14 +7,19 @@ if(!isset($_GET['token']) || !isset($_GET['email']) || !isset($_GET['user'])){
     header("Location: /");
     exit();  
 }else{
-    require('../controles/fonctions/validation_donnees.php');
-    $email = valid_donnees($_GET['email']);
-    $tokenUser = valid_donnees($_GET['user']);
-    $token = valid_donnees($_GET['token']);
+    $email = $_GET['email'];
+    $tokenUser = $_GET['user'];
+    $token = $_GET['token'];
 }
 
-if(!isset($_SESSION['tokenPasswordChange']) && $_SESSION['tokenPasswordChange'] !== $token){
-    $_SESSION['alertMessage'] = "Token invalide !";
+if(!isset($_SESSION['tokenPasswordChange'])){
+    $_SESSION['alertMessage'] = "TokenPasswordChange manquant !";
+    $_SESSION['alertMessageConfig'] = "danger";
+    header("Location: /");
+    exit();  
+}
+if($_SESSION['tokenPasswordChange'] !== $token){
+    $_SESSION['alertMessage'] = "TokenPasswordChange invalide !";
     $_SESSION['alertMessageConfig'] = "danger";
     header("Location: /");
     exit();  
