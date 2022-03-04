@@ -35,14 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $age = valid_donnees($_POST['age']);
     $joueurs = valid_donnees($_POST['joueurs']);
     $prixHT = valid_donnees($_POST['prixHT']);
-    if(strlen($prixHT) < 5){
-        $_SESSION['alertMessage'] = "Prix HT trop petit, minimum 3 caractères...";
-        $_SESSION['alertMessageConfig'] = "warning";
-        header("Location: ".$_SERVER['HTTP_REFERER']);
-        exit(); 
-    }else{
-        $prixHT = $prixHT * 100;
-    }
+    $prixHT = $prixHT * 100;
  
 
     if(!empty($editeur1) && !empty($editeur2)){

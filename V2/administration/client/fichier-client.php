@@ -71,8 +71,10 @@ $menuAlphabet = "A";
                                 $donneesDocument = $searchDocument->fetchAll();
                                 if(count($donneesDocument) > 0){
                                     $disable = 'disabled';
+                                    $disableFacture = '';
                                 }else{
                                     $disable = '';
+                                    $disableFacture = 'disabled';
                                 }
                                 echo '<tr>
                                         <td>'.$donnees['nomFacturation'].'</td>
@@ -81,8 +83,9 @@ $menuAlphabet = "A";
                                         <td>'.$donnees['cpFacturation'].'</td>
                                         <td>'.$donnees['villeFacturation'].'</td>
                                         <td>
-                                        <a href="/admin/client/edition/?client='.$donnees['idUser'].'" class="btn btn-warning">Modifier</a>
-                                        <a class="btn btn-danger '.$disable.'" href="/administration/client/ctrl/ctrl-delete-client.php?client='.$donnees['idUser'].'">Supprimer</a></td>
+                                        <a href="/admin/client/factures/?client='.$donnees['idUser'].'" class="btn btn-info '.$disableFacture.'"><i class="fas fa-file-invoice-dollar"></i></a>
+                                        <a href="/admin/client/edition/?client='.$donnees['idUser'].'" class="btn btn-warning"><i class="fas fa-binoculars"></i></a>
+                                        <a class="btn btn-danger '.$disable.'" href="/administration/client/ctrl/ctrl-delete-client.php?client='.$donnees['idUser'].'"><i class="fas fa-trash"></i></a></td>
                                     </tr>';
                             }
                     ?>
