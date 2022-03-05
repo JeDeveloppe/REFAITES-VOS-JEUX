@@ -42,6 +42,7 @@ $menuAlphabet = "A";
                 <table class="table table-striped table-sm mx-auto text-center">
                     <thead class="thead-dark text-center">
                         <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Prénom</th>
                             <th scope="col">Adresse</th>
@@ -58,7 +59,7 @@ $menuAlphabet = "A";
                             $lettre = "A";
                         }
                             echo '<tr>
-                                    <td class="bg-dark pl-2 text-left" colspan="6">'.strtoupper($lettre).'</td>
+                                    <td class="bg-dark pl-2 text-left" colspan="7">'.strtoupper($lettre).'</td>
                                 </tr>';
                             $searchAlphabet = $bdd-> prepare("SELECT * FROM clients WHERE nomFacturation LIKE ? ORDER BY nomFacturation ASC");
                             $searchAlphabet-> execute(array($lettre.'%'));
@@ -77,16 +78,29 @@ $menuAlphabet = "A";
                                     $disableFacture = 'disabled';
                                 }
                                 echo '<tr>
-                                        <td>'.$donnees['nomFacturation'].'</td>
-                                        <td>'.$donnees['prenomFacturation'].'</td>
-                                        <td>'.$donnees['adresseFacturation'].'</td>
-                                        <td>'.$donnees['cpFacturation'].'</td>
-                                        <td>'.$donnees['villeFacturation'].'</td>
+                                        <td class="align-middle">'.$donnees['idClient'].'</td>
+                                        <td class="align-middle">'.$donnees['nomFacturation'].'</td>
+                                        <td class="align-middle">'.$donnees['prenomFacturation'].'</td>
+                                        <td class="align-middle">'.$donnees['adresseFacturation'].'</td>
+                                        <td class="align-middle">'.$donnees['cpFacturation'].'</td>
+                                        <td class="align-middle">'.$donnees['villeFacturation'].'</td>
                                         <td>
                                         <a href="/admin/client/factures/?client='.$donnees['idUser'].'" class="btn btn-info '.$disableFacture.'"><i class="fas fa-file-invoice-dollar"></i></a>
                                         <a href="/admin/client/edition/?client='.$donnees['idUser'].'" class="btn btn-warning"><i class="fas fa-binoculars"></i></a>
                                         <a class="btn btn-danger '.$disable.'" href="/administration/client/ctrl/ctrl-delete-client.php?client='.$donnees['idUser'].'"><i class="fas fa-trash"></i></a></td>
                                     </tr>';
+                                
+                                    foreach($donneesDocument as $doc){
+                                        echo '<tr>
+                                        <td class="bg-info align-middle">Client: '.$donnees['idClient'].'</td>
+                                        <td colspan="3" class="bg-info align-middle">Réf document en BDD: '.$doc['idDocument'].'</td>
+                                        <td colspan="3" class="bg-info align-middle"><form method="POST" action="/administration/client/ctrl/ctrl-update-document-client.php">
+                                        A transférer au client (idClient en BDD): <input type="text" name="nouvelId">
+                                        <input type="hidden" name="doc" value="'.$doc['idDocument'].'">
+                                        <button class="btn btn-success">MàJ</button>
+                                        </form></td>
+                                    </tr>';
+                                    }
                             }
                     ?>
                     </tbody>
