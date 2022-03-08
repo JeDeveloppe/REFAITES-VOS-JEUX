@@ -50,18 +50,10 @@ if(!isset($_GET['jeuOccasion'])){
                 include_once("../../commun/alertMessage.php");
 
                 if(isset($_SERVER['HTTP_REFERER'])){
-                    if(preg_match("#/catalogue/#",$_SERVER['HTTP_REFERER'])){
                         $retour_texte = "Retour au catalogue";
-                        $retour_url = $_SERVER['HTTP_REFERER'].'#'.$jeu;
-                    }elseif(preg_match("#/accessoires/#",$_SERVER['HTTP_REFERER'])){
-                        $retour_texte = "Retour aux accessoires";
-                        $retour_url = $_SERVER['HTTP_REFERER'].'#'.$jeu;{
-                    }
-                    }else{
-                        $retour_texte = "Retour au catalogue";
-                        $retour_url = "/catalogue-jeux-occasion/";
-                    }
+                        $retour_url = $_SERVER['HTTP_REFERER'];
                 }else{
+                    //dans tous les cas on retourne au catalogue des pièces détachées
                     $retour_texte = "Retour au catalogue";
                     $retour_url = "/catalogue-jeux-occasion/";  
                 }

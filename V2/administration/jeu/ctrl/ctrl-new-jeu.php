@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_FILES["photo"]) && $_FILES["photo"]["size"] > 0){
         if($_FILES["photo"]["error"] == 0){
             $allowed = array("jpg" => "image/jpg", "JPG" => "image/jpg", "JPEG" => "image/jpeg", "jpeg" => "image/jpeg", "GIF" => "image/gif", "gif" => "image/gif", "png" => "image/png", "PNG" => "image/png");
-            $filename = $_SESSION['userId']."-".time()."-".$_FILES["photo"]["name"];
+            $filename = $_SESSION['sessionId']."-".time()."-".$_FILES["photo"]["name"];
             $filetype = $_FILES["photo"]["type"];
             $filesize = $_FILES["photo"]["size"];
         
@@ -107,14 +107,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     //ON CRE DANS LA BASE DE DONNEE
-    $sqlNewJeu = $bdd -> prepare("INSERT INTO catalogue (nom,editeur,annee,imageBlob,accessoire_idCategorie,actif,isLivrable,isComplet,poidBoite,urlNom,age,nbrJoueurs,prixHT,deee) VALUES (:nom, :editeur, :annee, :imageBlob, :categorie, :actif, :livrable, :complet, :poid, :urlNom, :age, :joueurs, :prix, :deee)");
+    $sqlNewJeu = $bdd -> prepare("INSERT INTO catalogue (nom,editeur,annee,imageBlob,accessoire_idCategorie,actif,isLivrable,isComplet,poidBoite,urlNom,age,nbrJoueurs,prix_HT,deee,createur) VALUES (:nom, :editeur, :annee, :imageBlob, :categorie, :actif, :livrable, :complet, :poid, :urlNom, :age, :joueurs, :prix, :deee, :createur)");
     $sqlNewJeu-> execute(array(
         "nom" => $nom,
         "editeur" => $editeur,
         "annee" => $annee,
         "imageBlob" => $imgBase64,
         "categorie" => 0,
-        "actif" => 0,
+        "actif" => 1,
         "livrable"=> $jeuCompletLivraison,
         "complet" => $jeuComplet,
         "poid" => $poidBoite,
@@ -122,7 +122,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         "age" => $age,
         "joueurs" => $joueurs,
         "prix" => $prixHT,
-        "deee" => $deee));
+        "deee" => $deee,
+        "createur" => $_SESSION['pseudo']));
 
     //on recupere dernier entree
     $jeu = $bdd->lastInsertId();

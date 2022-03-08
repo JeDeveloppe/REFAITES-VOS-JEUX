@@ -9,7 +9,7 @@ $titreDeLaPage = "[ADMIN] - Recherche de documents";
 $descriptionPage = "";
 include_once("../commun/haut_de_page.php");
 include_once("../commun/alertMessage.php");
-include_once("../controles/fonctions/calculePrix.php");
+require("../controles/fonctions/calculePrix.php");
 ?>
 <div class="container-fluid">
     <div class="row mt-4">
@@ -118,7 +118,7 @@ include_once("../controles/fonctions/calculePrix.php");
                                                     echo '<i class="fas fa-paper-plane text-danger"> Devis non envoyé</i>';
                                                 }
                                             echo '</td>
-                                            <td class="align-middle">'.ht_ttc($donneesRecherche['totalTTC'],$tva).'</td>
+                                            <td class="align-middle">'.htEnttc($donneesRecherche['totalTTC'],$tva).'</td>
                                             <td class="align-middle">';
                                             if($donneesRecherche['envoyer'] != 0){
                                                 $envoyer = explode("|",$donneesRecherche['envoyer']);
