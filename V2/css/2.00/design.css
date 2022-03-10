@@ -105,6 +105,8 @@
 
 .ulFooter {
   border-radius: 255px 25px 55px 25px/15px 15px 25px 15px;
+  display: flex;
+  align-items: center;
 }
 
 .scale-hover:hover {
@@ -113,14 +115,8 @@
   transition: scale 0.2s ease-in;
 }
 
-.nav-item-facebook {
-  position: relative;
-}
-
 .img-facebook {
-  position: absolute;
-  top: -5%;
-  width: 30%;
+  width: 35px;
 }
 
 .bandeauCommeNeufJeux {

@@ -97,8 +97,8 @@ if(!isset($_GET['partenaire'])){
                                             </select>
                                         </div>
                                         <div class="form-group col-10">
-                                            <label class="col text-center">Lien du site web:<sup class="text-danger">*</sup></label>
-                                            <input type="url" class="form-control" name="url" placeholder="https://www.nom-du-site.fr" value="<?php echo $donneesPartenaire['url']; ?>" required>
+                                            <label class="col text-center">Lien du site web:</label>
+                                            <input type="url" class="form-control" name="url" placeholder="[PAS DE SITE]" value="<?php echo $donneesPartenaire['url'] ?? ''; ?>">
                                             <small class="form-text text-danger text-center">Mettre url en entier... .</small>
                                         </div>
                                         <div class="col-12 d-flex flex-wrap">

@@ -116,12 +116,12 @@ $MAX_SIZE_FILE = $donneesConfig[2]['valeur'] * 1024 * 1024;
                             Taille maximum <?php echo $donneesConfig[2]['valeur'];?>MB et dimension minimum <?php echo $donneesConfig[3]['valeur'];?> x <?php echo $donneesConfig[4]['valeur'];?></p>
                         </div>
                         <div class="form-group col-6">
-                            <label for="nom">Nom:</label>
+                            <label for="nom">Nom:<sup class="text-danger">*</sup></label>
                             <input class="form-control" type="text" name="nom" placeholder="Nom du partenaire" size="60" maxlenght="60" required>
                         </div>
                         <div class="form-group col-6">
                             <label class="col text-center">Lien du site web:</label>
-                            <input type="url" class="form-control" name="url" placeholder="https://www.nom-du-site.fr" required>
+                            <input type="url" class="form-control" name="url" placeholder="https://www.nom-du-site.fr">
                             <small class="form-text text-danger text-center">Mettre url en entier... .</small>
                         </div>
                         <div class="form-group col-4">
@@ -133,13 +133,13 @@ $MAX_SIZE_FILE = $donneesConfig[2]['valeur'] * 1024 * 1024;
                             </select>
                         </div>
                         <div class="form-group col-4">
-                            <label for="departement">Département / Province:</label>
+                            <label for="departement">Département / Province:<sup class="text-danger">*</sup></label>
                             <select name="departement" class="form-control" id="departement" required>
                                 <option value=''>Choisir un pays...</option>
                             </select>
                         </div>
                         <div class="form-group col-4">
-                            <label for="ville">Ville:</label>
+                            <label for="ville">Ville:<sup class="text-danger">*</sup></label>
                             <select class="custom-select" id="ville" name="ville" required>
                                 <option value=''>Attente du département ou province...</option>
                             </select>

@@ -17,7 +17,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $pays = valid_donnees($_POST['pays']);
     $dep = valid_donnees($_POST['departement']);
     $ville = valid_donnees($_POST['ville']);
-    $url = valid_donnees($_POST['url']);
+
+    if(!empty($_POST['url'])){
+        $url = valid_donnees($_POST['url']);
+    }else{
+        $url = null;
+    }
+
     $don = valid_donnees($_POST['don']);
     $description = valid_donnees($_POST['description']);
     $collecte = valid_donnees($_POST['collecte']);
@@ -83,8 +89,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     //ON MET DANS LA BASE
-    $sqlCreationPartenaire = $bdd->prepare("INSERT INTO partenaires (nom, description, collecte, vend, don, url, image, pays, id_villes_free, detachee, complet, ecommerce) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-    $sqlCreationPartenaire-> execute(array($nom,$description,$collecte,$vend,$don,$url,$imgBase64,$pays,$ville,$detachee,$complet,$ecommerce));
+    $sqlCreationPartenaire = $bdd->prepare("INSERT INTO partenaires (nom, description, collecte, vend, don, url, image, pays, id_villes_free, detachee, complet, ecommerce, isActif) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $sqlCreationPartenaire-> execute(array($nom,$description,$collecte,$vend,$don,$url,$imgBase64,$pays,$ville,$detachee,$complet,$ecommerce,0));
     $lastId = $bdd-> lastInsertId();
     
 

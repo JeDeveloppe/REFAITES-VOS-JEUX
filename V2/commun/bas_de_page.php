@@ -30,8 +30,8 @@
         <li class="nav-item">
           <a class="nav-link text-decoration-none text-white" href="/contact/">Contact</a>
         </li>
-        <li class="nav-item nav-item-facebook mr-2">
-          <a class="nav-link text-white" href="https://www.facebook.com/refaitesvosjeux" rel="noreferrer" target="_blank">Nous suivre sur <img class="img-facebook" src="/images/design/facebookLogo.png" alt=""></a>
+        <li class="nav-item nav-item-facebook">
+          <a class="nav-link text-white" href="https://www.facebook.com/refaitesvosjeux" rel="noreferrer" target="_blank">Nous suivre sur <img class="img-facebook" src="/images/design/facebookLogo.png" alt="logo_facebook"></a>
         </li>
       </ul>
       <footer class="col-12 mx-auto">

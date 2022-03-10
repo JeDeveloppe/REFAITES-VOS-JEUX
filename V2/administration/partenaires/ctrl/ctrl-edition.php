@@ -18,7 +18,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $dep = valid_donnees($_POST['departement']);
     $ville = valid_donnees($_POST['ville']);
     $description = valid_donnees($_POST['description']);
-    $url = valid_donnees($_POST['url']);
+
+    if(!empty($_POST['url'])){
+        $url = valid_donnees($_POST['url']);
+    }else{
+        $url = null;
+    }
+
     $don = valid_donnees($_POST['don']);
     $detachee = valid_donnees($_POST['detachee']);
     $complet = valid_donnees($_POST['complet']);
