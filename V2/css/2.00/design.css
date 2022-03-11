@@ -105,8 +105,6 @@
 
 .ulFooter {
   border-radius: 255px 25px 55px 25px/15px 15px 25px 15px;
-  display: flex;
-  align-items: center;
 }
 
 .scale-hover:hover {
@@ -115,8 +113,14 @@
   transition: scale 0.2s ease-in;
 }
 
+.nav-item-facebook {
+  position: relative;
+}
+
 .img-facebook {
-  width: 35px;
+  position: absolute;
+  top: -5%;
+  width: 30%;
 }
 
 .bandeauCommeNeufJeux {
@@ -259,7 +263,11 @@
 }
 
 body {
-  background-color: #fff !important;
+  background-image: url(/images/design/back1.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .navbar-expand-md .nav-item:hover {
@@ -731,9 +739,5 @@ body {
 
 .wind a {
   text-decoration: none;
-}
-
-.flagIndex {
-  width: 30px;
 }
 /*# sourceMappingURL=design.css.map */

@@ -60,7 +60,7 @@ if(!isset($_GET['jeu'])){
 
                 <div class="container mt-5">
                     <!-- RETOUR CATALOGUE -->
-                    <div class="col-12 text-right"><a href="<?php echo $retour_url;?>" class="btn btn-warning bg-vos"><?php echo $retour_texte; ?></a></div>
+                    <div class="col-12 text-right"><a href="<?php echo $retour_url;?>" class="btn btn-warning bg-refaites border-primary"><?php echo $retour_texte; ?></a></div>
                     <!-- titre -->
                     <h1 class="col-12 text-center mt-2 mt-sm-0"><?php echo $donneesJeu['nom']; ?></h1>
                     <?php

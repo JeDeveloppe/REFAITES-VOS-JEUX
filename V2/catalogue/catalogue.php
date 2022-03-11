@@ -71,11 +71,11 @@ if($nbrJeux > 0){
         </div>
         <div id="affichageRecherche"></div>
         <div class="row px-xl-9 d-flex justify-content-start" id="affichageCatalogue">
-            <div class="col-12 d-flex justify-content-between mb-3">
-                <div class="fb-share-button" data-href="<?php echo $GLOBALS['domaineShareFacebook'].$_SERVER['REQUEST_URI']; ?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $GLOBALS['domaineShareFacebook'].$_SERVER['REQUEST_URI'] ; ?>&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
-                <div class="col-12 p-0 text-right">
+            <div class="col-12 d-flex flex-wrap justify-content-between mb-3">
+                <div class="col-12 col-sm-6 fb-share-button" data-href="<?php echo $GLOBALS['domaineShareFacebook'].$_SERVER['REQUEST_URI']; ?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $GLOBALS['domaineShareFacebook'].$_SERVER['REQUEST_URI'] ; ?>&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
+                <div class="col-12 col-sm-6 p-0 text-right">
                     <label class="my-1 mr-2" for="formulaireTri">Option d'affichage: </label>
-                        <select name="tri" class="custom-select my-1 mr-sm-2 col-5 col-sm-4 col-md-3 col-lg-2" id="formulaireTri" onchange="trierCatalogue()">
+                        <select name="tri" class="custom-select my-1 mr-sm-2 col-6 col-sm-12 col-md-6" id="formulaireTri" onchange="trierCatalogue()">
                             <option value="nom" <?php if($tri == "nom"){echo 'selected';}?>>Par nom</option>
                             <option value="annee" <?php if($tri == "annee"){echo 'selected';}?>>Par année</option>
                             <option value="editeur" <?php if($tri == "editeur"){echo 'selected';}?>>Par éditeur</option>
@@ -105,7 +105,7 @@ if($nbrJeux > 0){
                     }
                     ?>
                     <div class="col-9 col-sm-6 col-md-4 col-lg-3 mx-auto mx-md-0 p-2" id="<?php echo $boite['idCatalogue']; ?>">
-                            <div class="col-12 p-1 border shadow scale-hover">   
+                            <div class="col-12 p-1 border shadow scale-hover bg-white">   
                                 <div class="col-12 p-0"> 
                                     <div class="row">
                                         <div class="col-12 mt-2">

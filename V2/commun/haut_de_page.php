@@ -102,7 +102,7 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
         }
     ?>
     <div class="d-flex flex-column justify-content-around min-vh-100">
-      <a href="/accueil/"><img class="position-absolute logoTop" src="/images/design/refaitesvosjeux.png" alt="Refaites vos jeux"></a>
+      <a href="/accueil/"><img class="position-absolute logoTop img-thumbnail border-secondary" src="/images/design/refaitesvosjeux.png" alt="Refaites vos jeux"></a>
         <nav class="navbar text-right navbar-expand-md navbar-light mt-3 p-2 border-0">
           <a href="/accueil/" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Accueil du site"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">

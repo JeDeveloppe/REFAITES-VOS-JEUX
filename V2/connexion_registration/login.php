@@ -40,9 +40,9 @@ include_once("../commun/alertMessage.php");
                             </p>
                         </form>
                     </p>
-                    <p class="card-text text-right small">
+                    <!-- <p class="card-text text-right small">
                         <a href="/first-connexion/">Première connexion ?</a>
-                    </p>
+                    </p> -->
                 </div>
             </div>
         </div>

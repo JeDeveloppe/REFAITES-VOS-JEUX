@@ -41,7 +41,7 @@ if(isset($_GET['recherche'])){
                 }
                 echo '
                         <div class="col-9 col-sm-5 col-md-4 col-lg-3 p-2 mx-auto mx-md-0 animated fadeInRight" id="'.$donnees['idCatalogue'].'">
-                            <div class="col-12 p-2 border shadow scale-hover">   
+                            <div class="col-12 p-2 border shadow scale-hover bg-white">   
                                 <div class="col-12 p-0"> 
                                     <div class="row">
                                         <div class="col-12 mt-2">
@@ -92,11 +92,11 @@ if(isset($_GET['recherche'])){
             <p class="h2">Nous n\'avons pas ce jeu en stock pour le moment.</p>
             <p class="h5">Vous pouvez suivre nos arrivages sur la page Facebook !</p>    
             <p class="h5 mt-5">Ou tenter votre chance chez l\'un de nos partenaires:</p>
-        </div>';
+        </div>'; 
                 foreach($donneesPartenaires as $partenaire){ 
                     echo '
                         <div class="col-7 col-sm-5 col-md-4 col-lg-3 p-1 mx-auto mx-md-0 animated fadeInRight">
-                            <div class="card">
+                            <div class="card bg-white">
                                 <div class="card-body text-center">
                                     <div class="col-12">
                                         <div class="divImgCatalogue">';

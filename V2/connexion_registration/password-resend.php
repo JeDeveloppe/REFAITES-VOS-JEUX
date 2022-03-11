@@ -43,15 +43,15 @@ include_once("../commun/alertMessage.php");
                 </div>';
             }else{
             echo '<div class="row my-5 h-100">
-                    <div class="col-12 text-center h1 mt-5"><h2>Recevoir un premier mot de passe</h2></div>
+                    <div class="col-12 text-center h1 mt-5"><h2>Premier mot de passe</h2></div>
                     <div class="col-12 col-sm-9 col-md-6 mx-auto">
                         <div class="card col p-0">
-                            <div class="card-header bg-dark text-white"><i class="fas fa-paper-plane"></i> Recevoir un premier mot de passe</div>
+                            <div class="card-header bg-dark text-white"><i class="fas fa-paper-plane"></i> Premier mot de passe</div>
                             <div class="card-body">
                                 <p class="card-text">
                                     <form class="form-signin" action="/connexion_registration/ctrl/ctrl-resend.php" method="post">
                                         <div class="form-group">
-                                        <label class="text-danger">Réservé à ceux qui ont déjà fait une demande sur le site !</label>
+                                        <label class="text-danger">Ravis de vous revoir ! Saisissez votre adresse email pour pouvoir générer un mot de passe !</label>
                                             <input type="email" class="form-control" id="exampleInputEmail1" name="mail" aria-describedby="emailHelp" placeholder="Votre adresse mail..." required>
                                         </div>
                                         <button class="btn btn-primary" type="submit">Demander</button>

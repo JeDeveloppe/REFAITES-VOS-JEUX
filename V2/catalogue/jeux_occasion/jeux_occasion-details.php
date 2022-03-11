@@ -62,7 +62,7 @@ if(!isset($_GET['jeuOccasion'])){
                 <div class="container-fluid d-flex flex-column p-0 mt-5">
                     <!-- RETOUR CATALOGUE -->
                     <div class="row">
-                        <div class="col-11 mx-auto mt-4 text-center"><a href="<?php echo $retour_url;?>" class="btn btn-warning bg-vos"><?php echo $retour_texte; ?></a></div>
+                        <div class="col-11 mx-auto mt-4 text-center"><a href="<?php echo $retour_url;?>" class="btn btn-warning bg-refaites border-primary"><?php echo $retour_texte; ?></a></div>
                     </div>
                     
                     <!-- BLOC PRESENTATION DU JEU  -->
@@ -103,12 +103,12 @@ if(!isset($_GET['jeuOccasion'])){
                                                 </span>
                                             </div>  
                                             
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-12 col-md-6 mt-4 mt-md-0">
                                                 <p>État de la boite: <?php echo $donneesJeuComplet['etatBoite']; ?></p>
                                                 <p>État du matériel: <?php echo $donneesJeuComplet['etatMateriel']; ?></p>
                                                 <p>Règle du jeu: <?php echo $donneesJeuComplet['regleJeu']; ?></p>
                                                 <?php if($donneesJeuComplet['information'] != ""){
-                                                    echo '<p><em>Informations:</em><br/><span class="ml-5">'.$donneesJeuComplet['information'].'</span></p>';
+                                                    echo '<p><em>Informations:</em></p><p class="ml-5">'.$donneesJeuComplet['information'].'</p>';
                                                 }
                                                 ?>
                                                 <p>
@@ -152,7 +152,7 @@ if(!isset($_GET['jeuOccasion'])){
                                                             <a class="btn btn-warning border-0 bg- p-1" id="boutonIdentificationRequise"><span class="p-1">Ajouter au panier</span></a>';
                                                         }else{
                                                         echo '
-                                                        <form method="POST" action="/catalogue/jeux_occasion/ctrl/ctrl-panier-jeux_occasion.php">
+                                                        <form class="text-center" method="POST" action="/catalogue/jeux_occasion/ctrl/ctrl-panier-jeux_occasion.php">
                                                         <input type="hidden" name="rvjc" value="'.$donneesJeuComplet['idJeuxComplet'].'">
                                                         <button class="btn btn-info pl-3" type="submit">Ajouter au panier</button>
                                                     </form>';

@@ -137,7 +137,7 @@ if($nbrJeuxComplets > 0){
 
                         
                             <div class="col-9 col-sm-5 col-md-4 col-lg-3 p-2 mx-auto mx-md-0 mt-5">
-                                <div class="col-12 p-2 border shadow scale-hover h-100 overflow-hidden ">   
+                                <div class="col-12 p-2 border shadow scale-hover h-100 overflow-hidden bg-white">   
                                     <a class="text-decoration-none" href="/jeu-occasion/<?php echo $jeuComplet['idJeuxComplet'].'-'.$donneesJeux['idCatalogue'];?>/<?php echo $urlEditeurCatalogue;?>/<?php echo $donneesJeux['urlNom'];?>/">
                                     <?php
                                      

@@ -28,7 +28,7 @@ include_once("../../../commun/alertMessage.php");
 <div class="container-fluid">
   <div class="row mt-5 mb-4">
     <div class="col-12 text-center"><h1><?php echo $h1; ?></h1></div>
-    <div class="col-11 col-md-8 mx-auto lead text-muted my-2">
+    <div class="col-11 col-md-8 mx-auto lead my-2">
         <?php echo $descriptionPage; ?>
     </div>
     <div class="col-8 mx-auto text-right mt-3">
