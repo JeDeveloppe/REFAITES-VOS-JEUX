@@ -3,7 +3,7 @@
           <a href="#" class="text-primary cursor-alias"><i class="fas fa-caret-up"> Retour en haut</i></a>
       </div>
       <!-- START Bootstrap-Cookie-Alert -->
-      <div class="col-12 cookiealert text-center p-1" role="alert">
+      <!-- <div class="col-12 cookiealert text-center p-1" role="alert">
           <div class="col-12">
             <b>Vous aimez les cookies?</b> &#x1F36A; <br />
             Nous les utilisons pour faire fonctionner le site correctement.
@@ -16,7 +16,7 @@
               Ok
             </button>
           </div>
-      </div>
+      </div> -->
       <!-- END Bootstrap-Cookie-Alert -->
 
 

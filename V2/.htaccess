@@ -44,14 +44,14 @@ Options +FollowSymlinks
     RewriteRule ^travaux/$ /travaux.php [L]
 
     RewriteRule ^catalogue-jeux-occasion/$  /catalogue/jeux_occasion/catalogueJeuxOccasion.php [L]
-    RewriteRule ^jeu-occasion/([0-9]+)-([0-9]+)/([a-z-])+/([a-z0-9-])+/$  /catalogue/jeux_occasion/jeux_occasion-details.php?jeuOccasion=$1
+    RewriteRule ^jeu-occasion/([0-9]+)-([0-9]+)/([0-9a-z-])+/([a-z0-9-])+/$  /catalogue/jeux_occasion/jeux_occasion-details.php?jeuOccasion=$1
 
     #CATALOGUE
         #ANCIENNES URL
         RewriteRule ^jeu/([a-z-])+/([0-9]+)/([a-z0-9-])+/$  /catalogue/contenu-jeu.php?jeu=$2 [L]
         RewriteRule ^jeu/([a-z-])+/([0-9]+)/([a-z0-9-])+/([0-9]+)/visite/$  /catalogue/contenu-jeu.php?jeu=$2&bouteille=$4&visite=mail [L]
         #NOUVELLES URL
-        RewriteRule ^catalogue-pieces-detachees/([a-z-])+/([0-9]+)/([a-z0-9-])+/$  /catalogue/contenu-jeu.php?jeu=$2 [L]
+        RewriteRule ^catalogue-pieces-detachees/([0-9a-z-])+/([0-9]+)/([a-z0-9-])+/$  /catalogue/contenu-jeu.php?jeu=$2 [L]
         RewriteRule ^catalogue-pieces-detachees/facebook-og-image/([0-9]+)/$  /catalogue/decoder.php?data=$1 [L]
         RewriteRule ^catalogue-pieces-detachees/([a-z-])+/([0-9]+)/([a-z0-9-])+/([0-9]+)/visite/$  /catalogue/contenu-jeu.php?jeu=$2&bouteille=$4&visite=mail [L]
 
@@ -111,13 +111,19 @@ Options +FollowSymlinks
     
 
     RewriteRule ^admin/statistiques/$    /administration/statistiques/stats.php   [L]
+
     RewriteRule ^admin/statistiques/ventes/([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel.php?annee=$1   [L]
-    RewriteRule ^admin/statistiques/grammes/([0-9]+)/$    /administration/statistiques/graphiques/grammes/graph_annuel.php?annee=$1   [L]
-    RewriteRule ^admin/statistiques/grammes/deee/([0-9]+)/$    /administration/statistiques/graphiques/grammes/deee/graph_annuel.php?annee=$1   [L]
     RewriteRule ^admin/statistiques/ventes/repartition/([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel_repartitions.php?annee=$1   [L]
     RewriteRule ^admin/statistiques/ventes/comparaison/([0-9]+)-([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel_comparaison.php?anneePassee=$1&anneeN=$2   [L]
+    
+    RewriteRule ^admin/statistiques/grammes/([0-9]+)/$    /administration/statistiques/graphiques/grammes/graph_annuel.php?annee=$1   [L]
     RewriteRule ^admin/statistiques/grammes/comparaison/([0-9]+)-([0-9]+)/$    /administration/statistiques/graphiques/grammes/graph_annuel_comparaison.php?anneePassee=$1&anneeN=$2   [L]
+    
+    RewriteRule ^admin/statistiques/grammes/deee/([0-9]+)/$    /administration/statistiques/graphiques/grammes/deee/graph_annuel.php?annee=$1   [L]
     RewriteRule ^admin/statistiques/grammes/comparaison/deee/([0-9]+)-([0-9]+)/$    /administration/statistiques/graphiques/grammes/deee/graph_annuel_comparaison.php?anneePassee=$1&anneeN=$2   [L]
+
+    RewriteRule ^admin/statistiques/adherents/([0-9]+)/$    /administration/statistiques/graphiques/adherents/graph_annuel.php?annee=$1   [L]
+
     
 
     RewriteRule ^admin/config/parametres-du-site/$   /administration/config/configuration-site.php [L]

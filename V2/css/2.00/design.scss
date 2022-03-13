@@ -12,7 +12,7 @@ $couleur_body: #fff !important;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, 30%);
   color: white;
 }
 
@@ -161,37 +161,37 @@ $couleur_body: #fff !important;
 
 
 
-.cookiealert {
-  position: fixed;
-  right: 1%;
-  bottom: 1%;
-  max-width: 330px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-  z-index: 90;
-  opacity: 0;
-  visibility: hidden;
-  border-radius: 5%;
-  transition: all 10ms ease-out;
-  color: #ecf0f1;
-  background-color: #212327;
-}
+// .cookiealert {
+//   position: fixed;
+//   right: 1%;
+//   bottom: 1%;
+//   max-width: 330px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-wrap: wrap;
+//   flex-direction: column;
+//   z-index: 90;
+//   opacity: 0;
+//   visibility: hidden;
+//   border-radius: 5%;
+//   transition: all 10ms ease-out;
+//   color: #ecf0f1;
+//   background-color: #212327;
+// }
 
-.cookiealert.show {
-  opacity: 1;
-  visibility: visible;
-  transition-delay: 1000ms;
-}
-.cookiealert a {
-  text-decoration: underline;
-}
-.cookiealert .acceptcookies {
-  margin-left: 10px;
-  vertical-align: baseline;
-}
+// .cookiealert.show {
+//   opacity: 1;
+//   visibility: visible;
+//   transition-delay: 1000ms;
+// }
+// .cookiealert a {
+//   text-decoration: underline;
+// }
+// .cookiealert .acceptcookies {
+//   margin-left: 10px;
+//   vertical-align: baseline;
+// }
 
 .sticky {
   position: -webkit-sticky;
@@ -208,23 +208,22 @@ $couleur_body: #fff !important;
   background-color:$couleur_body;
 }
 
-body{
-  background-image: url(/images/design/back1.jpg); 
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
+// body{
+//   background-image: url(/images/design/back1.jpg); 
+//   background-size: cover;
+//   background-position: 50% 50%;
+//   background-repeat: no-repeat;
+//   background-attachment: fixed;
+// }
 
 
 .navbar-expand-md .nav-item:hover{
   border-color: $couleur_refaites;
-  box-shadow: 0 4px 2px -2px gray;
+  box-shadow: 0 4px 2px -2px $couleur_refaites;
 }
 .menu-membre .nav-item:hover, .menu-connexion-inscription .nav-item:hover{
     border-color: $couleur_refaites;
-    box-shadow: 0 4px 2px -2px gray;
+    box-shadow: 0 4px 2px -2px $couleur_refaites;
 }
 
 .menuMembreBonjour{

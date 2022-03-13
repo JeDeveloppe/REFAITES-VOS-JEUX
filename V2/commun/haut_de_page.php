@@ -103,7 +103,7 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
     ?>
     <div class="d-flex flex-column justify-content-around min-vh-100">
       <a href="/accueil/"><img class="position-absolute logoTop img-thumbnail border-secondary" src="/images/design/refaitesvosjeux.png" alt="Refaites vos jeux"></a>
-        <nav class="navbar text-right navbar-expand-md navbar-light mt-3 p-2 border-0">
+        <nav class="navbar text-right navbar-expand-md navbar-light mt-4 py-2 bg-vos border-0">
           <a href="/accueil/" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Accueil du site"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -111,21 +111,21 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
             <div class="collapse navbar-collapse " id="navbarColor02">
               <div class="col-12 d-flex justify-content-end">
                 <ul class="navbar-nav font-weight-bold"> 
-                  <li class="nav-item mx-md-1 border-bottom">
+                  <li class="nav-item mx-md-1">
                     <a class="nav-link" href="/catalogue-pieces-detachees/">Pièces détachées</a>
                   </li>
-                  <li class="nav-item mx-md-1 border-bottom">
+                  <li class="nav-item mx-md-1">
                     <a class="nav-link" href="/catalogue-jeux-occasion/">Jeux d'occasion</a>
                   </li>
-                  <li class="nav-item mx-md-1 border-bottom">
+                  <li class="nav-item mx-md-1">
                     <a class="nav-link" href="/don-de-jeux/partenaires/france/">Donner ses jeux</a>
                   </li>
-                  <li class="nav-item mx-md-1 border-bottom">
+                  <li class="nav-item mx-md-1">
                     <a class="nav-link" href="/nous-soutenir/">Nous soutenir</a>
                   </li>
                   <?php
                     if(isset($_SESSION['levelUser'])){
-                      echo '<li class="nav-item dropdown mx-1 border-bottom">
+                      echo '<li class="nav-item dropdown mx-1">
                           <a class="nav-link text-primary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user text-success"></i></a>
                           <div class="dropdown-menu dropdown-menu-right">
                               <a class="dropdown-item" href="/membre/dashboard/">Mon espace</a>';
@@ -136,13 +136,13 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
                           </div>
                         </li>';
                       }else{
-                        echo '<li class="nav-item border-bottom mx-1" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Espace membre">
+                        echo '<li class="nav-item mx-1" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Espace membre">
                         <a class="nav-link text-primary" href="/connexion/"><i class="fas fa-user text-jeux"></i></a>
                         </li>
                         ';
                       }
                   ?>
-                  <li class="nav-item mx-md-1 border-bottom mt-1 mt-md-0" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Panier">
+                  <li class="nav-item mx-md-1 mt-1 mt-md-0" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Panier">
                         <a class="nav-link text-primary position-relative <?php echo $textPanier; ?>" href="<?php echo $lienUrlPanier; ?>"><i class="fas fa-shopping-bag text-refaites<?php if($nbreDeMessage > 0){echo 'fa-box-open-scale';}?>"></i><b class="text-right"><?php echo $textPanier; ?></b></a>
                       </li>
                 </ul>

@@ -15,8 +15,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
+  -webkit-transform: translate(-50%, 30%);
+          transform: translate(-50%, 30%);
   color: white;
 }
 
@@ -198,52 +198,6 @@
   display: none;
 }
 
-.cookiealert {
-  position: fixed;
-  right: 1%;
-  bottom: 1%;
-  max-width: 330px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  z-index: 90;
-  opacity: 0;
-  visibility: hidden;
-  border-radius: 5%;
-  -webkit-transition: all 10ms ease-out;
-  transition: all 10ms ease-out;
-  color: #ecf0f1;
-  background-color: #212327;
-}
-
-.cookiealert.show {
-  opacity: 1;
-  visibility: visible;
-  -webkit-transition-delay: 1000ms;
-          transition-delay: 1000ms;
-}
-
-.cookiealert a {
-  text-decoration: underline;
-}
-
-.cookiealert .acceptcookies {
-  margin-left: 10px;
-  vertical-align: baseline;
-}
-
 .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -262,24 +216,16 @@
   background-color: #fff !important;
 }
 
-body {
-  background-image: url(/images/design/back1.jpg);
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
 .navbar-expand-md .nav-item:hover {
   border-color: #0149af !important;
-  -webkit-box-shadow: 0 4px 2px -2px gray;
-          box-shadow: 0 4px 2px -2px gray;
+  -webkit-box-shadow: 0 4px 2px -2px #0149af !important;
+          box-shadow: 0 4px 2px -2px #0149af !important;
 }
 
 .menu-membre .nav-item:hover, .menu-connexion-inscription .nav-item:hover {
   border-color: #0149af !important;
-  -webkit-box-shadow: 0 4px 2px -2px gray;
-          box-shadow: 0 4px 2px -2px gray;
+  -webkit-box-shadow: 0 4px 2px -2px #0149af !important;
+          box-shadow: 0 4px 2px -2px #0149af !important;
 }
 
 .menuMembreBonjour {

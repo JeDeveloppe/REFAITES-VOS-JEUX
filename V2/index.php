@@ -12,7 +12,7 @@ include_once("./commun/alertMessage.php");
 
 <section class="mt-4 text-center container">
     <div class="row mt-5">
-        <div class="col-11 mx-auto mt-4">
+        <div class="col-11 mx-auto">
             <div class="lead text-secondary">Un service pour compléter ses jeux de socièté, en acheter d'occasion et donner ceux dont on ne veut plus (même incomplets).
             </div>
         </div>
@@ -43,7 +43,7 @@ include_once("./commun/alertMessage.php");
         <a class="text-decoration-none text-info" href="/carte-des-partenaires/france/">
             <i class="fas fa-long-arrow-alt-down"></i> Carte des partenaires du réemploi du jouet. <i class="fas fa-long-arrow-alt-down"></i>
             <br/>
-            <img class="col-5 col-md-3 col-lg-2 position-relative" src="/images/design/franceAccueil.png">
+            <img class="col-5 col-md-3 col-lg-2 position-relative" src="/images/design/carteFranceAcceuilCarree.png">
             <?php
                 $sqlPartenaires = $bdd->prepare("SELECT * FROM partenaires WHERE pays = ? AND isActif = 1");
                 $sqlPartenaires->execute(array("FR"));

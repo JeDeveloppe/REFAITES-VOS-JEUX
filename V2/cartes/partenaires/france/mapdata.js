@@ -65,8 +65,8 @@ var simplemaps_countrymap_mapdata={
     url_new_tab: "yes",
     images_directory: "default",
     fade_time: 0.1,
-    link_text: "View Website",
-    popups: "detect",
+    link_text: "Voir le site",
+    popups: "on_click",
     state_image_url: "",
     state_image_position: ""
   },

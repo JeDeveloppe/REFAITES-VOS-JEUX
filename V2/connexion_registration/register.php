@@ -38,7 +38,11 @@ $donneesOptGroup = $sqlOptgroup-> fetch();
                         <div class="col-12 col-md-11 mx-auto col-lg-9 m-0 d-flex flex-wrap">
                                 <div class="col-12 col-sm-8 form-group mb-3">
                                     <label for="email">Email:<sup class="text-danger">*</sup></label>
-                                    <input type="email" name="email" class="form-control" placeholder="Adresse email valide merci !" aria-label="Username" aria-describedby="basic-addon1" <?php if(isset($_SESSION['email'])){echo 'value="'.$_SESSION['email'].'"';}?> required>
+                                    <input type="email" name="email" class="form-control" placeholder="Adresse email valide merci !" <?php if(isset($_SESSION['email'])){echo 'value="'.$_SESSION['email'].'"';}?> required>
+                                </div>
+                                <div class="col-12 col-sm-8 form-group mb-3">
+                                    <label for="email">Téléphone:<sup class="text-danger">*</sup></label>
+                                    <input type="text" name="telephone" class="form-control" pattern="^[067]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}$" placeholder="Format: 00.00.00.00.00"  <?php if(isset($_SESSION['telephone'])){echo 'value="'.$_SESSION['telephone'].'"';}?> required>
                                 </div>
                                 <div class="col-6 col-sm-8 col-md-6 form-group mb-3">
                                     <label for="pays">Pays:<sup class="text-danger">*</sup></label>

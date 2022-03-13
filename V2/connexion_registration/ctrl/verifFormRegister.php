@@ -17,6 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $cp = valid_donnees($_POST['cp']);
     $pays = valid_donnees($_POST['pays']);
     $email = valid_donnees($_POST['email']);
+    $telephone = valid_donnees($_POST['telephone']);
     $password1 = valid_donnees($_POST['password']);
     $password2 = valid_donnees($_POST['password2']);
 
@@ -32,6 +33,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if($password2 != ""){
         $_SESSION['password2'] = "ok-saisie";
     }    
+    if($telephone != ""){
+        $_SESSION['telephone'] = $telephone;
+    }
     $_SESSION['cp'] = $cp;
     $_SESSION['pays'] = $pays;
 
@@ -40,6 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $_SESSION['pays'] == "" ||
         $_SESSION['email'] == "" ||
         $_SESSION['password1'] == "" ||
+        $_SESSION['telephone'] == "" ||
         $_SESSION['password2'] == ""){
 
         $_SESSION['alertMessage'] = "Il manque un champs de saisie !";
@@ -79,7 +84,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         exit();  
     }
 
-
+    //on controle le champs telephone
+    // if(!preg_match('#^[0-9]{10,14}$#', $_SESSION['telephone'])){
+    //     unset($_SESSION['telephone']);
+    //     $_SESSION['alertMessage'] = "Saisie téléphone incorrect !";
+    //     $_SESSION['alertMessageConfig'] = "danger";
+    //     header("Location: ".$_SERVER['HTTP_REFERER']);
+    //     exit();
+    // }
 
     // On vérifie si le champ "recaptcha-response" contient une valeur
     if(empty($_POST['recaptcha-response'])){
@@ -162,8 +174,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     // Insertion
                     $timeInscription = time();
 
-                    $sqlSaveClient = $bdd -> prepare("INSERT INTO clients (email,password,idUser,userLevel,timeInscription,lastVisite,isAssociation,paysFacturation,paysLivraison) VALUES (?,?,?,?,?,?,?,?,?)");
-                    $sqlSaveClient-> execute(array($email,$pass_hache,$validKey,1,$timeInscription,0,0,$pays,$pays));
+                    $sqlSaveClient = $bdd -> prepare("INSERT INTO clients (telephone,email,password,idUser,userLevel,timeInscription,lastVisite,isAssociation,paysFacturation,paysLivraison) VALUES (?,?,?,?,?,?,?,?,?,?)");
+                    $sqlSaveClient-> execute(array($telephone,$email,$pass_hache,$validKey,1,$timeInscription,0,0,$pays,$pays));
     
                     // redirection acceuil du site
                     session_destroy();

@@ -23,6 +23,11 @@ $sqlUsers = $bdd -> query("SELECT * FROM clients") ;
 $donneesUsers = $sqlUsers->fetch();
 $nombreTotalUsers = $sqlUsers->rowCount();
 
+//NOMBRE D'ADHERANT
+$sqlAdherents = $bdd -> query("SELECT * FROM clients WHERE isAssociation != '' ") ;
+$donneesAdherents = $sqlAdherents->fetch();
+$nombreTotalAdherents = $sqlAdherents->rowCount();
+
 //NOMBRE TOTAL DE DEVIS FAIT
 $sqlDevisTotal = $bdd -> query("SELECT * FROM documents ORDER BY idDocument DESC LIMIT 1") ;
 $donneesLastRow = $sqlDevisTotal-> fetch();
@@ -153,6 +158,10 @@ include_once("../../commun/alertMessage.php");
                 <div id="grammesDeee"></div>
                 <div id="grammes_comparaisonDeee"></div>
             </div>
+            <div class="col-12 mt-2 text-center d-flex flex-column">
+                <div>Les adhérents:</div>
+                <div id="adherents"></div>
+            </div>
 
         </div>
         <div class="col-9 border-left border-dark">
@@ -182,11 +191,11 @@ include_once("../../commun/alertMessage.php");
             <hr class="col-10 mx-auto">
             <div class="col-12 h4 mt-4">Chiffres:</div>
                 <div class="col-12 d-flex flex-wrap justify-content-around text-center">
-                    <div class="card col-5 my-1 p-1">Nbre de demandes total: <?php echo $nombreTotalUsers; ?></div>
+                    <div class="card col-5 my-1 p-1">Nbre d'inscription total: <?php echo $nombreTotalUsers; ?></div>
+                    <div class="card col-5 my-1 p-1">Nbre d'adhérants: <?php echo $nombreTotalAdherents; ?></div>
                     <div class="card col-5 my-1 p-1">Nbre de devis total créés: <?php echo $donneesLastRow['idDocument']; ?></div>
                     <div class="card col-5 my-1 p-1">Nbre de devis annulé: <?php echo $donneesLastRow['idDocument'] - ($nombreTotalDevis +$nombreTotalFactures); ?></div>
                     <div class="card col-5 my-1 p-1">Nbre de devis en attente: <?php echo $nombreTotalDevis; ?></div>
-                    <div class="card col-5 my-1 p-0"><i class="fas fa-info-circle" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Une demande doit devenir un devis donc...<br />(objectif: 100%)"></i> Ratio devis / demande: <?php echo number_format(($donneesLastRow['idDocument'] / $nombreTotalUsers * 100),2)." %"; ?></div>
                     <div class="card col-5 my-1 p-0"><i class="fas fa-info-circle" data-html="true" data-toggle="tooltip" data-placement="bottom" title="Un max de devis doit devenir une facture payée...<br/>(bjectif: 90%)"></i> Ratio facture / devis: <?php echo number_format(($nombreTotalFactures / $donneesLastRow['idDocument'] * 100),2)." %"; ?></div>
                 </div>
         </div>
@@ -204,6 +213,7 @@ include_once("../../commun/alertMessage.php");
     let divGrammes_comparaison = document.getElementById('grammes_comparaison');
     let divGrammesDeee = document.getElementById('grammesDeee');
     let divGrammes_comparaisonDeee = document.getElementById('grammes_comparaisonDeee');
+    let divAdherent = document.getElementById('adherents');
 
     divVentes.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/ventes/">LES VENTES de l\'année N</a>';
     divVentes_repartition.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/ventes/repartition/">REPARTITION de l\'année N</a>';
@@ -215,6 +225,8 @@ include_once("../../commun/alertMessage.php");
     divGrammesDeee.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/grammes/deee/">Évolution de l\'année N</a>';
     divGrammes_comparaisonDeee.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/grammes/comparaison/deee/">COMPARAISON Année N-1 et N</a>';
         
+    divAdherent.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/adherents/">Évolution de l\'année N</a>';
+
     anneeGraphique.addEventListener('keyup', () => {
         if(anneeGraphique.value.length == 4 && anneeGraphique.value > 2020 && anneeGraphique.value.match(/^\d{4}$/)){
             let anneeBefore = anneeGraphique.value - 1;
@@ -227,6 +239,9 @@ include_once("../../commun/alertMessage.php");
             
             divGrammesDeee.innerHTML = '<a class="btn btn-info mb-2" href="/admin/statistiques/grammes/deee/'+anneeGraphique.value+'/" target="_blank">Évolution de l\'année N</a>';
             divGrammes_comparaisonDeee.innerHTML = '<a class="btn btn-info mb-2" href="/admin/statistiques/grammes/comparaison/deee/'+anneeBefore+'-'+anneeGraphique.value+'/" target="_blank">COMPARAISON Année N-1 et N</a>';
+
+            divAdherent.innerHTML = '<a class="btn btn-info mb-2" href="/admin/statistiques/adherents/'+anneeGraphique.value+'/" target="_blank">Évolution de l\'année N</a>';
+
        
         }else{
             divVentes.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/ventes/">LES VENTES de l\'année N</a>';
@@ -239,6 +254,8 @@ include_once("../../commun/alertMessage.php");
             divGrammesDeee.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/grammes/deee/">Évolution de l\'année N</a>';
             divGrammes_comparaisonDeee.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/grammes/comparaison/deee/">COMPARAISON Année N-1 et N</a>';
        
+            divAdherent.innerHTML = '<a class="btn btn-info disabled mb-2" href="/admin/statistiques/adherents/">Évolution de l\'année N</a>';
+
         }
     })
 

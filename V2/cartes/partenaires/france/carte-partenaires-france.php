@@ -84,7 +84,7 @@ foreach($donneesPartenaires as $partenaire){
       "lat" => $donneesVilleFranceFree['lat'],
       "lng" => $donneesVilleFranceFree['lng'],
       "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['ville_departement'].')',
-      "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p><p style="width:100%; text-align:center">'.$partenaire['url'].'</p>',
+      "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p>',
       "url" => $partenaire['url'],
       "type" => "image",
       "image_url" => "https://www.refaitesvosjeux.fr/images/design/logoDepots.png",
@@ -97,11 +97,11 @@ foreach($donneesPartenaires as $partenaire){
         "lat" => $donneesVilleFranceFree['lat'],
         "lng" => $donneesVilleFranceFree['lng'],
         "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['ville_departement'].')',
-        "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p><p style="width:100%; text-align:center">'.$partenaire['url'].'</p>',
+        "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p>',
         "url" => $partenaire['url'],
         "type" => "image",
         "image_url" => "https://www.refaitesvosjeux.fr/images/design/SiteEcommerce.png",
-        "size" => "45"
+        "size" => "35"
       ]);
     }else{
       array_push($depotArray,
@@ -109,7 +109,7 @@ foreach($donneesPartenaires as $partenaire){
         "lat" => $donneesVilleFranceFree['lat'],
         "lng" => $donneesVilleFranceFree['lng'],
         "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['ville_departement'].')',
-        "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p><p style="width:100%; text-align:center">'.$partenaire['url'].'</p>',
+        "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p>',
         "url" => $partenaire['url']
       ]);
     }
