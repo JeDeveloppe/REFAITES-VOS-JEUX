@@ -111,6 +111,7 @@ Options +FollowSymlinks
     
 
     RewriteRule ^admin/statistiques/$    /administration/statistiques/stats.php   [L]
+    RewriteRule ^admin/carte-des-ventes/$    /administration/client/cartes/carteDesVentes.php   [L]
 
     RewriteRule ^admin/statistiques/ventes/([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel.php?annee=$1   [L]
     RewriteRule ^admin/statistiques/ventes/repartition/([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel_repartitions.php?annee=$1   [L]

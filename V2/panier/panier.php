@@ -17,6 +17,12 @@ $donneesClient = $sqlClient->fetch();
 if($donneesClient['isAssociation'] > time()){
     $adhesionRVJ = "0.00";
 }
+//on verifie adresse de facturation au minimum
+if($donneesClient['adresseFacturation'] == NULL || $donneesClient['cpFacturation'] == NULL || $donneesClient['villeFacturation'] == NULL){
+    $button = '<a href="/membre/adresses/" id="href_bouton_panier" class="btn btn-danger">Merci de compléter les données manquantes afin de pouvoir continuer...</a>';
+}else{
+    $button = '<button id="href_bouton_panier" type="submit" class="btn btn-success border border-primary">Demander un devis</button>';
+}
 
 $sqlListeAchats = $bdd -> prepare("SELECT * FROM listeMessages WHERE idUser = ? AND qte > ? AND statut = ?");
 $sqlListeAchats-> execute(array($_SESSION['sessionId'],0,0));
@@ -49,12 +55,13 @@ include_once("../commun/alertMessage.php");
 ?>
 
 <script type="text/javascript">
+    var button = <?php echo json_encode($button); ?>;
     
     function deleteExpedition(){
         $('input[name=expeditionOption]').prop('checked', false);
         $('input[name=expeditionOption]').prop('required', false);
         $('#colAdresseLivraison').css("display", "none");
-        $('#href_bouton_panier').replaceWith('<button id="href_bouton_panier" type="submit" class="btn btn-success border border-primary">Demander un devis</button>');
+        $('#href_bouton_panier').replaceWith(button);
     }
 
     function checkExpedition(){

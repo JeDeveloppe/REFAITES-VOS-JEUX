@@ -45,7 +45,7 @@ $countDevisSupUtilisateur = $sqlDevisSupUtilisateur->rowCount();
                     <div class="card-header bg-dark text-white">Les devis à faire...</div>
                         <div class="card-body table-responsive">
                             <div class="col-12 text-center"><?php echo $countDemandes;?> demande(s)</div>
-                            <table class="bg-success table table-sm table-striped mt-2">
+                            <table class="table table-sm table-striped mt-2">
                                 <thead class="thead-dark text-center">
                                     <tr>
                                         <th scope="col">IdClient</th>

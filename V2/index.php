@@ -13,7 +13,7 @@ include_once("./commun/alertMessage.php");
 <section class="mt-4 text-center container">
     <div class="row mt-5">
         <div class="col-11 mx-auto">
-            <div class="lead text-secondary">Un service pour compléter ses jeux de socièté, en acheter d'occasion et donner ceux dont on ne veut plus (même incomplets).
+            <div class="lead text-secondary">Un service pour compléter ses jeux de société, en acheter d'occasion et donner ceux dont on ne veut plus (même incomplets).
             </div>
         </div>
     </div>
@@ -21,27 +21,31 @@ include_once("./commun/alertMessage.php");
 <div class="container-fluid mt-5">
     <div class="col-12 col-lg-10 mx-auto p-0 d-flex justify-content-around flex-wrap">
         <a href="/catalogue-pieces-detachees/" class="m-2 text-decoration-none">
-            <div class="jumbotron jb1-accueil m-0 text-center d-flex flex-wrap justify-content-center align-items-center">
-                <span class="h3 text-white col-12 p-0">Pièces détachées</span>
-                <span class="h5 text-white">Envoi 🇫🇷 & 🇧🇪 </span>
+            <div class="jumbotron jb1-accueil m-0 text-center d-flex flex-wrap justify-content-center align-items-center py-5 px-0">
+                <span class="h3 text-white col-12 pt-1">Pièces détachées</span>
+                <span class="h5 text-white col-12">Envoi 🇫🇷 & 🇧🇪 </span>
+                <span class="col-12 text-white text-center small">Voir le catalogue</span>
             </div>
         </a>
         <a href="/catalogue-jeux-occasion/" class="m-2 text-decoration-none">
-            <div class="jumbotron jb2-accueil m-0 text-center d-flex flex-wrap justify-content-center align-items-center">
-                <span class="h3 text-white col-12 p-0">Jeux d'occasion</span>
-                <span class="h6 text-white">(Retrait sur Caen uniquement)</span>
+            <div class="jumbotron jb2-accueil m-0 text-center d-flex flex-wrap justify-content-center align-items-center py-5 px-0">
+                <span class="h3 text-white col-12 pt-1">Jeux d'occasion</span>
+                <span class="h5 text-white col-12">(Retrait sur Caen uniquement)</span>
+                <span class="col-12 text-white text-center small">Voir le catalogue</span>
             </div>
         </a>
         <a href="/don-de-jeux/partenaires/france/" class="m-2 text-decoration-none">
-            <div class="jumbotron jb3-accueil m-0 text-center d-flex flex-wrap justify-content-center align-items-center">
-                <span class="h3 text-white col-12 p-0">Donner ses jeux</span>
-                <span class="h5 text-white">🇫🇷 & 🇧🇪 </span>
+            <div class="jumbotron jb3-accueil m-0 text-center d-flex flex-wrap justify-content-center align-items-center py-5 px-0">
+                <span class="h3 text-white col-12 pt-1">Donner ses jeux</span>
+                <span class="h5 text-white col-12">🇫🇷 & 🇧🇪 </span>
+                <span class="col-12 text-white text-center small">Voir les cartes</span>
             </div>
         </a>
     </div>
-    <div class="col-12 text-center mt-5 h4">
-        <a class="text-decoration-none text-info" href="/carte-des-partenaires/france/">
-            <i class="fas fa-long-arrow-alt-down"></i> Carte des partenaires du réemploi du jouet. <i class="fas fa-long-arrow-alt-down"></i>
+
+    <div class="col-12 text-center mt-5 h4 px-0">
+        <a class="text-decoration-none text-info small" href="/carte-des-partenaires/france/">
+            <i class="fas fa-long-arrow-alt-down"></i> Les partenaires du réemploi du jouet. <i class="fas fa-long-arrow-alt-down"></i>
             <br/>
             <img class="col-5 col-md-3 col-lg-2 position-relative" src="/images/design/carteFranceAcceuilCarree.png">
             <?php

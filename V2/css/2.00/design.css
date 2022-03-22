@@ -15,8 +15,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, 30%);
-          transform: translate(-50%, 30%);
+  -webkit-transform: translate(-50%, 70%);
+          transform: translate(-50%, 70%);
   color: white;
 }
 
@@ -278,6 +278,7 @@
 
 .jb1-accueil {
   background-image: url("/images/photos/jumbotron1.JPG");
+  background-repeat: no-repeat;
   background-position: 50% 80%;
   width: 300px;
   height: 200px;
@@ -286,6 +287,7 @@
 
 .jb2-accueil {
   background-image: url("/images/photos/jumbotron2.JPG");
+  background-repeat: no-repeat;
   background-position: 50% 80%;
   width: 300px;
   height: 200px;
@@ -294,6 +296,7 @@
 
 .jb3-accueil {
   background-image: url("/images/photos/jumbotron3.JPG");
+  background-repeat: no-repeat;
   background-position: 50% 80%;
   width: 300px;
   height: 200px;
@@ -594,6 +597,10 @@
     width: 17%;
     margin-top: 0.8%;
   }
+  .nbre-partenaire-sur-carte-accueil {
+    -webkit-transform: translate(-50%, 40%);
+            transform: translate(-50%, 40%);
+  }
 }
 
 @media (min-width: 768px) {
@@ -618,6 +625,10 @@
   .logoTop {
     width: 11%;
     margin-top: 0.1%;
+  }
+  .nbre-partenaire-sur-carte-accueil {
+    -webkit-transform: translate(-50%, 30%);
+            transform: translate(-50%, 30%);
   }
 }
 

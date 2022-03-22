@@ -49,6 +49,10 @@ if(isset($_SESSION['recherchePieceDetachees'])){
     }
 }
 
+//NOMBRE DE JEUX TOTAL POUR PIECES
+$sqlCatalogue = $bdd -> query("SELECT * FROM catalogue WHERE actif = 1 AND accessoire_idCategorie = 0");
+$nbrJeuxTotalEnLigne = $sqlCatalogue->rowCount();
+
 $sqlCatalogue = $bdd -> query("SELECT * FROM catalogue $requeteRecherche AND accessoire_idCategorie = 0 AND actif = 1");
 $nbrJeux = $sqlCatalogue->rowCount();
 //si y a au moins un resultat
@@ -60,7 +64,8 @@ if($nbrJeux > 0){
         <div class="row mt-5 mb-4">
             <div class="col-12 text-center"><h1>Pièces détachées</h1></div>
             <div class="col-11 mx-auto text-center lead text-muted">
-                Le catalogue référence tous les jeux pour lesquels le service dispose de pièces.
+                Le catalogue référence tous les jeux pour lesquels le service dispose de pièces.<br/>
+                Actuellement il y a <span data-html="true" data-toggle="tooltip" data-placement="top" title="Nombre de jeux incomplets en ligne" id="odometerJeuxEnLigne" class="odometer"></span> jeux en ligne.
             </div>
        
             <!-- formulaire de recherche -->
@@ -288,3 +293,26 @@ require("../commun/bas_de_page.php");
         }
     });
 </script>
+<script>
+    /*
+    * ODOMETRE
+    */
+    let jeuxEnLigne = <?php echo json_decode($nbrJeuxTotalEnLigne); ?>;
+
+    if(jeuxEnLigne < 10){
+        odometerJeuxEnLigne.innerHTML = 4;
+    }else if(jeuxEnLigne > 9 && jeuxEnLigne < 100){
+        odometerJeuxEnLigne.innerHTML = 31;
+    }else if(jeuxEnLigne > 99 && jeuxEnLigne < 1000){
+        odometerJeuxEnLigne.innerHTML = 300;
+    }else if(jeuxEnLigne > 999 && jeuxEnLigne < 10000){
+        odometerJeuxEnLigne.innerHTML = 1983;
+    }else if(jeuxEnLigne > 9999 && jeuxEnLigne < 100000){
+        odometerJeuxEnLigne.innerHTML = 22220;
+    }
+
+    setTimeout(function(){
+        odometerJeuxEnLigne.innerHTML = jeuxEnLigne;
+    }, 2500);
+</script>
+<script src="/js/<?php echo $GLOBAL['versionJS'];?>/odometre.js"></script>

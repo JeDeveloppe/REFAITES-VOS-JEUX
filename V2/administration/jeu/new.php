@@ -25,7 +25,7 @@ $donneesEditeur = $sqlEditeur->fetchAll();
                 <form class="col-12 mt-2 d-flex flex-wrap justify-content-around" method="post" action="/administration/jeu/ctrl/ctrl-new-jeu.php" enctype="multipart/form-data">
                     <div class="form-group col-6 text-center">
                         <label for="nom">Nom du jeu:</label>
-                        <input type="text" name="nom" class="form-control" id="nondujeu" pattern="{1,40}" maxlength="40" required>
+                        <input type="text" name="nom" class="form-control" id="nondujeu" pattern="{1,50}" maxlength="50" required>
                         <small class="form-text text-muted">Maximum 40 caractères</small>
                     </div>
                     <div class="form-group col-3 text-center">

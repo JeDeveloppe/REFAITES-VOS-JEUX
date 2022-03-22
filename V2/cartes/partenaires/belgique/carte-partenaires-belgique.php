@@ -81,9 +81,7 @@ foreach($donneesPartenaires as $partenaire){
       "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['province'].')',
       "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:50px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p>',
       "url" => $partenaire['url'],
-      "type" => "image",
-      "image_url" => "https://www.refaitesvosjeux.fr/images/design/SiteEcommerce.png",
-      "size" => "35"
+      "type" => "image"
     ]);
 }
 
@@ -98,7 +96,6 @@ $jsonStructure = json_encode($locations);
 
 <script>
   var locations = <?php echo $jsonStructure; ?>;
-  console.log(locations)
 </script>
 <script type="text/javascript" src="/cartes/partenaires/belgique/mapdata.js"></script>		
 <script  type="text/javascript" src="/cartes/partenaires/belgique/countrymap.js"></script>

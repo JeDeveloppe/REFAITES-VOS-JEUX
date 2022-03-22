@@ -88,7 +88,7 @@ foreach($donneesPartenaires as $partenaire){
       "url" => $partenaire['url'],
       "type" => "image",
       "image_url" => "https://www.refaitesvosjeux.fr/images/design/logoDepots.png",
-      "size" => $size
+      "size" => $size,
     ]);
   }else{
     if($partenaire['ecommerce'] == 1){
@@ -97,10 +97,8 @@ foreach($donneesPartenaires as $partenaire){
         "lat" => $donneesVilleFranceFree['lat'],
         "lng" => $donneesVilleFranceFree['lng'],
         "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['ville_departement'].')',
-        "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p>',
+        "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p><p>Site E-commerce disponible.</p>',
         "url" => $partenaire['url'],
-        "type" => "image",
-        "image_url" => "https://www.refaitesvosjeux.fr/images/design/SiteEcommerce.png",
         "size" => "35"
       ]);
     }else{
@@ -127,7 +125,6 @@ $jsonStructure = json_encode($locations);
 
 <script>
   var locations = <?php echo $jsonStructure; ?>;
-  console.log(locations)
 </script>
 <script type="text/javascript" src="/cartes/partenaires/france/mapdata.js"></script>		
 <script  type="text/javascript" src="/cartes/partenaires/france/countrymap.js"></script>

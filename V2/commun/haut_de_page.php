@@ -57,8 +57,7 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
     <!-- Add fontawesome pictures -->
     <!-- <script src="https://kit.fontawesome.com/440b1b0c24.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="/fontawesome/css/all.min.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/<?php echo $GLOBAL['versionCSS']; ?>/bootstrap/theme-bootstrap.css">
+   
  
 
    
@@ -66,6 +65,8 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
     //SI PAS DANS LA SESSION ADMINISTRATEUR
     if(!preg_match('#/admin/#',$_SERVER['REQUEST_URI'])){
       echo '
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" type="text/css" href="/css/'.$GLOBAL['versionCSS'].'/bootstrap/site/theme-bootstrap.css">
       <!-- CSS du site -->
       <link rel="stylesheet" type="text/css" href="/css/'.$GLOBAL['versionCSS'].'/design.css?ts='.time().'">
       <!-- CSS des animations -->
@@ -74,6 +75,8 @@ if(!preg_match('#/membre/#',$_SERVER['REQUEST_URI']) && isset($_SESSION['animati
       <link rel="stylesheet" href="/css/'.$GLOBAL['versionCSS'].'/odometre/odometre.css" />';
       }else{
         echo '
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="/css/'.$GLOBAL['versionCSS'].'/bootstrap/admin/theme-bootstrap.css">
         <!-- CSS ADMIN du site -->
         <link rel="stylesheet" type="text/css" href="/css/'.$GLOBAL['versionCSS'].'/design-admin.css?ts='.time().'">
         <!-- CSS IMPRESSION -->

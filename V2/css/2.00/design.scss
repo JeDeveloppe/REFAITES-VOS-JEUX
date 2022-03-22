@@ -12,7 +12,7 @@ $couleur_body: #fff !important;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 30%);
+  transform: translate(-50%, 70%);
   color: white;
 }
 
@@ -262,6 +262,7 @@ $couleur_body: #fff !important;
 
 .jb1-accueil{
   background-image: url("/images/photos/jumbotron1.JPG");
+  background-repeat: no-repeat;
   background-position: 50% 80%;
   width: 300px;
   height: 200px;
@@ -269,6 +270,7 @@ $couleur_body: #fff !important;
 }
 .jb2-accueil{
   background-image: url("/images/photos/jumbotron2.JPG");
+  background-repeat: no-repeat;
   background-position: 50% 80%;
   width: 300px;
   height: 200px;
@@ -276,6 +278,7 @@ $couleur_body: #fff !important;
 }
 .jb3-accueil{
   background-image: url("/images/photos/jumbotron3.JPG");
+  background-repeat: no-repeat;
   background-position: 50% 80%;
   width: 300px;
   height: 200px;
@@ -576,6 +579,9 @@ $couleur_body: #fff !important;
     width: 17%;
     margin-top: 0.8%;
   }
+  .nbre-partenaire-sur-carte-accueil{
+    transform: translate(-50%, 40%);
+  }
 }
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
@@ -600,6 +606,9 @@ $couleur_body: #fff !important;
   .logoTop {
     width: 11%;
     margin-top: 0.1%;
+  }
+  .nbre-partenaire-sur-carte-accueil{
+    transform: translate(-50%, 30%);
   }
 }
 // Extra large devices (large desktops, 1200px and up)
