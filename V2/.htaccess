@@ -103,7 +103,7 @@ Options +FollowSymlinks
     RewriteRule ^admin/client/edition/$   /administration/client/edition.php
     RewriteRule ^admin/client/factures/$   /administration/client/factures.php
     RewriteRule ^admin/client/liste/$   /administration/client/fichier-client.php [L]
-    RewriteRule ^admin/client/liste/([A-Z]+)/$   /administration/client/fichier-client.php?lettre=$1 [L]
+    RewriteRule ^admin/client/liste/([A-Z0]+)/$   /administration/client/fichier-client.php?lettre=$1 [L]
 
     RewriteRule ^admin/jeu/catalogue/complet/$   /administration/jeu/catalogue_complets.php   [L]
     RewriteRule ^admin/jeu/catalogue/general/$   /administration/jeu/catalogue-general.php   [L]

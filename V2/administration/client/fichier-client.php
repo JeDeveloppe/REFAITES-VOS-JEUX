@@ -23,15 +23,14 @@ $menuAlphabet = "A";
                 <nav aria-label="Pagination menu alphabet">
                     <ul class="pagination d-flex flex-wrap justify-content-around">
                     <?php
-                                    
                         for($x=1;$x<27;$x++)
                         {
                         $searchAlphabetLettre = $bdd-> prepare("SELECT * FROM clients WHERE nomFacturation LIKE ? ");
                         $searchAlphabetLettre-> execute(array($menuAlphabet.'%'));
                         $countAlphabetLettre = $searchAlphabetLettre-> rowCount();
-                        echo '<li class="page-item"><a class="page-link" href="/admin/client/liste/'.$menuAlphabet.'/">'.$menuAlphabet++.'<br/><span class="small">('.$countAlphabetLettre.')</span></a></li>';
+                        echo '<li class="page-item text-center"><a class="page-link" href="/admin/client/liste/'.$menuAlphabet.'/">'.$menuAlphabet++.'<br/><span class="small">('.$countAlphabetLettre.')</span></a></li>';
                         }
-                      
+                        echo '<li class="page-item text-center"><a class="page-link" href="/admin/client/liste/0/">#<br/><span class="small">(reste)</span></a></li>';         
                     ?>
                     </ul>
                 </nav>
@@ -43,28 +42,37 @@ $menuAlphabet = "A";
                     <thead class="thead-dark text-center">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prénom</th>
+                            <th scope="col">Nom Prénom</th>
                             <th scope="col">Adresse</th>
-                            <th scope="col">Code postal</th>
-                            <th scope="col">Ville</th>
+                            <th scope="col">Code postal - Ville</th>
+                            <th scope="col">@</th>
+                            <th scope="col">Timestamp</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>                    
                     <?php
-                        if(isset($_GET['lettre']) && ctype_alpha($_GET['lettre']) && strlen($_GET['lettre']) < 2){
-                            $lettre = $_GET['lettre'];
-                        }else{
-                            $lettre = "A";
-                        }
+                        // if(isset($_GET['lettre']) && ctype_alpha($_GET['lettre']) && strlen($_GET['lettre']) < 2){
+                        //     $lettre = $_GET['lettre'];
+                        // }else{
+                        //     $lettre = "A";
+                        // }
+                        $lettre = $_GET['lettre'];
                             echo '<tr>
                                     <td class="bg-dark pl-2 text-left" colspan="7">'.strtoupper($lettre).'</td>
                                 </tr>';
-                            $searchAlphabet = $bdd-> prepare("SELECT * FROM clients WHERE nomFacturation LIKE ? ORDER BY nomFacturation ASC");
-                            $searchAlphabet-> execute(array($lettre.'%'));
-                            $donneesAlphabet = $searchAlphabet-> fetchAll();
-                            $countAlphabet = $searchAlphabet-> rowCount();
+  
+                                if($lettre != "0"){
+                                    $searchAlphabet = $bdd-> prepare("SELECT * FROM clients WHERE nomFacturation LIKE ? ORDER BY nomFacturation ASC");
+                                    $searchAlphabet-> execute(array($lettre.'%'));
+                                    $donneesAlphabet = $searchAlphabet-> fetchAll();
+                                    $countAlphabet = $searchAlphabet-> rowCount();
+                                }else{
+                                    $searchAlphabet = $bdd->query("SELECT * FROM clients WHERE nomFacturation IS NULL ORDER BY idClient ASC ");
+                                    $donneesAlphabet = $searchAlphabet-> fetchAll();
+                                    $countAlphabet = $searchAlphabet-> rowCount();
+                                }
+                              
 
                             foreach($donneesAlphabet as $donnees){
                                 $searchDocument = $bdd-> prepare("SELECT * FROM documents WHERE idUser = (SELECT idClient FROM clients WHERE idUser = ?)");
@@ -79,11 +87,11 @@ $menuAlphabet = "A";
                                 }
                                 echo '<tr>
                                         <td class="align-middle">'.$donnees['idClient'].'</td>
-                                        <td class="align-middle">'.$donnees['nomFacturation'].'</td>
-                                        <td class="align-middle">'.$donnees['prenomFacturation'].'</td>
+                                        <td class="align-middle">'.$donnees['nomFacturation'].' '.$donnees['prenomFacturation'].'</td>
                                         <td class="align-middle">'.$donnees['adresseFacturation'].'</td>
-                                        <td class="align-middle">'.$donnees['cpFacturation'].'</td>
-                                        <td class="align-middle">'.$donnees['villeFacturation'].'</td>
+                                        <td class="align-middle">'.$donnees['cpFacturation'].' '.$donnees['villeFacturation'].'</td>
+                                        <td class="align-middle">'.$donnees['email'].'</td>
+                                        <td class="align-middle">Inscription:' .date('d-m-Y à H:i:s',$donnees['timeInscription']).'<br/>Dernière visite: '.date('d-m-Y à H:i:s',$donnees['lastVisite']).'</td>
                                         <td>
                                         <a href="/admin/client/factures/?client='.$donnees['idUser'].'" class="btn btn-info '.$disableFacture.'"><i class="fas fa-file-invoice-dollar"></i></a>
                                         <a href="/admin/client/edition/?client='.$donnees['idUser'].'" class="btn btn-warning"><i class="fas fa-binoculars"></i></a>
@@ -93,7 +101,7 @@ $menuAlphabet = "A";
                                     foreach($donneesDocument as $doc){
                                         echo '<tr>
                                         <td class="bg-info align-middle">Client: '.$donnees['idClient'].'</td>
-                                        <td colspan="3" class="bg-info align-middle">Réf document en BDD: '.$doc['idDocument'].'</td>
+                                        <td colspan="4" class="bg-info align-middle">Réf document en BDD: '.$doc['idDocument'].'</td>
                                         <td colspan="3" class="bg-info align-middle"><form method="POST" action="/administration/client/ctrl/ctrl-update-document-client.php">
                                         A transférer au client (idClient en BDD): <input type="text" name="nouvelId">
                                         <input type="hidden" name="doc" value="'.$doc['idDocument'].'">
