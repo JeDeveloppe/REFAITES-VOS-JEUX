@@ -93,7 +93,10 @@ $couleur_body: #fff !important;
 }
 
 .scale-hover:hover{
-  scale: 0.98;
+  -webkit-transform: scale(0.98);
+  -moz-transform: scale(0.98);
+  -o-transform: scale(0.98);
+  transform: scale(0.98);
   transition: scale 0.2s ease-in;
 }
 
