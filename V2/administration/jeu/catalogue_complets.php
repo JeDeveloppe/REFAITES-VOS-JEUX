@@ -214,7 +214,13 @@ $menuAlphabet = "A";
                                                         }else{
                                                             echo '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1" class="btn btn-danger '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
                                                         }
-                                                    echo '</div>
+                                                        if($jeuC['don'] == 1){
+                                                            echo '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0" class="btn btn-success"><i class="fas fa-hand-holding-heart"></i></a>';
+                                                        }else{
+                                                            echo '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1" class="btn btn-danger"><i class="fas fa-hand-holding-heart"></i></a>';
+                                                        }
+                                                    echo '
+                                                    </div>
                                                 </td>
                                             </tr>';
                                     }

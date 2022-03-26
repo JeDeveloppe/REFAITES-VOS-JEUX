@@ -10,50 +10,34 @@ require_once ('../../../jpgraph/src/jpgraph.php');
 require_once ('../../../jpgraph/src/jpgraph_bar.php');
 
 //on verifie les variables
-if(!isset($_GET['anneeN']) || strlen($_GET['anneeN']) != 4 ){
+if(!isset($_GET['anneeN']) || !isset($_GET['anneePassee']) || strlen($_GET['anneePassee']) != 4 || strlen($_GET['anneeN']) != 4 || $_GET['anneeN'] - $_GET['anneePassee'] != 1){
     $_SESSION['alertMessage'] = "Donnée manquante...!";
     $_SESSION['alertMessageConfig'] = "danger";
     header("Location: ".$_SERVER['HTTP_REFERER']);
     exit();
 }else{
     $anneeN = $_GET['anneeN'];
-    $anneePassee = $_GET['anneeN'] -1;
+    $anneePassee = $_GET['anneePassee'];
 }
 
 
 $totaux1y = [];
     for($m=1;$m<=12;$m++){
-        $sqlJeuxOccasionVendus = $bdd->prepare("SELECT SUM(c.poidBoite)
-        FROM catalogue c LEFT JOIN documents_lignes_achats dd ON dd.idCatalogue = c.idCatalogue
-        LEFT JOIN documents d ON d.idDocument = dd.idDocument
-        WHERE d.etat = 2 AND MONTH(FROM_UNIXTIME(d.time_transaction)) = ? AND YEAR(FROM_UNIXTIME(d.time_transaction)) = ?");
-        $sqlJeuxOccasionVendus->execute(array($m,$anneePassee));
-        $donneesDuMois = $sqlJeuxOccasionVendus->fetch();
-    
-        //si pas de resultat on dit 0 et on pousse dans la tableau total de jpgraph
-        if($donneesDuMois['SUM(c.poidBoite)'] < 1){
-            array_push($totaux1y,0);
-        }else{
-            array_push($totaux1y,$donneesDuMois['SUM(c.poidBoite)']);
-        }
+        $sqlGraph = $bdd->prepare("SELECT SUM(totalHT) as totalHTmois FROM documents WHERE MONTH(FROM_UNIXTIME(time_transaction)) = ? AND YEAR(FROM_UNIXTIME(time_transaction)) = ? AND etat = 2 ");
+        $sqlGraph->execute(array($m,$anneePassee));
+        $donneesGraph = $sqlGraph->fetch();
+        $donneesGraph_100 = $donneesGraph['totalHTmois'] / 100;
+        array_push($totaux1y,$donneesGraph_100);
     }
 $data1y=$totaux1y;
 
 $totaux2y = [];
     for($m=1;$m<=12;$m++){
-        $sqlJeuxOccasionVendus = $bdd->prepare("SELECT SUM(c.poidBoite)
-        FROM catalogue c LEFT JOIN documents_lignes_achats dd ON dd.idCatalogue = c.idCatalogue
-        LEFT JOIN documents d ON d.idDocument = dd.idDocument
-        WHERE d.etat = 2 AND MONTH(FROM_UNIXTIME(d.time_transaction)) = ? AND YEAR(FROM_UNIXTIME(d.time_transaction)) = ?");
-        $sqlJeuxOccasionVendus->execute(array($m,$anneeN));
-        $donneesDuMois = $sqlJeuxOccasionVendus->fetch();
-
-        //si pas de resultat on dit 0 et on pousse dans la tableau total de jpgraph
-        if($donneesDuMois['SUM(c.poidBoite)'] < 1){
-            array_push($totaux2y,0);
-        }else{
-            array_push($totaux2y,$donneesDuMois['SUM(c.poidBoite)']);
-        }
+        $sqlGraph2 = $bdd->prepare("SELECT SUM(totalHT) as totalHTmois FROM documents WHERE MONTH(FROM_UNIXTIME(time_transaction)) = ? AND YEAR(FROM_UNIXTIME(time_transaction)) = ? AND etat = 2 ");
+        $sqlGraph2->execute(array($m,$anneeN));
+        $donneesGraph2 = $sqlGraph2->fetch();
+        $donneesGraph2_100 = $donneesGraph2['totalHTmois'] / 100;
+        array_push($totaux2y,$donneesGraph2_100);
     }
 $data2y=$totaux2y;
 
@@ -96,7 +80,7 @@ $b2plot->SetColor("white");
 $b2plot->SetFillColor("#11cccc");
 $b2plot->value->Show();
 
-$graph->title->Set("Grammes par mois ".$anneePassee." - ".$anneeN);
+$graph->title->Set("Ventes par mois (HT) ".$anneePassee." / ".$anneeN);
 
 
 // Display the graph

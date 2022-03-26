@@ -42,7 +42,7 @@ $donneesOptGroup = $sqlOptgroup-> fetch();
                                 </div>
                                 <div class="col-12 col-sm-8 form-group mb-3">
                                     <label for="email">Téléphone:<sup class="text-danger">*</sup></label>
-                                    <input type="text" name="telephone" class="form-control" pattern="^[067]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}.[0-9]{2}$" placeholder="Format: 00.00.00.00.00"  <?php if(isset($_SESSION['telephone'])){echo 'value="'.$_SESSION['telephone'].'"';}?> required>
+                                    <input type="text" name="telephone" class="form-control" pattern="^[0-9]{10,14}$"  <?php if(isset($_SESSION['telephone'])){echo 'value="'.$_SESSION['telephone'].'"';}?> required>
                                 </div>
                                 <div class="col-6 col-sm-8 col-md-6 form-group mb-3">
                                     <label for="pays">Pays:<sup class="text-danger">*</sup></label>

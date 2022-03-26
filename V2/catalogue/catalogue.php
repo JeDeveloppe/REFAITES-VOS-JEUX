@@ -65,7 +65,6 @@ if($nbrJeux > 0){
             <div class="col-12 text-center"><h1>Pièces détachées</h1></div>
             <div class="col-11 mx-auto text-center lead text-muted">
                 Le catalogue référence tous les jeux pour lesquels le service dispose de pièces.<br/>
-                Actuellement il y a <span data-html="true" data-toggle="tooltip" data-placement="top" title="Nombre de jeux incomplets en ligne" id="odometerJeuxEnLigne" class="odometer"></span> jeux en ligne.
             </div>
        
             <!-- formulaire de recherche -->
@@ -240,7 +239,10 @@ if($nbrJeux > 0){
                             </ul>
                         </nav>
                     </div>
-                    <div class="col-12 text-center">Total des pages: <?php echo $nombreDePages; ?></div>
+                    <div class="col-12 text-center">
+                        <p>Total des pages: <?php echo $nombreDePages; ?></p>
+                        <p>Actuellement il y a <span data-html="true" data-toggle="tooltip" data-placement="top" id="odometerJeuxEnLigne" class="odometer"></span> jeux incomplets en ligne.</p>
+                    </div>
                 <?php
                 }
                 ?>

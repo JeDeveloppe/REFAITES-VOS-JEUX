@@ -10,14 +10,14 @@ require_once ('../../../../jpgraph/src/jpgraph.php');
 require_once ('../../../../jpgraph/src/jpgraph_bar.php');
 
 //on verifie les variables
-if(!isset($_GET['anneeN']) || !isset($_GET['anneePassee']) || strlen($_GET['anneePassee']) != 4 || strlen($_GET['anneeN']) != 4 || $_GET['anneeN'] - $_GET['anneePassee'] != 1){
+if(!isset($_GET['anneeN']) || strlen($_GET['anneeN']) != 4 ){
     $_SESSION['alertMessage'] = "Donnée manquante...!";
     $_SESSION['alertMessageConfig'] = "danger";
     header("Location: ".$_SERVER['HTTP_REFERER']);
     exit();
 }else{
     $anneeN = $_GET['anneeN'];
-    $anneePassee = $_GET['anneePassee'];
+    $anneePassee = $_GET['anneeN'] -1;
 }
 
 

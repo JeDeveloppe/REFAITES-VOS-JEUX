@@ -17,7 +17,7 @@ if(!isset($_GET['recherche']) || strlen($_GET['recherche']) < 3){
 }else{
     $recherche = valid_donnees($_GET['recherche']);
     $likesRecherche = "%".strtoupper(str_replace(" ","%",$recherche))."%";
-    $queryRecherche = " AND catalogue.nom LIKE '$likesRecherche' OR catalogue.editeur LIKE '$likesRecherche' ";
+    $queryRecherche = " AND jeux_complets.actif = 1 AND catalogue.nom LIKE '$likesRecherche' OR catalogue.editeur LIKE '$likesRecherche' ";
 }
 
 if(isset($_GET['tri']) && preg_match('#u1|u2|2|3|4|5|6|7|8#',$_GET['tri'])){

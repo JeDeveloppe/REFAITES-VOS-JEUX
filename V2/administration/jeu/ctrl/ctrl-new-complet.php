@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $idJeu = valid_donnees($_POST['idJeu']);
 
     //ON CRE DANS LA BASE DE DONNEE
-    $sqlNewJeuComplet = $bdd -> prepare("INSERT INTO jeux_complets (idCatalogue,stock,prixHT,etatBoite,etatMateriel,regleJeu,information,isNeuf,reference,actif) VALUES (:idJeu, :stock, :prix, :boite, :materiel, :regle, :information, :isneuf, :ref, :actif)");
+    $sqlNewJeuComplet = $bdd -> prepare("INSERT INTO jeux_complets (idCatalogue,stock,prixHT,etatBoite,etatMateriel,regleJeu,information,isNeuf,reference,don,actif) VALUES (:idJeu, :stock, :prix, :boite, :materiel, :regle, :information, :isneuf, :ref, :don, :actif)");
     $sqlNewJeuComplet-> execute(array(
         "idJeu" => $idJeu,
         "stock" => $qte,
@@ -63,6 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         "information" => $description,
         "isneuf" => $isNeuf,
         "ref" => 0,
+        "don" => 0,
         "actif" => 1));
 
     $lastId = $bdd->lastInsertId();

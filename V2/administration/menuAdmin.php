@@ -43,6 +43,7 @@ $countCommandesApreparer = $sqlCommandesApreparer -> rowCount();
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="/admin/carte-des-ventes/"><i class="fas fa-map-marker"> Carte des ventes</i></a>
       <a class="dropdown-item" href="/admin/statistiques/"><i class="fas fa-chart-line"> Stats</i></a>
+      <a class="dropdown-item" href="/admin/graphiques/"><i class="fas fa-chart-bar"> Graphiques</i></a>
       <a class="dropdown-item" href="/admin/comptabilite/"><i class="fas fa-money-bill-wave"> Comptabilité</i></a>
     </div>
   </li>

@@ -8,6 +8,7 @@ include('../../bdd/connexion-bdd.php');
 
 $titreDeLaPage = "[ADMIN] - Fichier client";
 $descriptionPage = "";
+
 include_once("../../commun/haut_de_page.php");
 
 include_once("../../commun/alertMessage.php");

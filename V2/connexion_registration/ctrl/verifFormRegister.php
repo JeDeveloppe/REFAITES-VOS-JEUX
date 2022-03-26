@@ -85,13 +85,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     //on controle le champs telephone
-    // if(!preg_match('#^[0-9]{10,14}$#', $_SESSION['telephone'])){
-    //     unset($_SESSION['telephone']);
-    //     $_SESSION['alertMessage'] = "Saisie téléphone incorrect !";
-    //     $_SESSION['alertMessageConfig'] = "danger";
-    //     header("Location: ".$_SERVER['HTTP_REFERER']);
-    //     exit();
-    // }
+    if(!preg_match('#^[0-9]{8,10}$#', $_SESSION['telephone'])){
+        unset($_SESSION['telephone']);
+        $_SESSION['alertMessage'] = "Saisie téléphone incorrect !";
+        $_SESSION['alertMessageConfig'] = "danger";
+        header("Location: ".$_SERVER['HTTP_REFERER']);
+        exit();
+    }else{
+
+        if(preg_match( '/^(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/', $telephone,  $matches ) ){ // numero à 10 chiffres
+            $telephone = $matches[1] . '-' .$matches[2] . '-' . $matches[3] . '-' . $matches[4] . '-' . $matches[5];
+        }else if(preg_match( '/^(\d{2})(\d{2})(\d{2})(\d{2})$/', $telephone,  $matches ) ){ //numero à 8 chiffres
+            $telephone = $matches[1] . '-' .$matches[2] . '-' . $matches[3] . '-' . $matches[4];
+        }else{
+            $telephone = $telephone;
+        }
+        
+    }
 
     // On vérifie si le champ "recaptcha-response" contient une valeur
     if(empty($_POST['recaptcha-response'])){
