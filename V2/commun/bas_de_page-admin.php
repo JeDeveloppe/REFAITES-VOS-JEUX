@@ -3,13 +3,13 @@
             <a href="#" class="text-primary cursor-alias"><i class="fas fa-caret-up"> Retour en haut</i></a>
         </div>
         <!-- START Bootstrap-Cookie-Alert -->
-        <div class="alert text-center cookiealert" role="alert">
+        <!-- <div class="alert text-center cookiealert" role="alert">
             <b>Vous aimez les cookies?</b> &#x1F36A; Nous les utilisons pour faire fonctionner le site correctement. <a class="text-warning" href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser" target="_blank">En savoir plus</a>
 
             <button type="button" class="btn btn-primary btn-sm acceptcookies">
                 Ok
             </button>
-        </div>
+        </div> -->
         <!-- END Bootstrap-Cookie-Alert -->
 
         <div class="col-12 text-center small mt-1">

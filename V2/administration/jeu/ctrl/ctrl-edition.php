@@ -19,6 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $editeur1 = valid_donnees($_POST['editeur1']);
     $anneePOST = valid_donnees($_POST['annee']);
     $jeu = valid_donnees($_POST['idDuJeu']);
+    $deee = valid_donnees($_POST['deee']);
     $contenuPieces = valid_donnees($_POST['pieces']);
     $messageSpecial = valid_donnees($_POST['messageSpecial']);
     $urlNom = valid_donnees(trim($_POST['urlNom']));
@@ -126,8 +127,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     //ON MET A JOUR LE JEU
-    $sqlInfosJeu = $bdd -> prepare("UPDATE catalogue SET nom= :nom, editeur = :editeur, annee = :annee, urlNom = :urlNom, isLivrable = :livrable, isComplet = :complet, poidBoite = :poid, age = :Age, nbrJoueurs = :Joueurs, prix_HT = :prixHT WHERE idCatalogue = :jeu");
-    $sqlInfosJeu-> execute(array("nom" => $nom,"editeur" => $editeur,"annee" => $annee, "urlNom" => $urlNom, "jeu" => $jeu, "livrable" => $jeuCompletLivraison, "complet" => $jeuComplet, "poid" => $poidBoite, "Age" => $age, "Joueurs" => $joueurs, "prixHT" => $prixHT));
+    $sqlInfosJeu = $bdd -> prepare("UPDATE catalogue SET deee = :deee, nom= :nom, editeur = :editeur, annee = :annee, urlNom = :urlNom, isLivrable = :livrable, isComplet = :complet, poidBoite = :poid, age = :Age, nbrJoueurs = :Joueurs, prix_HT = :prixHT WHERE idCatalogue = :jeu");
+    $sqlInfosJeu-> execute(array("deee" => $deee, "nom" => $nom,"editeur" => $editeur,"annee" => $annee, "urlNom" => $urlNom, "jeu" => $jeu, "livrable" => $jeuCompletLivraison, "complet" => $jeuComplet, "poid" => $poidBoite, "Age" => $age, "Joueurs" => $joueurs, "prixHT" => $prixHT));
     
 
     $_SESSION['alertMessage'] = "Jeu mis à jour!";

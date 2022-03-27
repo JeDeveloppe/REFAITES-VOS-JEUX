@@ -25,10 +25,10 @@ $menuAlphabet = "A";
                     <ul class="pagination d-flex flex-wrap justify-content-around">
                     <?php
                         //pas alphabetique
-                        $searchAlphabetLettre = $bdd-> prepare("SELECT * FROM catalogue WHERE nom NOT LIKE ? AND isComplet = 1 ORDER BY nom");
-                        $searchAlphabetLettre-> execute(array('[^a-z]%'));
+                        $searchAlphabetLettre = $bdd-> prepare("SELECT * FROM catalogue WHERE nom REGEXP '^[0-9]+' AND isComplet = ? ORDER BY nom");
+                        $searchAlphabetLettre-> execute(array(1));
                         $countAlphabetLettre = $searchAlphabetLettre-> rowCount();
-                        echo '<li class="page-item disabled"><a class="page-link" href="/admin/jeu/catalogue/complet/@/">#<br/><span class="small">('.$countAlphabetLettre.')</span></a></li>';
+                        echo '<li class="page-item"><a class="page-link" href="/admin/jeu/catalogue/complet/">#<br/><span class="small">('.$countAlphabetLettre.')</span></a></li>';
                         
                         for($x=1;$x<27;$x++)
                         {
@@ -51,15 +51,16 @@ $menuAlphabet = "A";
                         $lettre = $_GET['lettre'];
                         $query = "SELECT * FROM catalogue WHERE nom LIKE ? AND isComplet = 1 ORDER BY nom";
                         $arrayQuery = $lettre.'%';
-                    }else if(isset($_GET['lettre']) && $_GET['lettre'] == "@"){
-                        $lettre = "#";
-                        $query = "SELECT * FROM catalogue WHERE nom NOT LIKE ? AND isComplet = 1 ORDER BY nom";
-                        $arrayQuery = '[^a-zA-Z]%';
                     }else{
-                        $lettre = "A";
-                        $query = "SELECT * FROM catalogue WHERE nom LIKE ? AND isComplet = 1 ORDER BY nom";
-                        $arrayQuery = 'A%';
+                        $lettre = "#";
+                        $query = "SELECT * FROM catalogue WHERE nom REGEXP '^[0-9]+' AND isComplet = ? ORDER BY nom";
+                        $arrayQuery = 1;
                     }
+                    // else{
+                    //     $lettre = "A";
+                    //     $query = "SELECT * FROM catalogue WHERE nom LIKE ? AND isComplet = 1 ORDER BY nom";
+                    //     $arrayQuery = 'A%';
+                    // }
                     echo strtoupper($lettre);
                 ?>
             </div>
@@ -168,63 +169,66 @@ $menuAlphabet = "A";
                                     $allJeux->execute(array($donnees['idCatalogue']));
                                     $donneesAllJeux = $allJeux->fetchAll();
 
-                                    foreach($donneesAllJeux as $jeuC){
-                                        
-                                        $sqlIsVendu = $bdd->prepare("SELECT * FROM documents_lignes_achats WHERE idJeuComplet = ?");
-                                        $sqlIsVendu->execute(array($jeuC['idJeuxComplet']));
-                                        $nbrIsVendu = $sqlIsVendu->rowCount();
+                                    if(count($donneesAllJeux) > 0){
+                                        foreach($donneesAllJeux as $jeuC){
+                                            
+                                            $sqlIsVendu = $bdd->prepare("SELECT * FROM documents_lignes_achats WHERE idJeuComplet = ?");
+                                            $sqlIsVendu->execute(array($jeuC['idJeuxComplet']));
+                                            $nbrIsVendu = $sqlIsVendu->rowCount();
 
-                                        if($nbrIsVendu > 0){
-                                            $activeSuppression = 'disabled';
-                                        }else{
-                                            $activeSuppression = '';
+                                            if($nbrIsVendu > 0){
+                                                $activeSuppression = 'disabled';
+                                            }else{
+                                                $activeSuppression = '';
+                                            }
+
+                                            if($jeuC['stock'] > 0){
+                                                $online = '<i class="fas fa-circle text-success"></i>';
+                                            }else{
+                                                $online = '<i class="fas fa-circle text-danger"></i>';
+                                            }
+
+                                            if($jeuC['stock'] > 0){
+                                                $buttonOnline_offline = "";
+                                            }else{
+                                                $buttonOnline_offline = "disabled";
+                                            }
+
+                                            if($jeuC['ancienPrixHT'] != null){
+                                                $ancienPrix = number_format(($jeuC['ancienPrixHT'] * $tva)/100 ,2);
+                                            }else{
+                                                $ancienPrix = "";
+                                            }
+
+                                            echo '<tr>
+                                                    <td class="align-middle">'.$jeuC['reference']; if($jeuC['isNeuf'] == 1){echo '<br/><span class="small bg-info text-white p-1">COMME NEUF</span>';} echo '</td>
+                                                    <td class="align-middle">'.$jeuC['stock'].' '.$online.'</td>
+                                                    <td class="align-middle">'.number_format(($jeuC['prixHT'] * $tva)/100 ,2).'</td>
+                                                    <td class="align-middle"><form action="/administration/jeu/ctrl/ctrl-complet-newPrice.php" method="get"><input type="text" class="col-3 text-center" name="nvPrixTTC" pattern="([0-9]{1,2}).([0-9]{2})" placeholder="10.00"><input type="hidden" name="idComplet" value="'.$jeuC['idJeuxComplet'].'"><button type="submit" class="btn"><i class="fas fa-save"></i></button></form></td>
+                                                    <td class="align-middle">'.$ancienPrix.'</td>
+                                                    <td class="text-left align-middle">'.$jeuC['information'].'</td>
+                                                    <td class="align-middle">'.$nbrIsVendu.'</td>
+                                                    <td class="align-middle">
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            <a href="/administration/jeu/ctrl/ctrl-complet-delete.php?idComplet='.$jeuC['idJeuxComplet'].'" class="btn btn-danger '.$activeSuppression.'"><i class="fas fa-trash-alt"></i></a>';
+                                                            if($jeuC['actif'] == 1){
+                                                                echo '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0" class="btn btn-success '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
+                                                            }else{
+                                                                echo '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1" class="btn btn-danger '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
+                                                            }
+                                                            if($jeuC['don'] == 1){
+                                                                echo '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0" class="btn btn-success"><i class="fas fa-hand-holding-heart"></i></a>';
+                                                            }else{
+                                                                echo '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1" class="btn btn-danger"><i class="fas fa-hand-holding-heart"></i></a>';
+                                                            }
+                                                        echo '
+                                                        </div>
+                                                    </td>
+                                                </tr>';
                                         }
-
-                                        if($jeuC['stock'] > 0){
-                                            $online = '<i class="fas fa-circle text-success"></i>';
-                                        }else{
-                                            $online = '<i class="fas fa-circle text-danger"></i>';
-                                        }
-
-                                        if($jeuC['stock'] > 0){
-                                            $buttonOnline_offline = "";
-                                        }else{
-                                            $buttonOnline_offline = "disabled";
-                                        }
-
-                                        if($jeuC['ancienPrixHT'] != null){
-                                            $ancienPrix = number_format(($jeuC['ancienPrixHT'] * $tva)/100 ,2);
-                                        }else{
-                                            $ancienPrix = "";
-                                        }
-
-                                        echo '<tr>
-                                                <td class="align-middle">'.$jeuC['reference']; if($jeuC['isNeuf'] == 1){echo '<br/><span class="small bg-info text-white p-1">COMME NEUF</span>';} echo '</td>
-                                                <td class="align-middle">'.$jeuC['stock'].' '.$online.'</td>
-                                                <td class="align-middle">'.number_format(($jeuC['prixHT'] * $tva)/100 ,2).'</td>
-                                                <td class="align-middle"><form action="/administration/jeu/ctrl/ctrl-complet-newPrice.php" method="get"><input type="text" class="col-3 text-center" name="nvPrixTTC" pattern="([0-9]{1,2}).([0-9]{2})" placeholder="10.00"><input type="hidden" name="idComplet" value="'.$jeuC['idJeuxComplet'].'"><button type="submit" class="btn"><i class="fas fa-save"></i></button></form></td>
-                                                <td class="align-middle">'.$ancienPrix.'</td>
-                                                <td class="text-left align-middle">'.$jeuC['information'].'</td>
-                                                <td class="align-middle">'.$nbrIsVendu.'</td>
-                                                <td class="align-middle">
-                                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="/administration/jeu/ctrl/ctrl-complet-delete.php?idComplet='.$jeuC['idJeuxComplet'].'" class="btn btn-danger '.$activeSuppression.'"><i class="fas fa-trash-alt"></i></a>';
-                                                        if($jeuC['actif'] == 1){
-                                                            echo '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0" class="btn btn-success '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
-                                                        }else{
-                                                            echo '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1" class="btn btn-danger '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
-                                                        }
-                                                        if($jeuC['don'] == 1){
-                                                            echo '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0" class="btn btn-success"><i class="fas fa-hand-holding-heart"></i></a>';
-                                                        }else{
-                                                            echo '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1" class="btn btn-danger"><i class="fas fa-hand-holding-heart"></i></a>';
-                                                        }
-                                                    echo '
-                                                    </div>
-                                                </td>
-                                            </tr>';
+                                    }else{
+                                        echo '<tr><td colspan="8" class="text-center align-middle">Aucun jeu pour le moment</td></tr>';
                                     }
-                                    
                                     echo '</tbody>
                                 </table>
                             </div>
