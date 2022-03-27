@@ -116,13 +116,15 @@ Options +FollowSymlinks
 
     RewriteRule ^admin/statistiques/ventes/([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel.php?annee=$1   [L]
     RewriteRule ^admin/statistiques/ventes/repartition/([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel_repartitions.php?annee=$1   [L]
-    RewriteRule ^admin/statistiques/ventes/comparaison/([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel_comparaison.php?anneePassee=$1  [L]
+    RewriteRule ^admin/statistiques/ventes/comparaison/([0-9]+)/$    /administration/statistiques/graphiques/ventes/graph_annuel_comparaison.php?annee=$1  [L]
     
     RewriteRule ^admin/statistiques/grammes/([0-9]+)/$    /administration/statistiques/graphiques/grammes/graph_annuel.php?annee=$1   [L]
-    RewriteRule ^admin/statistiques/grammes/comparaison/([0-9]+)/$    /administration/statistiques/graphiques/grammes/graph_annuel_comparaison.php?anneePassee=$1  [L]
+    RewriteRule ^admin/statistiques/grammes/comparaison/([0-9]+)/$    /administration/statistiques/graphiques/grammes/graph_annuel_comparaison.php?annee=$1  [L]
     
+    RewriteRule ^admin/statistiques/boites/([0-9]+)/$    /administration/statistiques/graphiques/boites/graph_annuel.php?annee=$1   [L]
+
     RewriteRule ^admin/statistiques/grammes/deee/([0-9]+)/$    /administration/statistiques/graphiques/grammes/deee/graph_annuel.php?annee=$1   [L]
-    RewriteRule ^admin/statistiques/grammes/comparaison/deee/([0-9]+)/$    /administration/statistiques/graphiques/grammes/deee/graph_annuel_comparaison.php?anneePassee=$1  [L]
+    RewriteRule ^admin/statistiques/grammes/comparaison/deee/([0-9]+)/$    /administration/statistiques/graphiques/grammes/deee/graph_annuel_comparaison.php?annee=$1  [L]
 
     RewriteRule ^admin/statistiques/adherents/([0-9]+)/$    /administration/statistiques/graphiques/adherents/graph_annuel.php?annee=$1   [L]
 

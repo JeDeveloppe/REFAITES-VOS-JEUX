@@ -117,8 +117,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
 
 
-                $sqlImage = $bdd -> prepare("UPDATE catalogue SET imageBlob = :imageBlob WHERE idJeux = :jeu");
-                $sqlImage-> execute(array("image" => $imgBase64, "jeu" => $jeu));
+                $sqlImage = $bdd->prepare("UPDATE catalogue SET imageBlob = :imageBlob WHERE idJeux = :jeu");
+                $sqlImage->execute(array("imageBlob" => $imgBase64, "jeu" => $jeu));
                 
             }
         }

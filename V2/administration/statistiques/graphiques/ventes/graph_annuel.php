@@ -9,6 +9,8 @@ require_once('../../../../bdd/connexion-bdd.php');
 require_once ('../../../jpgraph/src/jpgraph.php');
 require_once ('../../../jpgraph/src/jpgraph_bar.php');
 
+
+
 //on verifie les variables
 if(!isset($_GET['annee']) || strlen($_GET['annee']) != 4){
     $_SESSION['alertMessage'] = "Donnée manquante...!";

@@ -34,8 +34,18 @@ if(!isset($_GET['doc']) || !isset($_GET['user'])){
         //a partir des infos de la table documents
         $donneesClient = $donneesDocument['adresse_facturation'];
         $donneesClientDetails = explode('<br/>',$donneesClient);
-        $donneesClientNomPrenom = explode(' ',$donneesClientDetails[0]);
-        $donneesClientCpVille = explode(' ',$donneesClientDetails[2]);
+
+        //si y a une association de saisie
+        if(count($donneesClientDetails) == 5){
+            $donneesClientNomPrenom = explode(' ',$donneesClientDetails[1]);
+            $donneesClientCpVille = explode(' ',$donneesClientDetails[3]);
+            $pays = $donneesClientDetails[4];
+
+        }else{
+            $donneesClientNomPrenom = explode(' ',$donneesClientDetails[0]);
+            $donneesClientCpVille = explode(' ',$donneesClientDetails[2]);
+            $pays = $donneesClientDetails[3];
+        }
 
         $secretkey = $GLOBAL['secretPaiement'];
         $email = $donneesTableClient['email'];
@@ -45,7 +55,6 @@ if(!isset($_GET['doc']) || !isset($_GET['user'])){
         $adresse = $donneesClientDetails[1];
         $ville = $donneesClientCpVille[1];
         $cp = $donneesClientCpVille[0];
-        $pays = $donneesClientDetails[3];
         $montantTTC = $donneesDocument['totalTTC'];
         $amount = (int)($montantTTC);
 

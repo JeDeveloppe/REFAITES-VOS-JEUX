@@ -22,23 +22,27 @@ include_once("../../../commun/alertMessage.php");
             </div>
             <div class="col-12 mt-4 text-center d-flex flex-column">
                 <div>Les ventes:</div>
-                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/ventes/" target="_blank">LES VENTES de l'année N</a>
-                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/ventes/repartition/" target="_blank">REPARTITION de l'année N</a>
-                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/ventes/comparaison/" target="_blank">COMPARAISON Année N-1 et N</a>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/ventes/">LES VENTES de l'année N</a>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/ventes/repartition/">REPARTITION de l'année N</a>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/ventes/comparaison/">COMPARAISON Année N-1 et N</a>
+            </div>
+            <div class="col-12 mt-2 text-center d-flex flex-column">
+                <div>Les boites: (ventes et dons)</div>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/boites/">Évolution de l'année N</a>
             </div>
             <div class="col-12 mt-2 text-center d-flex flex-column">
                 <div>Les grammes: (total)</div>
-                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/grammes/" target="_blank">Évolution de l'année N</a>
-                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/grammes/comparaison/" target="_blank">COMPARAISON Année N-1 et N</a>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/grammes/">Évolution de l'année N</a>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/grammes/comparaison/">COMPARAISON Année N-1 et N</a>
             </div>
             <div class="col-12 mt-2 text-center d-flex flex-column">
                 <div>Les grammes: (juste DEEE)</div>
-                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/grammes/deee/" target="_blank">Évolution de l'année N</a>
-                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/grammes/comparaison/deee/" target="_blank">COMPARAISON Année N-1 et N</a>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/grammes/deee/">Évolution de l'année N</a>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/grammes/comparaison/deee/">COMPARAISON Année N-1 et N</a>
             </div>
             <div class="col-12 mt-2 text-center d-flex flex-column">
                 <div>Les adhérents:</div>
-                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/adherents/" target="_blank">Évolution de l'année N</a>
+                <a class=" link btn btn-info disabled mb-2" href="/admin/statistiques/adherents/">Évolution de l'année N</a>
             </div>
 
         </div>
@@ -51,12 +55,24 @@ include_once("../../../commun/alertMessage.php");
     let anneeGraphique = document.getElementById('anneeGraphique');
     let liens = document.getElementsByClassName('link');
 
-    anneeGraphique.addEventListener('keyup', () => {
-        if(anneeGraphique.value.length == 4 && anneeGraphique.value >= 2020 && anneeGraphique.value.match(/^\d{4}$/)){
+    function containsNumber(str) {
+        return /\d/.test(str);
+    }
 
+    anneeGraphique.addEventListener('input', () => {
+        if(anneeGraphique.value.length == 4 && anneeGraphique.value >= 2020 && anneeGraphique.value.match(/^\d{4}$/)){
+           
             for(const link of liens){
                 link.classList.remove('disabled');
-                console.log(link.href += anneeGraphique.value+"/");
+                href = link.href;
+                hrefWithYear = href += anneeGraphique.value+"/";
+
+                console.log(containsNumber(href));
+                if(containsNumber(href)){
+                    href.slice(0, - 5);
+                    console.log(href);
+                    link.setAttribute("href",hrefWithYear);
+                }
             }
         }
     });
