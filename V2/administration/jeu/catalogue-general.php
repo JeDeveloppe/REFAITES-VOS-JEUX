@@ -40,6 +40,11 @@ if(isset($_GET['recherche'])){
             $parametresUrl = "&tri=jeu_gramme_non_renseigne";
             $messagesParPage = 25;
             break;
+        case "jeu_deee_non_renseigne":
+            $requeteRecherche = 'WHERE deee IS NULL ORDER BY nom ASC';
+            $parametresUrl = "&tri=jeu_deee_non_renseigne";
+            $messagesParPage = 25;
+            break;
         case "pieces_sans_vente";
             $requeteRecherche = "WHERE idCatalogue NOT IN (SELECT idJeu FROM documents_lignes) ORDER BY nom ASC";
             $parametresUrl = "&tri=pieces_sans_vente";
@@ -91,10 +96,10 @@ include_once("../../commun/alertMessage.php");
     <div class="row mt-5">
         <div class="col-6 mx-auto">
             <form class="d-flex justify-content-center" method="get" action="">
-            <input class="col form-control mr-2 align-self-center" type="search" name="recherche" placeholder="Rechercher un nom de jeu" aria-label="Rechercher" required>
-            <button class="btn btn-outline-success mt-0" type="submit">Chercher</button>
-            <a href="/admin/jeu/catalogue/general/" class="btn btn-outline-danger ml-2">Éffacer la recherche</a>
-        </form>
+                <input class="col form-control mr-2 align-self-center" type="search" name="recherche" placeholder="Rechercher un nom de jeu" aria-label="Rechercher" required>
+                <button class="btn btn-outline-success mt-0" type="submit">Chercher</button>
+                <a href="/admin/jeu/catalogue/general/" class="btn btn-outline-danger ml-2">Éffacer la recherche</a>
+            </form>
         </div>
         <div class="col-6 mx-auto">
             <label class="my-1 mr-2" for="formulaireTri">Ou / Affichage: </label>
@@ -104,6 +109,7 @@ include_once("../../commun/alertMessage.php");
                     <option value="jeu_complet_indisponible" <?php if($tri == "jeu_complet_indisponible"){echo 'selected';}?>>Jeu complet indisponible</option>
                     <option value="jeu_complet_disponible" <?php if($tri == "jeu_complet_disponible"){echo 'selected';}?>>Jeu complet disponible</option>
                     <option value="jeu_gramme_non_renseigne" <?php if($tri == "jeu_gramme_non_renseigne"){echo 'selected';}?>>Gramme non renseigné</option>
+                    <option value="jeu_deee_non_renseigne" <?php if($tri == "jeu_deee_non_renseigne"){echo 'selected';}?>>DEEE non renseigné</option>
                     <option value="pieces_sans_vente" <?php if($tri == "pieces_sans_vente"){echo 'selected';}?>>Sans ventes (pièces)</option>
                     <option value="mise_au_catalogue_z-a" <?php if($tri == "mise_au_catalogue_z-a"){echo 'selected';}?>>Mise au catalogue (Z-A)</option>
                     <option value="mise_au_catalogue_a-z" <?php if($tri == "mise_au_catalogue_a-z"){echo 'selected';}?>>Mise au catalogue (A-Z)</option>
@@ -169,9 +175,11 @@ include_once("../../commun/alertMessage.php");
                     $iconePoidBoite = '<i class="fas fa-weight text-danger"></i>';
                 }
                 if($jeu['deee'] == "OUI"){
-                    $iconeDeee = '<i class="fa-solid fa-battery-full text-success"></i>';
+                    $iconeDeee = '<i class="fas fa-battery-full text-success"></i>';
+                }else if($jeu['deee'] == "NON"){
+                    $iconeDeee = '<i class="fas fa-battery-full text-danger"></i>';
                 }else{
-                    $iconeDeee = '<i class="fa-solid fa-battery-full text-danger"></i>';
+                    $iconeDeee = '<i class="fas fa-battery-full text-warning"></i>';
                 }
                 if($jeu['prix_HT'] > 0){
                     $iconePrixDeReference = '<i class="fas fa-euro-sign text-success"></i>';

@@ -19,6 +19,17 @@ $menuAlphabet = "A";
 
 <div class="container-fluid py-4 bg-secondary">
     <div class="col-12 h2 text-center"> LES JEUX COMPLETS </div>
+
+        <div class="row my-5">
+            <div class="col-6 mx-auto">
+                <form class="d-flex justify-content-center" method="post" action="/administration/jeu/ctrl/ctrl-recherche-reference-complet.php">
+                    <input class="col-6 form-control mr-2 align-self-center" type="search" name="recherche" placeholder="Rechercher une référence" aria-label="Rechercher" required>
+                    <button class="btn btn-outline-success mt-0" type="submit">Chercher</button>
+                    <a href="/admin/jeu/catalogue/complet/" class="btn btn-outline-danger ml-2">Éffacer la recherche</a>
+                </form>
+            </div>
+        </div>
+
         <div class="row mt-4">
             <div class="col-12 p-0">
                 <nav aria-label="Pagination menu alphabet">
@@ -35,7 +46,7 @@ $menuAlphabet = "A";
                         $searchAlphabetLettre = $bdd-> prepare("SELECT * FROM catalogue WHERE nom LIKE ? AND isComplet = 1 ORDER BY nom");
                         $searchAlphabetLettre-> execute(array($menuAlphabet.'%'));
                         $countAlphabetLettre = $searchAlphabetLettre-> rowCount();
-      
+    
                         echo '<li class="page-item"><a class="page-link" href="/admin/jeu/catalogue/complet/'.$menuAlphabet.'/">'.$menuAlphabet++.'<br/><span class="small">('.$countAlphabetLettre.')</span></a></li>';
                         }
                         
@@ -65,7 +76,6 @@ $menuAlphabet = "A";
                 ?>
             </div>
         </div>
-            
         <?php
             $searchAlphabet = $bdd->prepare($query);
             $searchAlphabet->execute(array($arrayQuery));
@@ -160,7 +170,6 @@ $menuAlphabet = "A";
                                         <th>Prix de vente TTC</th>
                                         <th>Changer prix TTC</th>
                                         <th>Ancien prix TTC</th>
-                                        <th>Information / description</th>
                                         <th>Ventes</th>
                                         <th>Actions</th>
                                     </thead>
@@ -201,13 +210,12 @@ $menuAlphabet = "A";
                                             }
 
                                             echo '<tr>
-                                                    <td class="align-middle">'.$jeuC['reference']; if($jeuC['isNeuf'] == 1){echo '<br/><span class="small bg-info text-white p-1">COMME NEUF</span>';} echo '</td>
+                                                    <td id="'.$jeuC['reference'].'" class="align-middle">'.$jeuC['reference']; if($jeuC['isNeuf'] == 1){echo '<br/><span class="small bg-info text-white p-1">COMME NEUF</span>';} echo '</td>
                                                     <td class="align-middle">'.$jeuC['stock'].' '.$online.'</td>
                                                     <td class="align-middle">'.number_format(($jeuC['prixHT'] * $tva)/100 ,2).'</td>
                                                     <td class="align-middle"><form action="/administration/jeu/ctrl/ctrl-complet-newPrice.php" method="get"><input type="text" class="col-3 text-center" name="nvPrixTTC" pattern="([0-9]{1,2}).([0-9]{2})" placeholder="10.00"><input type="hidden" name="idComplet" value="'.$jeuC['idJeuxComplet'].'"><button type="submit" class="btn"><i class="fas fa-save"></i></button></form></td>
                                                     <td class="align-middle">'.$ancienPrix.'</td>
-                                                    <td class="text-left align-middle">'.$jeuC['information'].'</td>
-                                                    <td class="align-middle">'.$nbrIsVendu.'</td>
+                                                    <td class="align-middle">"PAIEMENT A FAIRE"</td>
                                                     <td class="align-middle">
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <a href="/administration/jeu/ctrl/ctrl-complet-delete.php?idComplet='.$jeuC['idJeuxComplet'].'" class="btn btn-danger '.$activeSuppression.'"><i class="fas fa-trash-alt"></i></a>';

@@ -173,6 +173,7 @@ if(!isset($_GET['jeu'])){
                                         <div class="col-4 text-center">
                                             Jeu DEEE:
                                             <select name="deee" required>
+                                                <option value="">...</option>
                                                 <option value="NON" <?php if($donneesJeu['deee'] == "NON") { echo 'selected';} ?>>NON</option>
 s                                               <option value="OUI" <?php if($donneesJeu['deee'] == "OUI") { echo 'selected';} ?>>OUI</option>
                                             </select>
