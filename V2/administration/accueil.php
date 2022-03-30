@@ -65,7 +65,7 @@ $countDevisSupUtilisateur = $sqlDevisSupUtilisateur->rowCount();
                                         ?>
                                         <tr>
                                             <td class="text-center align-middle"><?php echo $donneesClient['idClient'];?></td>
-                                            <td class="text-left align-middle"><?php echo $donneesClient['nomFacturation']." ".$donneesClient['prenomFacturation']." ".$donneesClient['adresseFacturation']." ".$donneesClient['cpFacturation']." ".$donneesClient['villeFacturation']."<br/>".$donneesClient['email']; ?></td>
+                                            <td class="text-left align-middle"><?php echo $donneesClient['nomFacturation']." ".$donneesClient['prenomFacturation']." ".$donneesClient['adresseFacturation']." ".$donneesClient['cpFacturation']." ".$donneesClient['villeFacturation']."<br/>".$donneesClient['email']." - <i class='fas fa-mobile'></i> ".$donneesClient['telephone']; ?></td>
                                             <td class="text-center align-middle"><?php echo $donneesClient['paysFacturation'];?></td>
                                             <td class="text-center align-middle"><?php echo date("d-m-Y",$donneesDemandes['time'])." à ".date("G:i",$donneesDemandes['time']);?></td>
                                             <td class="text-right align-middle"><a href="/admin/demande/creation-devis/<?php echo $donneesClient['idClient'];?>/<?php echo $donneesDemandes['panierKey'];?>" class="btn btn-info">Commencer un devis</a></td>

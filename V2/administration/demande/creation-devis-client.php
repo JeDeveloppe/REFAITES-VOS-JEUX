@@ -219,7 +219,7 @@ if(!isset($_GET['client'])){
                                     <div class="col-12">Client / adresse:</div>
                                     <div class="col pl-5">
                                     <?php
-                                    echo $donneesVerifClientExiste['nomFacturation'].' '.$donneesVerifClientExiste['prenomFacturation'].' '.$donneesVerifClientExiste['adresseFacturation'].' '.$donneesVerifClientExiste['cpFacturation'].' '.$donneesVerifClientExiste['villeFacturation'].' '.$donneesVerifClientExiste['paysFacturation'];
+                                    echo $donneesVerifClientExiste['nomFacturation'].' '.$donneesVerifClientExiste['prenomFacturation'].'<br/>'.$donneesVerifClientExiste['adresseFacturation'].'<br/>'.$donneesVerifClientExiste['cpFacturation'].' '.$donneesVerifClientExiste['villeFacturation'].' '.$donneesVerifClientExiste['paysFacturation'].'<br/>'.$donneesVerifClientExiste['telephone'];
                                     ?>
                                     </div>
                                 </div>

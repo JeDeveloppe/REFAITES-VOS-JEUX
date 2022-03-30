@@ -170,7 +170,7 @@ $menuAlphabet = "A";
                                         <th>Prix de vente TTC</th>
                                         <th>Changer prix TTC</th>
                                         <th>Ancien prix TTC</th>
-                                        <th>Ventes</th>
+                                        <th>Vente</th>
                                         <th>Actions</th>
                                     </thead>
                                     <tbody>';
@@ -185,10 +185,17 @@ $menuAlphabet = "A";
                                             $sqlIsVendu->execute(array($jeuC['idJeuxComplet']));
                                             $nbrIsVendu = $sqlIsVendu->rowCount();
 
-                                            if($nbrIsVendu > 0){
+                                            if($nbrIsVendu > 0 || $jeuC['vente'] != null ){
                                                 $activeSuppression = 'disabled';
                                             }else{
                                                 $activeSuppression = '';
+                                            }
+
+                                            if($jeuC['vente'] != null){
+                                                $ventes = explode("|",$jeuC['vente']);
+                                                $vente = 'Vendu '.$ventes[0].' en '.$ventes[1];
+                                            }else{
+                                                $vente = 'FORMULAIRE à FAIRE';
                                             }
 
                                             if($jeuC['stock'] > 0){
@@ -215,7 +222,7 @@ $menuAlphabet = "A";
                                                     <td class="align-middle">'.number_format(($jeuC['prixHT'] * $tva)/100 ,2).'</td>
                                                     <td class="align-middle"><form action="/administration/jeu/ctrl/ctrl-complet-newPrice.php" method="get"><input type="text" class="col-3 text-center" name="nvPrixTTC" pattern="([0-9]{1,2}).([0-9]{2})" placeholder="10.00"><input type="hidden" name="idComplet" value="'.$jeuC['idJeuxComplet'].'"><button type="submit" class="btn"><i class="fas fa-save"></i></button></form></td>
                                                     <td class="align-middle">'.$ancienPrix.'</td>
-                                                    <td class="align-middle">"PAIEMENT A FAIRE"</td>
+                                                    <td class="align-middle">'.$vente.'</td>
                                                     <td class="align-middle">
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <a href="/administration/jeu/ctrl/ctrl-complet-delete.php?idComplet='.$jeuC['idJeuxComplet'].'" class="btn btn-danger '.$activeSuppression.'"><i class="fas fa-trash-alt"></i></a>';
