@@ -3,7 +3,7 @@
 include_once("./config.php");
 include("./controles/fonctions/cleanUrl.php");
 $titreDeLaPage = $GLOBALS['titreDePage'];
-$descriptionPage = "Vous avez un jeu de société incomplet ? Refaites vos jeux vous propose un service pour donner une seconde vie à votre jeu, nous avons plein de pièces détachées en stock.";
+$descriptionPage = "Refaites vos jeux vous propose un service avec pleins de pièces détachées pour vos jeux de socièté. Donnez leur une seconde vie.";
 include_once("./bdd/connexion-bdd.php");
 // $cacheMenuLeft = true;
 include_once("./commun/haut_de_page.php");
@@ -13,8 +13,7 @@ include_once("./commun/alertMessage.php");
 <section class="mt-4 text-center container">
     <div class="row mt-5">
         <div class="col-11 mx-auto">
-            <div class="lead text-secondary">Un service pour compléter ses jeux de société, en acheter d'occasion et donner ceux dont on ne veut plus (même incomplets).
-            </div>
+            <div class="lead text-secondary">Un service pour compléter ses jeux de société, en acheter d'occasion et donner ceux dont on ne veut plus (même incomplets).</div>
         </div>
     </div>
 </section>

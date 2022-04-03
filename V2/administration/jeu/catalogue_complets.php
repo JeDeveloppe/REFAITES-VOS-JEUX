@@ -170,7 +170,6 @@ $menuAlphabet = "A";
                                         <th>Prix de vente TTC</th>
                                         <th>Changer prix TTC</th>
                                         <th>Ancien prix TTC</th>
-                                        <th>Vente</th>
                                         <th>Actions</th>
                                     </thead>
                                     <tbody>';
@@ -179,6 +178,7 @@ $menuAlphabet = "A";
                                     $donneesAllJeux = $allJeux->fetchAll();
 
                                     if(count($donneesAllJeux) > 0){
+                                        $nbrModal = 1;
                                         foreach($donneesAllJeux as $jeuC){
                                             
                                             $sqlIsVendu = $bdd->prepare("SELECT * FROM documents_lignes_achats WHERE idJeuComplet = ?");
@@ -191,11 +191,71 @@ $menuAlphabet = "A";
                                                 $activeSuppression = '';
                                             }
 
+                                            if($jeuC['stock'] > 0){
+                                                $buttonOnline_offline = "";
+                                            }else{
+                                                $buttonOnline_offline = "disabled";
+                                            }
+
+                                            if($jeuC['actif'] == 1){
+                                                $buttonOnline =  '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0&reference='.$jeuC['reference'].'" class="btn btn-success '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
+                                            }else{
+                                                $buttonOnline =  '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1&reference='.$jeuC['reference'].'" class="btn btn-danger '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
+                                            }
+
+                                            if($jeuC['don'] == 1){
+                                                $buttonDon = '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0&reference='.$jeuC['reference'].'" class="btn btn-success"><i class="fas fa-hand-holding-heart"></i></a>';
+                                            }else{
+                                                $buttonDon = '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1&reference='.$jeuC['reference'].'" class="btn btn-danger"><i class="fas fa-hand-holding-heart"></i></a>';
+                                            }
+
+                                          
+
                                             if($jeuC['vente'] != null){
                                                 $ventes = explode("|",$jeuC['vente']);
-                                                $vente = 'Vendu '.$ventes[0].' en '.$ventes[1];
+                                                $vente = 'Vendu '.$ventes[0].' en '.$ventes[1].' le '.date('d-m-Y',$jeuC['timeVente']);
                                             }else{
-                                                $vente = 'FORMULAIRE à FAIRE';
+                                                $vente = '
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal'.$donnees['idCatalogue'].'-'.$nbrModal.'">
+                                                Gestion du jeu
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal'.$donnees['idCatalogue'].'-'.$nbrModal.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">'.$donnees['nom'].': '.$jeuC['reference'].'</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body d-flex flex-wrap align-items-center">
+                                                        <form class="col-6" action="/administration/jeu/ctrl/ctrl-complet-vente.php" method="get">
+                                                            <div class="form-group">
+                                                            <label for="exampleInputEmail1">Prix de la vente:</label>
+                                                            <input type="text" name="prix" class="form-control col-6 mx-auto text-center mb-3" id="inputText" placeholder="10.00">
+                                                            <select name="moyenPaiement" required>
+                                                                <option value="ESPÈCES">ESPÈCES</option>
+                                                                <option value="CHÈQUE">CHÈQUE</option>
+                                                            </select>
+                                                            </div>
+                                                            <input type="hidden" name="reference" value="'.$jeuC['reference'].'" >
+                                                            <button class="btn btn-success mt-3" type="submit">Enregistrer</button>
+                                                        </form>
+                                                        <div class="col-6">
+                                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                                <a href="/administration/jeu/ctrl/ctrl-complet-delete.php?idComplet='.$jeuC['idJeuxComplet'].'" class="btn btn-danger '.$activeSuppression.'"><i class="fas fa-trash-alt"></i></a>'.$buttonOnline.$buttonDon.'
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>';
                                             }
 
                                             if($jeuC['stock'] > 0){
@@ -204,11 +264,7 @@ $menuAlphabet = "A";
                                                 $online = '<i class="fas fa-circle text-danger"></i>';
                                             }
 
-                                            if($jeuC['stock'] > 0){
-                                                $buttonOnline_offline = "";
-                                            }else{
-                                                $buttonOnline_offline = "disabled";
-                                            }
+                                  
 
                                             if($jeuC['ancienPrixHT'] != null){
                                                 $ancienPrix = number_format(($jeuC['ancienPrixHT'] * $tva)/100 ,2);
@@ -223,23 +279,8 @@ $menuAlphabet = "A";
                                                     <td class="align-middle"><form action="/administration/jeu/ctrl/ctrl-complet-newPrice.php" method="get"><input type="text" class="col-3 text-center" name="nvPrixTTC" pattern="([0-9]{1,2}).([0-9]{2})" placeholder="10.00"><input type="hidden" name="idComplet" value="'.$jeuC['idJeuxComplet'].'"><button type="submit" class="btn"><i class="fas fa-save"></i></button></form></td>
                                                     <td class="align-middle">'.$ancienPrix.'</td>
                                                     <td class="align-middle">'.$vente.'</td>
-                                                    <td class="align-middle">
-                                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                                            <a href="/administration/jeu/ctrl/ctrl-complet-delete.php?idComplet='.$jeuC['idJeuxComplet'].'" class="btn btn-danger '.$activeSuppression.'"><i class="fas fa-trash-alt"></i></a>';
-                                                            if($jeuC['actif'] == 1){
-                                                                echo '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0" class="btn btn-success '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
-                                                            }else{
-                                                                echo '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1" class="btn btn-danger '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
-                                                            }
-                                                            if($jeuC['don'] == 1){
-                                                                echo '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0" class="btn btn-success"><i class="fas fa-hand-holding-heart"></i></a>';
-                                                            }else{
-                                                                echo '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1" class="btn btn-danger"><i class="fas fa-hand-holding-heart"></i></a>';
-                                                            }
-                                                        echo '
-                                                        </div>
-                                                    </td>
                                                 </tr>';
+                                        $nbrModal ++;
                                         }
                                     }else{
                                         echo '<tr><td colspan="8" class="text-center align-middle">Aucun jeu pour le moment</td></tr>';

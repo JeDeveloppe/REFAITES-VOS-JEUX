@@ -7,27 +7,14 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
     require_once("../../../controles/fonctions/validation_donnees_int.php");
 
-    if(!isset($_GET["newValue"]) || !preg_match('#0|1#', $_GET["newValue"])){
-        $_SESSION['alertMessage'] = "Donnée manquante...!";
-        $_SESSION['alertMessageConfig'] = "danger";
-        header("Location: ".$_SERVER['HTTP_REFERER']);
-        exit();
-    }
-
-    $newValue = valid_donnees($_GET['newValue']);
-    $jeu = valid_donnees(($_GET['idComplet']));
-    $reference = valid_donnees(($_GET['reference']));
+    $reference = valid_donnees($_GET['reference']);
+    $prix = valid_donnees(($_GET['prix']));
+    $moyenPaiement = valid_donnees(($_GET['moyenPaiement']));
     $time = time();
 
 
-    if($newValue == 1){
-        $actif = 0;
-    }else{
-        $actif = 1;
-    }
-
-    $sql = "UPDATE jeux_complets SET don = :valeur, actif = :actif, timeDon = :timeDon WHERE idJeuxComplet = :jeu";
-    $data = array('valeur' => $newValue, 'actif' => $actif, 'timeDon' => $time, 'jeu' => $jeu);
+    $sql = "UPDATE jeux_complets SET vente = :valeur, actif = :actif, timeVente = :timeVente WHERE reference = :reference";
+    $data = array('valeur' => $prix.'|'.$moyenPaiement, 'actif' => 0, 'timeVente' => $time, 'reference' => $reference);
     
 
     try
@@ -38,9 +25,9 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         $requete->execute($data) ;
 
      
-        $_SESSION['alertMessage'] = "État du don mis à jour !";
+        $_SESSION['alertMessage'] = "État du jeu mis à jour !";
         $_SESSION['alertMessageConfig'] = "success";
-        header("Location: ".$_SERVER['HTTP_REFERER']."#".$reference );
+        header("Location: ".$_SERVER['HTTP_REFERER']."/#".$reference );
         exit(); 
         
     }

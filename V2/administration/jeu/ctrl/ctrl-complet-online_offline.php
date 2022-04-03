@@ -16,6 +16,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
     $newValue = valid_donnees($_GET['newValue']);
     $jeu = valid_donnees(($_GET['idComplet']));
+    $reference = valid_donnees(($_GET['reference']));
+
 
     $sql = "UPDATE jeux_complets SET actif = :value WHERE idJeuxComplet = :jeu";
     $data = array('value' => $newValue, 'jeu' => $jeu);
@@ -35,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
             $_SESSION['alertMessage'] = "Visibilité mise à jour !";
             $_SESSION['alertMessageConfig'] = "success";
-            header("Location: ".$_SERVER['HTTP_REFERER'] );
+            header("Location: ".$_SERVER['HTTP_REFERER']."#".$reference );
             exit(); 
         
     }

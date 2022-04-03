@@ -86,13 +86,24 @@ $menuAlphabet = "A";
                                     $disable = '';
                                     $disableFacture = 'disabled';
                                 }
+                                if($donnees['timeInscription'] != null){
+                                    $timeInscription = date('d-m-Y à H:i:s',$donnees['timeInscription']);
+                                }else{
+                                    $timeInscription = "Avant la version 2...";
+                                }
+                                if($donnees['lastVisite'] != null){
+                                    $lastVisite = date('d-m-Y à H:i:s',$donnees['lastVisite']);
+                                }else{
+                                    $lastVisite = "Avant la version 2...";
+                                }
+
                                 echo '<tr>
                                         <td class="align-middle">'.$donnees['idClient'].'</td>
                                         <td class="align-middle">'.$donnees['nomFacturation'].' '.$donnees['prenomFacturation'].'</td>
                                         <td class="align-middle">'.$donnees['adresseFacturation'].'</td>
                                         <td class="align-middle">'.$donnees['cpFacturation'].' '.$donnees['villeFacturation'].'</td>
                                         <td class="align-middle">'.$donnees['email'].'</td>
-                                        <td class="align-middle">Inscription:' .date('d-m-Y à H:i:s',$donnees['timeInscription']).'<br/>Dernière visite: '.date('d-m-Y à H:i:s',$donnees['lastVisite']).'</td>
+                                        <td class="align-middle">Inscription: '.$timeInscription.'<br/>Dernière visite: '.$lastVisite.'</td>
                                         <td>
                                         <a href="/admin/client/factures/?client='.$donnees['idUser'].'" class="btn btn-info '.$disableFacture.'"><i class="fas fa-file-invoice-dollar"></i></a>
                                         <a href="/admin/client/edition/?client='.$donnees['idUser'].'" class="btn btn-warning"><i class="fas fa-binoculars"></i></a>
