@@ -26,7 +26,7 @@
             <div class="col-10 mx-auto">
                 <h4>Retrait:</h4>
                 <div class="pl-3">
-                    <?php echo $donneesConfig[9]['valeur'].'<br/>(prévoir un délai maximum de 7 jours)'; ?>
+                    <?php echo substr($donneesConfig[9]['valeur'],0,-2).'<br/>Du mercredi au Vendredi: 11h00 - 19h00<br/>Le Samedi: 11h00 - 18h00<br/>(prévoir un délai maximum de 7 jours)'; ?>
                 </div>
             </div>
         </div>

@@ -134,7 +134,7 @@ include_once("../../commun/alertMessage.php");
 
 <div class="container-fluid mb-5">
     <div class="row">
-        <div class="col-3 bg-vos">
+        <!-- <div class="col-3 bg-vos">
             <div class="col-12 h3 text-center mt-5">Graphiques:</div>
             <div class="input-group col-11 mx-auto mb-3">
                 <div class="input-group-prepend">
@@ -162,9 +162,8 @@ include_once("../../commun/alertMessage.php");
                 <div>Les adhérents:</div>
                 <div id="adherents"></div>
             </div>
-
-        </div>
-        <div class="col-9 border-left border-dark">
+        </div> -->
+        <div class="col-12 border-left border-dark">
             <div class="col-12 h3 text-center mt-5">Statistiques générales (depuis le début)</div>
             <div class="col-12 h4">Commerce:</div>
                 <div class="col-12 d-flex flex-wrap justify-content-around text-center p-0">

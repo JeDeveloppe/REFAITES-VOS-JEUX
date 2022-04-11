@@ -201,17 +201,7 @@ $countCommandesMiseDeCote = $sqlCommandesMiseDeCote -> rowCount();
                                             <td class="text-center align-middle"><?php echo date('d.m.Y',$donneesCommandesMiseDeCote['time_transaction'])." à ".date('G:i',$donneesCommandesMiseDeCote['time_transaction'])." par <span data-html='true' data-toggle='tooltip' data-placement='right' title='".$pageUpdateDocumentMdC."'>".$donneesCommandesMiseDeCote['moyen_paiement'].'</span><br/>Num. transaction:<br/>'.$donneesCommandesMiseDeCote['num_transaction']; ?></td>
                                             <td class="text-center align-middle"><?php echo $donneesClient['nomFacturation'].' '.$donneesClient['prenomFacturation'].'<br/>'.$donneesClient['adresseFacturation'].'<br/>'.$donneesClient['cpFacturation'].' '.$donneesClient['villeFacturation'].'<br />'.$donneesClient['telephone'].' - '.$donneesClient['email'];?></td>
                                             <td class="text-center align-middle"><?php echo $donneesCommandesMiseDeCote['expedition'];?></td>
-                                            <td class="text-center align-middle">
-                                            <div class="btn-group" role="group">
-                                                <a href="/administration/commande/ctrl/ctrl-mise-en-attente.php?newValue=2&doc=<?php echo $donneesCommandesMiseDeCote['idDocument'];?>" class="btn btn-info">Remettre à expédier !</a><br/>
-                                                <?php if ($donneesCommandesMiseDeCote['expedition'] == "colissimo"){
-                                                    echo '<button class="btn btn-warning p-0" onclick="colissimo('.$donneesCommandesMiseDeCote['idDocument'].')">Numéro de colis</button>';
-                                                }else{
-                                                    echo '<a href="/administration/commande/ctrl/ctrl-envoi-commande-mail-envoi.php?doc='.$donneesCommandesMiseDeCote['idDocument'].'" class="btn btn-warning">Ok envoyé!</a>';
-                                                }
-                                                ?>
-                                            </div>
-                                            </td>
+                                            <td class="text-center align-middle"><a href="/administration/commande/ctrl/ctrl-mise-en-attente.php?newValue=2&doc=<?php echo $donneesCommandesMiseDeCote['idDocument'];?>" class="btn btn-info">Remettre à expédier !</a></td>
                                         </tr>
                                     <?php
                                     $donneesCommandesMiseDeCote = $sqlCommandesMiseDeCote->fetch();

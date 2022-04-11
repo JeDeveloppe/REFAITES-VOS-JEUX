@@ -61,7 +61,6 @@ if(!isset($_GET['client'])){
                     <?php
                         $totalAchats = 0;
                         if($nbr_de_ligne_achat > 0){
-                            $port = "retrait_caen1";
                             echo '<div class="row">
                             <div class="col-12 mt-2">
                                 <table class="table table-sm table-striped mt-4 overflow-auto table-bordered">
@@ -250,8 +249,8 @@ if(!isset($_GET['client'])){
                             <div class="card-body d-flex flex-wrap">
                                 <div class="col-7 text-right"><i class="fas fa-caret-square-right text-info fa-2x ml-3"> Frais d'envoi:</i></div>
                                 <div class="col-4"><select name="envoi" class="form-control">
-                                        <option value="poste" selected>par La Poste</option>
-                                        <option value="retrait_caen1" <?php if(isset($port)){echo "selected";}?> >RETRAIT CAEN à la COOP</option>
+                                        <option value="poste"  required >par La Poste</option>
+                                        <option value="retrait_caen1" <?php if($donneesVerifClientExiste['port'] == "retrait_caen1"){ echo "selected";}?> >RETRAIT CAEN à la COOP</option>
                                     </select>
                                 </div>
                                 <div class="col-1 text-right h5">

@@ -61,7 +61,7 @@ $countDevisSupUtilisateur = $sqlDevisSupUtilisateur->rowCount();
                                         $sqlClient = $bdd->prepare("SELECT * FROM clients WHERE idUser = ?");
                                         $sqlClient-> execute(array($donneesDemandes['idUser']));
                                         $donneesClient = $sqlClient->fetch();
-                                      
+                                    
                                         ?>
                                         <tr>
                                             <td class="text-center align-middle"><?php echo $donneesClient['idClient'];?></td>

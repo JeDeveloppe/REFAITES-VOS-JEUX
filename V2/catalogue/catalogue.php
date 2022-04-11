@@ -66,7 +66,7 @@ if($nbrJeux > 0){
             <div class="col-11 mx-auto text-center lead text-muted">
                 Le catalogue référence tous les jeux pour lesquels le service dispose de pièces.<br/>
             </div>
-       
+    
             <!-- formulaire de recherche -->
             <div class="col-xl-6 mx-auto mt-4 mb-4">
                 <input class="col-12 col-sm-7 col-md-5 col-lg-5 col-xl-8 mx-auto form-control" type="search" name="recherche" id="recherchePieceDetachees" minlength="2" placeholder="Rechercher un nom de jeu" aria-label="Rechercher">
@@ -91,7 +91,7 @@ if($nbrJeux > 0){
                 foreach($boites as $boite){
                     $urlEditeurCatalogue = clean_url($boite['editeur']);
                     $urlJeuCatalogue = clean_url($boite['nom']);
-   
+                    
                     //url du jeu propre
                     if($boite['urlNom'] == ""){
                         $sqlUpdateUrlNom = $bdd -> prepare("UPDATE catalogue SET urlNom = ? WHERE idCatalogue = ?");

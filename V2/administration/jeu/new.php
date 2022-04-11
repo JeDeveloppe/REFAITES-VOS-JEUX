@@ -72,9 +72,9 @@ $donneesEditeur = $sqlEditeur->fetchAll();
                         </div>
                     </div>
 
-                                      <!-- PARTIE JEUX COMPLETS: -->
+                    <!-- PARTIE JEUX COMPLETS: -->
                     <h3 class="col-12 text-center mt-4">Partie jeu complet:</h3>
-                    <div class="col-12 d-flex flex-wrap">
+                    <div class="col-12 d-flex flex-wrap align-items-center">
                         <div class="form-group text-center col-4">
                             <label for="nondujeu">Disponible en jeu complet:</label>
                             <select name="jeuComplet">
@@ -93,11 +93,11 @@ $donneesEditeur = $sqlEditeur->fetchAll();
                                 <option value="1">OUI</option>
                             </select>
                         </div>
-                        <div class="form-group text-center col-4">
+                        <div class="form-group text-center col-3">
                             <label for="poidBoite">Poid de la boite:</label>
                             <input type="text" name="poidBoite" placeholder="En gramme">
                         </div>
-                        <div class="col-4 text-center">
+                        <div class="col-3 text-center">
                             Jeu DEEE:
                             <select name="deee" required>
                                 <option value="">...</option>
@@ -105,7 +105,7 @@ $donneesEditeur = $sqlEditeur->fetchAll();
                                 <option value="NON">NON</option>
                             </select>
                         </div>
-                        <div class="col-4 text-center">
+                        <div class="col-3 text-center">
                             A partir de:
                             <select name="age" required>
                                 <option value="">...</option>
@@ -120,7 +120,7 @@ $donneesEditeur = $sqlEditeur->fetchAll();
                                 <option value="18">18 ans</option>
                             </select>
                         </div>
-                        <div class="col-4 text-center">
+                        <div class="col-3 text-center">
                             Se joue:
                             <select name="joueurs" required>
                                 <?php

@@ -47,6 +47,10 @@ if(!isset($_GET['age'])){
     }
 }
 
+//NOMBRE DE JEUX TOTAL OCCASION
+$sqlCatalogue = $bdd -> query("SELECT * FROM jeux_complets WHERE actif = 1");
+$nbrJeuxTotalEnLigne = $sqlCatalogue->rowCount();
+
 $querySql = ("SELECT * FROM jeux_complets JOIN catalogue ON catalogue.idCatalogue = jeux_complets.idCatalogue WHERE ".$queryAge.$queryTri.$queryRecherche." AND jeux_complets.stock > 0 AND jeux_complets.actif = 1");
 $sqlJeuxComplets = $bdd->query($querySql);
 $nbrJeuxComplets = $sqlJeuxComplets->rowCount();
@@ -62,9 +66,9 @@ $cpClient = $donneesClientLivraison['cpLivraison'] ?? "";
     <div class="col-11 mx-auto text-center lead text-muted animated faster fadeInRight">
         Uniquement en retrait sur Caen
     </div>
-     <div class="col-11 mx-auto text-right mt-5 mt-sm-0">
+    <div class="col-11 mx-auto text-right mt-5 mt-sm-0">
         <div class="fb-share-button" data-href="<?php echo $GLOBALS['domaineShareFacebook'].$_SERVER['REQUEST_URI']; ?>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $GLOBALS['domaineShareFacebook'].$_SERVER['REQUEST_URI'] ; ?>&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
-     </div>
+    </div>
 
     <form method="GET" class="mt-5 col-12 col-sm-10 col-md-8 col-lg-12 mx-auto d-flex flex-wrap align-items-center">
         <div class="col-10 col-lg-3 mx-auto mb-3 p-0 text-center">
@@ -126,7 +130,7 @@ if($nbrJeuxComplets > 0){
                 
                 <?php
                     foreach($donneesJeuxCompletPagination as $jeuComplet){
-                       
+                    
                         $requeteJeux = "SELECT * FROM catalogue WHERE idCatalogue = ".$jeuComplet['idCatalogue'];
                         $sqlJeux = $bdd -> query($requeteJeux);
                         $donneesJeux = $sqlJeux-> fetch();
@@ -140,7 +144,7 @@ if($nbrJeuxComplets > 0){
                                 <div class="col-12 p-2 border shadow scale-hover h-100 overflow-hidden bg-white">   
                                     <a class="text-decoration-none" href="/jeu-occasion/<?php echo $jeuComplet['idJeuxComplet'].'-'.$donneesJeux['idCatalogue'];?>/<?php echo $urlEditeurCatalogue;?>/<?php echo $donneesJeux['urlNom'];?>/">
                                     <?php
-                                     
+                                    
                                         //LOGO COMME NEUF
                                         if($jeuComplet['isNeuf'] == 1){
                                             echo '<span class="bandeauCommeNeufJeux">COMME NEUF</span>';
@@ -219,7 +223,7 @@ if($nbrJeuxComplets > 0){
                                     </div>
                                 </div>
                             </div>
-                 
+                
                         <?php
                     }
                 ?>
@@ -310,7 +314,10 @@ if($nbrJeuxComplets > 0){
                                     </ul>
                                 </nav>
                             </div>
-                            <div class="col-12 text-center">Total des pages: <?php echo $nombreDePages; ?></div>
+                            <div class="col-12 text-center">
+                                <p>Total des pages: <?php echo $nombreDePages; ?></p>
+                                <p>Actuellement il y a <span data-html="true" data-toggle="tooltip" data-placement="top" id="odometerJeuxEnLigne" class="odometer"></span> jeux d'occasion en ligne.</p>
+                            </div>
                         </div>
                     <?php
                     }
@@ -372,3 +379,26 @@ require("../../commun/bas_de_page.php");
         })
     }
 </script>
+<script>
+    /*
+    * ODOMETRE
+    */
+    let jeuxEnLigne = <?php echo json_decode($nbrJeuxTotalEnLigne); ?>;
+
+    if(jeuxEnLigne < 10){
+        odometerJeuxEnLigne.innerHTML = 4;
+    }else if(jeuxEnLigne > 9 && jeuxEnLigne < 100){
+        odometerJeuxEnLigne.innerHTML = 31;
+    }else if(jeuxEnLigne > 99 && jeuxEnLigne < 1000){
+        odometerJeuxEnLigne.innerHTML = 300;
+    }else if(jeuxEnLigne > 999 && jeuxEnLigne < 10000){
+        odometerJeuxEnLigne.innerHTML = 1983;
+    }else if(jeuxEnLigne > 9999 && jeuxEnLigne < 100000){
+        odometerJeuxEnLigne.innerHTML = 22220;
+    }
+
+    setTimeout(function(){
+        odometerJeuxEnLigne.innerHTML = jeuxEnLigne;
+    }, 2500);
+</script>
+<script src="/js/<?php echo $GLOBAL['versionJS'];?>/odometre.js"></script>
