@@ -31,7 +31,7 @@ $menuAlphabet = "A";
                         $countAlphabetLettre = $searchAlphabetLettre-> rowCount();
                         echo '<li class="page-item text-center"><a class="page-link" href="/admin/client/liste/'.$menuAlphabet.'/">'.$menuAlphabet++.'<br/><span class="small">('.$countAlphabetLettre.')</span></a></li>';
                         }
-                        echo '<li class="page-item text-center"><a class="page-link" href="/admin/client/liste/0/">#<br/><span class="small">(reste)</span></a></li>';         
+                        echo '<li class="page-item text-center"><a class="page-link" href="/admin/client/liste/#/">#<br/><span class="small">(reste)</span></a></li>';         
                     ?>
                     </ul>
                 </nav>
@@ -53,12 +53,11 @@ $menuAlphabet = "A";
                     </thead>
                     <tbody>                    
                     <?php
-                        // if(isset($_GET['lettre']) && ctype_alpha($_GET['lettre']) && strlen($_GET['lettre']) < 2){
-                        //     $lettre = $_GET['lettre'];
-                        // }else{
-                        //     $lettre = "A";
-                        // }
-                        $lettre = $_GET['lettre'];
+                        if(isset($_GET['lettre']) && ctype_alpha($_GET['lettre']) && strlen($_GET['lettre']) < 2){
+                            $lettre = $_GET['lettre'];
+                        }else{
+                            $lettre = "A";
+                        }
                             echo '<tr>
                                     <td class="bg-dark pl-2 text-left" colspan="7">'.strtoupper($lettre).'</td>
                                 </tr>';
@@ -89,12 +88,12 @@ $menuAlphabet = "A";
                                 if($donnees['timeInscription'] != null){
                                     $timeInscription = date('d-m-Y à H:i:s',$donnees['timeInscription']);
                                 }else{
-                                    $timeInscription = "Avant la version 2...";
+                                    $timeInscription = "V1";
                                 }
                                 if($donnees['lastVisite'] != null){
                                     $lastVisite = date('d-m-Y à H:i:s',$donnees['lastVisite']);
                                 }else{
-                                    $lastVisite = "Avant la version 2...";
+                                    $lastVisite = "V1";
                                 }
 
                                 echo '<tr>
@@ -105,16 +104,17 @@ $menuAlphabet = "A";
                                         <td class="align-middle">'.$donnees['email'].'</td>
                                         <td class="align-middle">Inscription: '.$timeInscription.'<br/>Dernière visite: '.$lastVisite.'</td>
                                         <td>
-                                        <a href="/admin/client/factures/?client='.$donnees['idUser'].'" class="btn btn-info '.$disableFacture.'"><i class="fas fa-file-invoice-dollar"></i></a>
-                                        <a href="/admin/client/edition/?client='.$donnees['idUser'].'" class="btn btn-warning"><i class="fas fa-binoculars"></i></a>
-                                        <a class="btn btn-danger '.$disable.'" href="/administration/client/ctrl/ctrl-delete-client.php?client='.$donnees['idUser'].'"><i class="fas fa-trash"></i></a></td>
+                                            <a href="/admin/client/factures/?client='.$donnees['idUser'].'" class="btn btn-info '.$disableFacture.'"><i class="fas fa-file-invoice-dollar"></i></a>
+                                            <a href="/admin/client/edition/?client='.$donnees['idUser'].'" class="btn btn-warning"><i class="fas fa-binoculars"></i></a>
+                                            <a class="btn btn-danger '.$disable.'" href="/administration/client/ctrl/ctrl-delete-client.php?client='.$donnees['idUser'].'"><i class="fas fa-trash"></i></a>
+                                        </td>
                                     </tr>';
                                 
                                     foreach($donneesDocument as $doc){
                                         echo '<tr>
                                         <td class="bg-info align-middle">Client: '.$donnees['idClient'].'</td>
-                                        <td colspan="4" class="bg-info align-middle">Réf document en BDD: '.$doc['idDocument'].'</td>
-                                        <td colspan="3" class="bg-info align-middle"><form method="POST" action="/administration/client/ctrl/ctrl-update-document-client.php">
+                                        <td colspan="3" class="bg-info align-middle">Réf document en BDD: '.$doc['idDocument'].'</td>
+                                        <td colspan="4" class="bg-info align-middle"><form method="POST" action="/administration/client/ctrl/ctrl-update-document-client.php">
                                         A transférer au client (idClient en BDD): <input type="text" name="nouvelId">
                                         <input type="hidden" name="doc" value="'.$doc['idDocument'].'">
                                         <button class="btn btn-success">MàJ</button>

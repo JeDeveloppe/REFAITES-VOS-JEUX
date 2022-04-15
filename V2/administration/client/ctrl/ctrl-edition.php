@@ -13,6 +13,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $ville = mb_strtoupper(valid_donnees($_POST['ville']));
     $pays = mb_strtoupper(valid_donnees($_POST['pays']));
     $id = valid_donnees($_POST['idDuClient']);
+    $telephone = valid_donnees($_POST['telephone']);
+    $email = valid_donnees($_POST['email']);
  
     //si une session est vide on revient en arrière
     if($prenom == "" ||
@@ -20,6 +22,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $adresse == "" ||
         $cp == "" ||
         $ville == "" ||
+        $email == "" ||
+        $telephone == "" ||
         $pays == "" ){
 
         $_SESSION['alertMessage'] = "Aucun champs ne peut être vide !";
@@ -95,15 +99,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         } 
     }
 
-
+    //on format le numéro de téléphone
+    if(preg_match( '/^(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/', $telephone,  $matches ) ){ // numero à 10 chiffres
+        $telephone = $matches[1] . '-' .$matches[2] . '-' . $matches[3] . '-' . $matches[4] . '-' . $matches[5];
+    }else if(preg_match( '/^(\d{2})(\d{2})(\d{2})(\d{2})$/', $telephone,  $matches ) ){ //numero à 8 chiffres
+        $telephone = $matches[1] . '-' .$matches[2] . '-' . $matches[3] . '-' . $matches[4];
+    }else{
+        $telephone = $telephone;
+    }
 
     //A CE NIVEAU TOUT EST OK ON METS A JOUR LE CLIENT
     require("../../../config.php");
     require("../../../bdd/connexion-bdd.php");
 
     try{
-    $sqlSaveClient = $bdd -> prepare("UPDATE clients SET nomFacturation = ?, prenomFacturation = ?, adresseFacturation = ?, cpFacturation = ?, villeFacturation = ?, paysFacturation = ? WHERE idUser = ?");
-    $sqlSaveClient-> execute(array($nom,$prenom,$adresse,$cp,$ville,$pays,$id));
+    $sqlSaveClient = $bdd -> prepare("UPDATE clients SET email = ?, telephone = ?, nomFacturation = ?, prenomFacturation = ?, adresseFacturation = ?, cpFacturation = ?, villeFacturation = ?, paysFacturation = ? WHERE idUser = ?");
+    $sqlSaveClient-> execute(array($email,$telephone,$nom,$prenom,$adresse,$cp,$ville,$pays,$id));
     }
     catch (Exception $e) {
         echo 'Exception reçue : ',  $e->getMessage(), "\n";

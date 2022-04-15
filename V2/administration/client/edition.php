@@ -78,13 +78,23 @@ if(!isset($_GET['client'])){
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="">Code postale:</span>
+                                                        <span class="input-group-text" id="">Code postal:</span>
                                                     </div>
                                                     <input type="text" id="codePostale" name="cp" class="form-control col-2" <?php echo 'value="'.$donneesclient['cpFacturation'].'"';?> pattern="[a-zA-Z0-9 -]{4,11}" placeholder="CP" maxlength="11" required>
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text border-left-0" id="">Ville:</span>
                                                     </div>
                                                     <input type="text" name="ville" class="form-control" <?php echo 'value="'.$donneesclient['villeFacturation'].'"';?> pattern="[a-zA-ZÀ-ÿ '-]{2,30}" maxlenght="30" placeholder="Ville" required>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="">Email:</span>
+                                                    </div>
+                                                    <input type="text" name="email" class="form-control col-9" <?php echo 'value="'.$donneesclient['email'].'"';?> placeholder="Adresse email" required>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text border-left-0" id="">Téléphone:</span>
+                                                    </div>
+                                                    <input type="text" name="telephone" class="form-control" <?php echo 'value="'.$donneesclient['telephone'].'"';?> maxlenght="16" placeholder="Téléphone" required>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
@@ -120,6 +130,7 @@ if(!isset($_GET['client'])){
                                                     ?>
                                                     </select>
                                                 </div>
+
                                                 <div class="col text-center">
                                                     <input type="hidden" name="idDuClient" value="<?php echo $client;?>">
                                                     <button type="submit" class="btn btn-success border border-primary">Mettre à jour</button>
