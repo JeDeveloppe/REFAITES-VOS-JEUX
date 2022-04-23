@@ -15,7 +15,7 @@ if(isset($_GET['recherche']) && isset($_GET['pays'])){
         $colonne = "ville_code_postal";
     }elseif($pays == "BE"){
         $table = "villes_belgique_free";
-        $colonne = "codePostal";
+        $colonne = "ville_code_postal";
     }
 
 
