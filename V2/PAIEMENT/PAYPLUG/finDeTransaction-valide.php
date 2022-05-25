@@ -76,6 +76,16 @@ if(isset($_SESSION['payment_id']) && $_GET['doc']){
                 $sqlUpdateDoc = $bdd -> prepare("UPDATE documents SET etat = ?, numero_facture = ?, num_transaction = ?, page_controle = ?, commission_vente = ?, time_transaction = ?, moyen_paiement = ?, envoyer = ? WHERE idDocument = ?");
                 $sqlUpdateDoc-> execute(array(2,$numeroFAC,$num_transaction,"page_valide",$commissionVente,$datePaiement,"CB",0,$donneesDocument['idDocument']));
 
+                //mise a jour des jeux vendu
+                $sqlChercheLignesAchat = $bdd->prepare("SELECT * FROM documents_lignes_achats WHERE idDocument = ?");
+                $sqlChercheLignesAchat->execute((array($donneesDocument['idDocument'])));
+                $jeux = $sqlChercheLignesAchat->fetchAll();
+
+                foreach($jeux as $jeu){
+                    $sqlUpdateJeuxComplet = $bdd->prepare('UPDATE jeux_complets SET timeVente = ?, actif = 0 WHERE idJeuxComplet = ?');
+                    $sqlUpdateJeuxComplet->execute(array($datePaiement,$jeu['idJeuxComplet']));
+                }
+
                 //on met a jour association du client pour 1 an
                 $sqlUpdateClientAssociation = $bdd->prepare("UPDATE clients SET isAssociation = ? WHERE idClient = ?");
                 $sqlUpdateClientAssociation->execute(array($datePaiement+31536000,$donneesDocument['idUser']));

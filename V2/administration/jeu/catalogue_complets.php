@@ -166,7 +166,7 @@ $menuAlphabet = "A";
                                 <table class="table table-sm align-middle text-center">
                                     <thead>
                                         <th>Référence</th>
-                                        <th>Quantité en vente</th>
+                                        <th>État</th>
                                         <th>Prix de vente TTC</th>
                                         <th>Changer prix TTC</th>
                                         <th>Ancien prix TTC</th>
@@ -203,10 +203,14 @@ $menuAlphabet = "A";
                                                 $buttonOnline =  '<a href="/administration/jeu/ctrl/ctrl-complet-online_offline.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1&reference='.$jeuC['reference'].'" class="btn btn-danger '.$buttonOnline_offline.'"><i class="fas fa-globe-europe"></i></a>';
                                             }
 
-                                            if($jeuC['don'] == 1){
-                                                $buttonDon = '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0&reference='.$jeuC['reference'].'" class="btn btn-success"><i class="fas fa-hand-holding-heart"></i></a>';
+                                            if($jeuC['timeVente'] == NULL){
+                                                if($jeuC['don'] == 1){
+                                                    $buttonDon = '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=0&reference='.$jeuC['reference'].'" class="btn btn-success"><i class="fas fa-hand-holding-heart"></i></a>';
+                                                }else{
+                                                    $buttonDon = '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1&reference='.$jeuC['reference'].'" class="btn btn-danger"><i class="fas fa-hand-holding-heart"></i></a>';
+                                                }
                                             }else{
-                                                $buttonDon = '<a href="/administration/jeu/ctrl/ctrl-complet-don.php?idComplet='.$jeuC['idJeuxComplet'].'&newValue=1&reference='.$jeuC['reference'].'" class="btn btn-danger"><i class="fas fa-hand-holding-heart"></i></a>';
+                                                $buttonDon = '<a href="#" class="btn btn-danger disabled"><i class="fas fa-hand-holding-heart"></i></a>';
                                             }
 
                                           
@@ -258,13 +262,18 @@ $menuAlphabet = "A";
                                                 </div>';
                                             }
 
-                                            if($jeuC['stock'] > 0){
-                                                $online = '<i class="fas fa-circle text-success"></i>';
+                                            if($jeuC['don'] == 1){
+                                                $etatDon = '<i class="fas fa-hand-holding-heart btn btn-success"></i>';
+                                                $etatVente = "";
                                             }else{
-                                                $online = '<i class="fas fa-circle text-danger"></i>';
+                                                $etatDon = "";
+                                                if($jeuC['timeVente'] == NULL){
+                                                    $etatVente = '<i class="fas fa-money-bill-wave btn btn-danger"></i>';
+                                                }else{
+                                                    $etatVente = '<i class="fas fa-money-bill-wave btn btn-success"></i>';
+                                                }
                                             }
-
-                                  
+                                        
 
                                             if($jeuC['ancienPrixHT'] != null){
                                                 $ancienPrix = number_format(($jeuC['ancienPrixHT'] * $tva)/100 ,2);
@@ -274,7 +283,7 @@ $menuAlphabet = "A";
 
                                             echo '<tr>
                                                     <td id="'.$jeuC['reference'].'" class="align-middle">'.$jeuC['reference']; if($jeuC['isNeuf'] == 1){echo '<br/><span class="small bg-info text-white p-1">COMME NEUF</span>';} echo '</td>
-                                                    <td class="align-middle">'.$jeuC['stock'].' '.$online.'</td>
+                                                    <td class="align-middle">'.$etatDon.$etatVente.'</td>
                                                     <td class="align-middle">'.number_format(($jeuC['prixHT'] * $tva)/100 ,2).'</td>
                                                     <td class="align-middle"><form action="/administration/jeu/ctrl/ctrl-complet-newPrice.php" method="get"><input type="text" class="col-3 text-center" name="nvPrixTTC" pattern="([0-9]{1,2}).([0-9]{2})" placeholder="10.00"><input type="hidden" name="idComplet" value="'.$jeuC['idJeuxComplet'].'"><button type="submit" class="btn"><i class="fas fa-save"></i></button></form></td>
                                                     <td class="align-middle">'.$ancienPrix.'</td>

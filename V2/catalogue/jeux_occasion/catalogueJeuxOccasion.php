@@ -17,7 +17,7 @@ if(!isset($_GET['recherche']) || strlen($_GET['recherche']) < 3){
 }else{
     $recherche = valid_donnees($_GET['recherche']);
     $likesRecherche = "%".strtoupper(str_replace(" ","%",$recherche))."%";
-    $queryRecherche = " AND jeux_complets.actif = 1 AND catalogue.nom LIKE '$likesRecherche' OR catalogue.editeur LIKE '$likesRecherche' ";
+    $queryRecherche = " AND jeux_complets.stock > 0 AND catalogue.nom LIKE '$likesRecherche' OR catalogue.editeur LIKE '$likesRecherche' ";
 }
 
 if(isset($_GET['tri']) && preg_match('#u1|u2|2|3|4|5|6|7|8#',$_GET['tri'])){
@@ -51,7 +51,7 @@ if(!isset($_GET['age'])){
 $sqlCatalogue = $bdd -> query("SELECT * FROM jeux_complets WHERE actif = 1");
 $nbrJeuxTotalEnLigne = $sqlCatalogue->rowCount();
 
-$querySql = ("SELECT * FROM jeux_complets JOIN catalogue ON catalogue.idCatalogue = jeux_complets.idCatalogue WHERE ".$queryAge.$queryTri.$queryRecherche." AND jeux_complets.stock > 0 AND jeux_complets.actif = 1");
+$querySql = ("SELECT * FROM jeux_complets JOIN catalogue ON catalogue.idCatalogue = jeux_complets.idCatalogue WHERE ".$queryAge.$queryTri.$queryRecherche." ");
 $sqlJeuxComplets = $bdd->query($querySql);
 $nbrJeuxComplets = $sqlJeuxComplets->rowCount();
 

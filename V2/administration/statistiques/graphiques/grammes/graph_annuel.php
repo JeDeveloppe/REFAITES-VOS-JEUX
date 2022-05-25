@@ -37,6 +37,7 @@ for($m=1;$m<=12;$m++){
     }else{
         array_push($totaux,$donneesDuMois['SUM(c.poidBoite)']);
     }
+    
     //calcul total du poid (= sommes des mois)
     $totalAnnuel += $donneesDuMois['SUM(c.poidBoite)'];
 }

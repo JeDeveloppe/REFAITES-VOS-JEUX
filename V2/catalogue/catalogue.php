@@ -280,14 +280,16 @@ require("../commun/bas_de_page.php");
     let affichageCatalogue = document.getElementById('affichageCatalogue');
 
     recherchePieceDetachees.addEventListener('input', () => {
-        if(recherchePieceDetachees.value.length > 2){         
-            fetch('../../requetes/catalogue-piece-detachee-like.php?recherche='+recherchePieceDetachees.value)
-                .then(response => response.text())
-                .then((response) => {
-                    affichageRecherche.innerHTML = response;
-                    affichageCatalogue.style.setProperty("display", "none", "important")
-                })
-                .catch(err => console.log(err));
+        if(recherchePieceDetachees.value.length > 2){   
+            setTimeout(function(){      
+                fetch('../../requetes/catalogue-piece-detachee-like.php?recherche='+recherchePieceDetachees.value)
+                    .then(response => response.text())
+                    .then((response) => {
+                        affichageRecherche.innerHTML = response;
+                        affichageCatalogue.style.setProperty("display", "none", "important")
+                    })
+                    .catch(err => console.log(err));
+                },500)
                 
         }else{
             affichageCatalogue.style.display = "block";

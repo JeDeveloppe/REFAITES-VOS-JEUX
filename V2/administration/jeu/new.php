@@ -77,7 +77,7 @@ $donneesEditeur = $sqlEditeur->fetchAll();
                     <div class="col-12 d-flex flex-wrap align-items-center">
                         <div class="form-group text-center col-4">
                             <label for="nondujeu">Disponible en jeu complet:</label>
-                            <select name="jeuComplet">
+                            <select name="jeuComplet" id="selectDispoJeuComplet" onclick="requirePoid()">
                                 <option value="0">NON</option>
                                 <option value="1">OUI</option>
                             </select>
@@ -95,7 +95,7 @@ $donneesEditeur = $sqlEditeur->fetchAll();
                         </div>
                         <div class="form-group text-center col-3">
                             <label for="poidBoite">Poid de la boite:</label>
-                            <input type="text" name="poidBoite" placeholder="En gramme">
+                            <input type="text" name="poidBoite" placeholder="En gramme" id="poidBoite">
                         </div>
                         <div class="col-3 text-center">
                             Jeu DEEE:
@@ -146,6 +146,17 @@ $donneesEditeur = $sqlEditeur->fetchAll();
     </div>
 </div>
 <script>
+    function requirePoid(){
+        var selectElmt = document.getElementById("selectDispoJeuComplet");
+        var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+        if(valeurselectionnee == "0"){
+            document.getElementById("poidBoite").required = false;
+        }else{
+            document.getElementById("poidBoite").required = true;
+        }
+    }
+
+
     function requiredOff() {
         var inputEditeur = document.getElementById("editeur2").required;
         if (inputEditeur = true) {
