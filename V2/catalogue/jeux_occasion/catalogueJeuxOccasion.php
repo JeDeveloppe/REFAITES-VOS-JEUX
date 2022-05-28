@@ -13,7 +13,7 @@ include_once("../../commun/alertMessage.php");
 require("../../controles/fonctions/validation_donnees.php");
 
 if(!isset($_GET['recherche']) || strlen($_GET['recherche']) < 3){
-    $queryRecherche = "";
+    $queryRecherche = " AND jeux_complets.stock > 0 ";
 }else{
     $recherche = valid_donnees($_GET['recherche']);
     $likesRecherche = "%".strtoupper(str_replace(" ","%",$recherche))."%";
