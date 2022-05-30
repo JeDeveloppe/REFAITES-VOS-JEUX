@@ -82,8 +82,8 @@ if(isset($_SESSION['payment_id']) && $_GET['doc']){
                 $jeux = $sqlChercheLignesAchat->fetchAll();
 
                 foreach($jeux as $jeu){
-                    $sqlUpdateJeuxComplet = $bdd->prepare('UPDATE jeux_complets SET timeVente = ?, actif = 0 WHERE idJeuxComplet = ?');
-                    $sqlUpdateJeuxComplet->execute(array($datePaiement,$jeu['idJeuxComplet']));
+                    $sqlUpdateJeuxComplet = $bdd->prepare('UPDATE jeux_complets SET vente = ?, timeVente = ?, actif = 0 WHERE idJeuxComplet = ?');
+                    $sqlUpdateJeuxComplet->execute(array('|CB', $datePaiement,$jeu['idJeuxComplet']));
                 }
 
                 //on met a jour association du client pour 1 an
