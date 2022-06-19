@@ -31,15 +31,24 @@ for($m=1;$m<=12;$m++){
     $sqlJeuxOccasionVendus->execute(array($m,$annee));
     $donneesDuMois = $sqlJeuxOccasionVendus->fetch();
 
+    //calcul des grammes des dons
+    $sqlJeuxOccasionDon = $bdd->prepare("SELECT SUM(c.poidBoite)
+    FROM catalogue c LEFT JOIN jeux_complets jc ON jc.idCatalogue = c.idCatalogue
+    WHERE jc.don = 1 AND MONTH(FROM_UNIXTIME(jc.timeDon)) = ? AND YEAR(FROM_UNIXTIME(jc.timeDon)) = ?");
+    $sqlJeuxOccasionDon->execute(array($m,$annee));
+    $donneesDuMoisDon = $sqlJeuxOccasionDon->fetch();
+
+    $donneesMois = $donneesDuMois['SUM(c.poidBoite)'] + $donneesDuMoisDon['SUM(c.poidBoite)'];
+
     //si pas de resultat on dit 0 et on pousse dans la tableau total de jpgraph
-    if($donneesDuMois['SUM(c.poidBoite)'] < 1){
+    if($donneesMois < 1){
         array_push($totaux,0);
     }else{
-        array_push($totaux,$donneesDuMois['SUM(c.poidBoite)']);
+        array_push($totaux,$donneesMois);
     }
     
     //calcul total du poid (= sommes des mois)
-    $totalAnnuel += $donneesDuMois['SUM(c.poidBoite)'];
+    $totalAnnuel += $donneesMois;
 }
 
 $data1y=$totaux;

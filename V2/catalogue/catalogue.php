@@ -279,7 +279,7 @@ require("../commun/bas_de_page.php");
     let affichageRecherche = document.getElementById('affichageRecherche');
     let affichageCatalogue = document.getElementById('affichageCatalogue');
 
-    recherchePieceDetachees.addEventListener('input', () => {
+    recherchePieceDetachees.addEventListener('input', function() {
         if(recherchePieceDetachees.value.length > 2){   
             setTimeout(function(){      
                 fetch('../../requetes/catalogue-piece-detachee-like.php?recherche='+recherchePieceDetachees.value)

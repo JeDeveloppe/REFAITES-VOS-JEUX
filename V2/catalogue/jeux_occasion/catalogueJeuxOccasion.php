@@ -13,11 +13,11 @@ include_once("../../commun/alertMessage.php");
 require("../../controles/fonctions/validation_donnees.php");
 
 if(!isset($_GET['recherche']) || strlen($_GET['recherche']) < 3){
-    $queryRecherche = " AND jeux_complets.stock > 0 ";
+    $queryRecherche = " AND jeux_complets.stock > 0 AND jeux_complets.actif = 1 ";
 }else{
     $recherche = valid_donnees($_GET['recherche']);
     $likesRecherche = "%".strtoupper(str_replace(" ","%",$recherche))."%";
-    $queryRecherche = " AND jeux_complets.stock > 0 AND catalogue.nom LIKE '$likesRecherche' OR catalogue.editeur LIKE '$likesRecherche' ";
+    $queryRecherche = " AND jeux_complets.stock > 0 AND jeux_complets.actif = 1 AND catalogue.nom LIKE '$likesRecherche' OR catalogue.editeur LIKE '$likesRecherche' ";
 }
 
 if(isset($_GET['tri']) && preg_match('#u1|u2|2|3|4|5|6|7|8#',$_GET['tri'])){
@@ -183,7 +183,7 @@ if($nbrJeuxComplets > 0){
                                             <div class="col-12 text-center"><?php if($donneesJeux['annee'] == "Année inconnue"){echo "&nbsp;";}else{echo $donneesJeux['annee'];} ?></div>
                                             <div class="col-12 text-center font-weight-bold h6 mt-3">Prix TTC: 
                                                 <?php 
-                                                    if($jeuComplet['ancienPrixHT'] != null){
+                                                    if($jeuComplet['ancienPrixHT'] != 0){
                                                         echo '<del style="color:red">'.number_format(($jeuComplet['ancienPrixHT'] * $tva)/100,2,",",' ').'</del> '.number_format(($jeuComplet['prixHT'] * $tva)/100,2,",",' ').' €';
                                                     }else{
                                                         echo number_format(($jeuComplet['prixHT'] * $tva)/100,2,",",' ').' €';

@@ -64,7 +64,7 @@ include_once("../commun/alertMessage.php");
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">Adresse:</span>
                             </div>
-                            <input type="text" name="adresse-facturation" class="form-control" placeholder="Numéro et rue" value="<?php echo $donneesClient['adresseFacturation'] ?? ''; ?>">
+                            <input type="text" name="adresse-facturation" class="form-control" placeholder="Numéro et rue" value="<?php echo $donneesClient['adresseFacturation'] ?? ''; ?>" required>
                         </div>
                     </div>
                     <div class="row">

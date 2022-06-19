@@ -2,7 +2,6 @@
 // require("../bdd/table_config.php");
 
  //Nous allons afficher x messages par page.
- 
 //Nous allons maintenant compter le nombre de pages.
 $nombreDePages = ceil($rows/$messagesParPage);
 

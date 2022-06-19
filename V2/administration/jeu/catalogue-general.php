@@ -14,8 +14,9 @@ require("../../controles/fonctions/validation_donnees.php");
 if(isset($_GET['recherche'])){
     $recherche = valid_donnees($_GET['recherche']);
     $requeteRecherche = 'WHERE nom LIKE "%'.str_replace(" ","%",$recherche).'%" ';
-    $parametresUrl = "nom";
-    $messagesParPage = 25;
+    $likeRecherche = str_replace(" ","%",$recherche);
+    $parametresUrl = "&recherche=%".$likeRecherche."%";
+    $messagesParPage = 10;
     $tri = "nom";
 }else if(isset($_GET['tri'])){
     $tri = valid_donnees($_GET['tri']);
@@ -120,10 +121,10 @@ include_once("../../commun/alertMessage.php");
     <table class="table table-sm mt-4 col-12 text-center">
         <thead class="thead-dark text-center">
             <tr>
-                <th scope="col">Image</th>
                 <th scope="col">Nom<br/><span class="small">Créateur</span></th>
                 <th scope="col">Editeur</th>
                 <th scope="col">Année</th>
+                <th scope="col">Image</th>
                 <th scope="col">Prix de référence</th>
                 <th scope="col">Catalogue pièces</th>
                 <th scope="col">Ventes pièces</th>
@@ -188,6 +189,9 @@ include_once("../../commun/alertMessage.php");
                 }
                 ?>
                 <tr id="<?php echo $jeu['idCatalogue']; ?>">
+                <td class="text-center align-middle"><?php echo $jeu['nom']; ?><br/><?php echo '<span class="text-info small">'.$jeu['createur'].'</span>'; ?></td>
+                <td class="text-center align-middle"><?php echo $jeu['editeur']; ?></td>
+                <td class="text-center align-middle"><?php echo $jeu['annee']; ?></td>
                 <td class="text-center align-middle">
                     <div class="divImgPresentationExempleAdmin">
                         <?php 
@@ -195,9 +199,6 @@ include_once("../../commun/alertMessage.php");
                         ?>
                     </div>
                 </td>
-                <td class="text-center align-middle"><?php echo $jeu['nom']; ?><br/><?php echo '<span class="text-info small">'.$jeu['createur'].'</span>'; ?></td>
-                <td class="text-center align-middle"><?php echo $jeu['editeur']; ?></td>
-                <td class="text-center align-middle"><?php echo $jeu['annee']; ?></td>
                 <td class="text-center align-middle"><?php echo $iconePrixDeReference; ?></td>
                 <td class="text-center align-middle"><?php echo $iconeCataloguePiece; ?></td>
                 <td class="text-center align-middle"><?php echo $iconeVendu; ?></td>

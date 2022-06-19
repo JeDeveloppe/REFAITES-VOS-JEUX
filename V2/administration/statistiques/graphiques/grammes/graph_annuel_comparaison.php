@@ -30,11 +30,20 @@ $totaux1y = [];
         $sqlJeuxOccasionVendus->execute(array($m,$anneePassee));
         $donneesDuMois = $sqlJeuxOccasionVendus->fetch();
     
+        //calcul des grammes des dons
+        $sqlJeuxOccasionDon = $bdd->prepare("SELECT SUM(c.poidBoite)
+        FROM catalogue c LEFT JOIN jeux_complets jc ON jc.idCatalogue = c.idCatalogue
+        WHERE jc.don = 1 AND MONTH(FROM_UNIXTIME(jc.timeDon)) = ? AND YEAR(FROM_UNIXTIME(jc.timeDon)) = ?");
+        $sqlJeuxOccasionDon->execute(array($m,$anneePassee));
+        $donneesDuMoisDon = $sqlJeuxOccasionDon->fetch();
+
+        $donneesMois = $donneesDuMois['SUM(c.poidBoite)'] + $donneesDuMoisDon['SUM(c.poidBoite)'];
+
         //si pas de resultat on dit 0 et on pousse dans la tableau total de jpgraph
-        if($donneesDuMois['SUM(c.poidBoite)'] < 1){
+        if($donneesMois < 1){
             array_push($totaux1y,0);
         }else{
-            array_push($totaux1y,$donneesDuMois['SUM(c.poidBoite)']);
+            array_push($totaux1y,$donneesMois);
         }
     }
 $data1y=$totaux1y;
@@ -48,11 +57,20 @@ $totaux2y = [];
         $sqlJeuxOccasionVendus->execute(array($m,$anneeN));
         $donneesDuMois = $sqlJeuxOccasionVendus->fetch();
 
+        //calcul des grammes des dons
+        $sqlJeuxOccasionDon = $bdd->prepare("SELECT SUM(c.poidBoite)
+        FROM catalogue c LEFT JOIN jeux_complets jc ON jc.idCatalogue = c.idCatalogue
+        WHERE jc.don = 1 AND MONTH(FROM_UNIXTIME(jc.timeDon)) = ? AND YEAR(FROM_UNIXTIME(jc.timeDon)) = ?");
+        $sqlJeuxOccasionDon->execute(array($m,$anneeN));
+        $donneesDuMoisDon = $sqlJeuxOccasionDon->fetch();
+
+        $donneesMois = $donneesDuMois['SUM(c.poidBoite)'] + $donneesDuMoisDon['SUM(c.poidBoite)'];
+
         //si pas de resultat on dit 0 et on pousse dans la tableau total de jpgraph
-        if($donneesDuMois['SUM(c.poidBoite)'] < 1){
+        if($donneesMois < 1){
             array_push($totaux2y,0);
         }else{
-            array_push($totaux2y,$donneesDuMois['SUM(c.poidBoite)']);
+            array_push($totaux2y,$donneesMois);
         }
     }
 $data2y=$totaux2y;
