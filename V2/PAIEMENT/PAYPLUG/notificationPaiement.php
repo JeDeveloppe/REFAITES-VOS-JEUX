@@ -88,7 +88,7 @@ if(isset($_GET['doc'])){
 
                     foreach($jeux as $jeu){
                         $sqlUpdateJeuxComplet = $bdd->prepare('UPDATE jeux_complets SET vente = ?,timeVente = ?, actif = 0 WHERE idJeuxComplet = ?');
-                        $sqlUpdateJeuxComplet->execute(array('|CB',$datePaiement,$jeu['idJeuxComplet']));
+                        $sqlUpdateJeuxComplet->execute(array('|CB',$datePaiement,$jeu['idJeuComplet']));
                     }
 
                     $sqlUpdateClientAssociation = $bdd->prepare("UPDATE clients SET isAssociation = ? WHERE idClient = ?");

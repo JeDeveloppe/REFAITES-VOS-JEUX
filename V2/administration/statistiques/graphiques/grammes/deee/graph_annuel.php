@@ -20,6 +20,7 @@ if(!isset($_GET['annee']) || strlen($_GET['annee']) != 4){
 }
 
 $totaux = [];
+$totalDon = [];
 $totalAnnuel = 0;
 
 //on boucle par mois
@@ -37,6 +38,21 @@ for($m=1;$m<=12;$m++){
     }else{
         array_push($totaux,$donneesDuMois['SUM(c.poidBoite)']);
     }
+
+        //calcul des grammes des dons
+        $sqlJeuxOccasionDon = $bdd->prepare("SELECT SUM(c.poidBoite)
+        FROM catalogue c LEFT JOIN jeux_complets jc ON jc.idCatalogue = c.idCatalogue
+        WHERE jc.don = 1 AND c.deee = ? AND MONTH(FROM_UNIXTIME(jc.timeDon)) = ? AND YEAR(FROM_UNIXTIME(jc.timeDon)) = ?");
+        $sqlJeuxOccasionDon->execute(array("OUI",$m,$annee));
+        $donneesDuMoisDon = $sqlJeuxOccasionDon->fetch();
+        //si pas de resultat on dit 0 et on pousse dans la tableau total de jpgraph
+        if($donneesDuMoisDon['SUM(c.poidBoite)'] < 1){
+            array_push($totalDon,0);
+        }else{
+            array_push($totalDon,$donneesDuMoisDon['SUM(c.poidBoite)']);
+        }
+
+
     //calcul total du poid (= sommes des mois)
     $totalAnnuel += $donneesDuMois['SUM(c.poidBoite)'];
 }
@@ -61,11 +77,13 @@ $graph->yaxis->HideTicks(false,false);
 
 // Create the bar plots
 $b1plot = new BarPlot($data1y);
-$b1plot->SetLegend($annee);
+$b1plot->SetLegend("Total");
+$b2plot = new BarPlot($totalDon);
+$b2plot->SetLegend("Don");
 
 
 // Create the grouped bar plot
-$gbplot = new GroupBarPlot(array($b1plot));
+$gbplot = new GroupBarPlot(array($b1plot,$b2plot));
 // ...and add it to the graPH
 $graph->Add($gbplot);
 $graph->legend->SetPos(0.5,0.92,'center','bottom');
@@ -75,7 +93,7 @@ $b1plot->SetColor("white");
 $b1plot->SetFillColor("#cc1111");
 $b1plot->value->Show();
 
-$graph->title->Set("Ventes par mois en ".$annee." \n Total grammes (DEEE): ".$totalAnnuel);
+$graph->title->Set("Ventes/ dons par mois en ".$annee." \n Total grammes (DEEE): ".$totalAnnuel);
 
 // Display the graph
 $graph->Stroke();

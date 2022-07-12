@@ -81,6 +81,7 @@ $graph->legend->SetPos(0.5,0.92,'center','bottom');
 $b1plot->SetColor("white");
 $b1plot->SetFillColor("#cc1111");
 $b1plot->value->Show();
+$b2plot->value->Show();
 
 $graph->title->Set("Jeux d'occasion \n Ventes / Dons par mois en ".$annee);
 

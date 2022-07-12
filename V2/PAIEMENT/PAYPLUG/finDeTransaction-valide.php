@@ -83,7 +83,7 @@ if(isset($_SESSION['payment_id']) && $_GET['doc']){
 
                 foreach($jeux as $jeu){
                     $sqlUpdateJeuxComplet = $bdd->prepare('UPDATE jeux_complets SET vente = ?, timeVente = ?, actif = 0 WHERE idJeuxComplet = ?');
-                    $sqlUpdateJeuxComplet->execute(array('|CB', $datePaiement,$jeu['idJeuxComplet']));
+                    $sqlUpdateJeuxComplet->execute(array('|CB', $datePaiement,$jeu['idJeuComplet']));
                 }
 
                 //on met a jour association du client pour 1 an
