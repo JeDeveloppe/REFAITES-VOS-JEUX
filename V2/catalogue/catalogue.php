@@ -278,24 +278,49 @@ require("../commun/bas_de_page.php");
     let recherchePieceDetachees = document.getElementById('recherchePieceDetachees');
     let affichageRecherche = document.getElementById('affichageRecherche');
     let affichageCatalogue = document.getElementById('affichageCatalogue');
+    let timer;
 
-    recherchePieceDetachees.addEventListener('input', function() {
-        if(recherchePieceDetachees.value.length > 2){   
-            setTimeout(function(){      
-                fetch('../../requetes/catalogue-piece-detachee-like.php?recherche='+recherchePieceDetachees.value)
-                    .then(response => response.text())
-                    .then((response) => {
-                        affichageRecherche.innerHTML = response;
-                        affichageCatalogue.style.setProperty("display", "none", "important")
-                    })
-                    .catch(err => console.log(err));
-                },500)
-                
-        }else{
-            affichageCatalogue.style.display = "block";
-            affichageRecherche.innerHTML = "";
-        }
+    // recherchePieceDetachees.addEventListener('input', function() {
+    // if(recherchePieceDetachees.value.length > 2){   
+    //     setTimeout(function(){      
+    //         fetch('../../requetes/catalogue-piece-detachee-like.php?recherche='+recherchePieceDetachees.value)
+    //             .then(response => response.text())
+    //             .then((response) => {
+    //                 affichageRecherche.innerHTML = response;
+    //                 affichageCatalogue.style.setProperty("display", "none", "important")
+    //             })
+    //             .catch(err => console.log(err));
+    //         },500)
+            
+    // }else{
+    //     affichageCatalogue.style.display = "block";
+    //     affichageRecherche.innerHTML = "";
+    // }
+    // }); 
+
+    recherchePieceDetachees.addEventListener('keyup',function (e) {
+        // Clears any outstanding timer
+        clearTimeout(timer);
+
+        // Sets new timer that may or may not get cleared
+        timer = setTimeout(() => {
+            // Only fires if not cleared
+            if(recherchePieceDetachees.value.length > 2){   
+            fetch('../../requetes/catalogue-piece-detachee-like.php?recherche='+recherchePieceDetachees.value)
+                .then(response => response.text())
+                .then((response) => {
+                    affichageRecherche.innerHTML = response;
+                    affichageCatalogue.style.setProperty("display", "none", "important")
+                })
+                .catch(err => console.log(err));
+            }else{
+                affichageCatalogue.style.display = "block";
+                affichageRecherche.innerHTML = "";
+            }
+
+        }, 800);
     });
+
 </script>
 <script>
     /*

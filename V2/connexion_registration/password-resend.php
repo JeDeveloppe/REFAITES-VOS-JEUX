@@ -28,7 +28,11 @@ include_once("../commun/alertMessage.php");
                                     <form class="form-signin" action="/connexion_registration/ctrl/ctrl-resend.php" method="post">
                                         <div class="form-group">
                                         <label class="text-danger">Adresse email enregistrée:</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" name="mail" aria-describedby="emailHelp" placeholder="Votre adresse mail..." required>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" name="mail" aria-describedby="emailHelp" placeholder="Votre adresse mail..."';
+                                            if(isset($_GET['name'])){
+                                                echo 'value="'.$_GET['name'].'"';
+                                            };
+                                            echo 'required>
                                         </div>
                                         <button class="btn btn-primary" type="submit">Recevoir un lien pour changer mon mot de passe...</button>
                                     </form>
