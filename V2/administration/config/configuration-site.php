@@ -33,7 +33,11 @@ include_once("../../commun/alertMessage.php");
                                     echo '
                                     <tr>
                                         <td>'.$ligne['nom'].'</td>
-                                        <td><input type="text" name="valeur[]" '.$ligne['attr'].' value="'.$ligne['valeur'].'" required ><input type="hidden" name="nom[]" value="'.$ligne['nom'].'"></td>
+                                        <td><input type="text" name="valeur[]" ';
+                                        if(strlen($ligne['attr']) > 0){
+                                            echo $ligne['attr'];
+                                        }
+                                        echo ' value="'.$ligne['valeur'].'" required ><input type="hidden" name="nom[]" value="'.$ligne['nom'].'"></td>
                                         <td class="text-left">'.nl2br($ligne['explications']).'</td>
                                     </tr>';
                                 $donneesConfig = $sqlConfig-> fetch();
