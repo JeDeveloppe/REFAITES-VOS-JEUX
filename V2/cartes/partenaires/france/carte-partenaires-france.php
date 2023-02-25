@@ -59,17 +59,19 @@ include_once("../../../commun/bas_de_page.php");
 $depotArray = [];
 $donneesPartenaires = $sqlPartenaires->fetchAll();
 
+
 //on boucle sur chaque partenaire
 foreach($donneesPartenaires as $partenaire){
   $sqlVilleFranceFree = $bdd->prepare("SELECT ville_nom,ville_departement,lng,lat FROM villes_france_free WHERE ville_id = ?");
   $sqlVilleFranceFree->execute(array($partenaire['id_villes_free']));
   $donneesVilleFranceFree = $sqlVilleFranceFree->fetch();
 
+
   //affichage details des ventes
   if($partenaire['complet'] == 1 || $partenaire['detachee'] == 1){
     $detailsVente= "<b>Le service vend:</b><br/>".$partenaire['vend'];
   }else{
-    $detailsVente = "";
+    $detailsVente = "&nbsp;";
   }
 
   if($partenaire['idPartenaire'] == 10 || $partenaire['idPartenaire'] == 14){
@@ -92,39 +94,35 @@ foreach($donneesPartenaires as $partenaire){
     ]);
   }else{
     if($partenaire['ecommerce'] == 1){
-      array_push($depotArray,
-      [
-        "lat" => $donneesVilleFranceFree['lat'],
-        "lng" => $donneesVilleFranceFree['lng'],
-        "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['ville_departement'].')',
-        "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p><p>Site E-commerce disponible.</p>',
-        "url" => $partenaire['url'],
-        "size" => "35"
-      ]);
+      $detailEcommerce = "<p>Site E-commerce disponible.</p>";
     }else{
-      array_push($depotArray,
-      [
-        "lat" => $donneesVilleFranceFree['lat'],
-        "lng" => $donneesVilleFranceFree['lng'],
-        "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['ville_departement'].')',
-        "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p>',
-        "url" => $partenaire['url']
-      ]);
+      $detailEcommerce = "";
     }
+    array_push($depotArray,
+    [
+      "lat" => $donneesVilleFranceFree['lat'],
+      "lng" => $donneesVilleFranceFree['lng'],
+      "name" => $partenaire['nom'].' à '.$donneesVilleFranceFree['ville_nom'].' ('.$donneesVilleFranceFree['ville_departement'].')',
+      "description" => '<p style="margin-top:10px; width:100%; text-align:center;"><img style="width:100px;" src="data:image/jpeg;base64,'.$partenaire['image'].'"/></p><p>'.$partenaire['description'].'</p><p><b>Le service collecte:</b><br/>'.$partenaire['collecte'].'</p><p>'.$detailsVente.'</p>'.$detailEcommerce,
+      "url" => $partenaire['url'],
+      "size" => "35"
+    ]);
   }
 }
 
+// for PHP VERSION < 8
+// foreach ($depotArray as $keys => $value ) {
+//   $locations->{$keys} = $value;
+// }
+// $jsonStructure = json_encode($locations); 
 
-foreach ($depotArray as $keys => $value ) {
-  $locations->{$keys} = $value;
-}
-$jsonStructure = json_encode($locations); 
+$jsonStructure = json_encode($depotArray); 
 
 ?>
 
 
 <script>
-  var locations = <?php echo $jsonStructure; ?>;
+  let locations = <?php echo $jsonStructure; ?>;
 </script>
 <script type="text/javascript" src="/cartes/partenaires/france/mapdata.js"></script>		
 <script  type="text/javascript" src="/cartes/partenaires/france/countrymap.js"></script>

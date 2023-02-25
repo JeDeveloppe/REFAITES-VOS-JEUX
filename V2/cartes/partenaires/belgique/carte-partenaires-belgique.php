@@ -86,10 +86,13 @@ foreach($donneesPartenaires as $partenaire){
 }
 
 
-foreach ($depotArray as $keys => $value ) {
-  $locations->{$keys} = $value;
-}
-$jsonStructure = json_encode($locations); 
+// for PHP VERSION < 8
+// foreach ($depotArray as $keys => $value ) {
+//   $locations->{$keys} = $value;
+// }
+// $jsonStructure = json_encode($locations); 
+
+$jsonStructure = json_encode($depotArray); 
 
 ?>
 

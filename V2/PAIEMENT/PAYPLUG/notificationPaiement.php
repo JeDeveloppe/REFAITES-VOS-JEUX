@@ -19,8 +19,6 @@ if(isset($_GET['doc'])){
     try {
     $resource = \Payplug\Notification::treat($input);
 
-    print_r($resource);
-
         if($resource instanceof \Payplug\Resource\Payment
             && $resource->is_paid) {
                 echo "PAIEMENT OK ->";
