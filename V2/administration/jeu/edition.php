@@ -88,6 +88,13 @@ if(!isset($_GET['jeu'])){
                                     </div>
                                      <!-- Partie texte -->
                                     <div class="col-6 mt-4">
+                                        <div class="form-group text-center col-4 mx-auto">
+                                            <label for="version3">Dans la version 3:</label>
+                                            <select class="form-control" name="v3" required>
+                                                <option value="NON" <?php if($donneesJeu['v3'] == "" || $donneesJeu['v3'] == "NON") { echo 'selected';} ?>>NON</option>
+s                                               <option value="OUI" <?php if($donneesJeu['v3'] == "OUI") { echo 'selected';} ?>>OUI</option>
+                                            </select>
+                                        </div>
                                         <div class="form-group text-center col-11 mx-auto">
                                             <label for="nondujeu">Nom du jeu:</label>
                                             <input type="text" name="nom" class="form-control" id="nondujeu" pattern="{1,40}" maxlength="40" value="<?php echo $donneesJeu['nom'];?>">
