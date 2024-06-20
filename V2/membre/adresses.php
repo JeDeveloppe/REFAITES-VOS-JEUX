@@ -97,26 +97,12 @@ include_once("../commun/alertMessage.php");
                             <select name="pays-facturation" id="choixPays" class="custom-select" required>
                                 <option value="">Choisir...</option>
                             <?php
-                                if($donneesClient['paysFacturation'] == "FR"){ ?>
-                                <option value="FR" <?php if(isset($donneesClient['paysFacturation']) && $donneesClient['paysFacturation'] == "FR"){echo ' selected';} ?>>France Métropolitaine</option>
-                                <optgroup label="DOM- TOM">
-                                    <?php
-                                    while($donneesOptGroupFacturation){
-                                        echo '<option ';if(isset($donneesClient['paysFacturation']) && $donneesClient['paysFacturation'] == $donneesOptGroupFacturation['alpha2']){echo 'selected ';} echo'value="'.$donneesOptGroupFacturation['alpha2'].'">'.$donneesOptGroupFacturation['nom_fr_fr'].'</option>';
-                                    $donneesOptGroupFacturation = $sqlOptgroupFacturation-> fetch();
-                                    }
-                                    ?>
-                                </optgroup>
-                            <?php     
-                                }
-                                if($donneesClient['paysFacturation'] != "FR") {                  
-                                    foreach($donneesPays as $pays){
-                                        echo '<option value="'.$pays['alpha2'].'"';
-                                            if(isset($donneesClient['paysFacturation']) && $donneesClient['paysFacturation'] == $pays['alpha2']){
-                                                echo 'selected';
-                                            }
-                                        echo '>'.$pays['nom_fr_fr'].'</option>';
-                                    }
+                                foreach($donneesPays as $pays){
+                                    echo '<option value="'.$pays['alpha2'].'"';
+                                        if(isset($donneesClient['paysFacturation']) && $donneesClient['paysFacturation'] == $pays['alpha2']){
+                                            echo 'selected';
+                                        }
+                                    echo '>'.$pays['nom_fr_fr'].'</option>';
                                 }
                             ?>
                             </select>
@@ -210,28 +196,15 @@ include_once("../commun/alertMessage.php");
                             </div>
                             <select name="pays-livraison" id="choixPays" class="custom-select" required>
                                 <option value="">Choisir...</option>
-                                <?php if($donneesClient['paysLivraison'] == "FR"){ ?>
-                                    <option value="FR" <?php if($donneesClient['paysLivraison'] == "FR"){echo 'selected';} ?>>France Métropolitaine</option>
-                                    <optgroup label="DOM- TOM">
-                                        <?php
-                                        while($donneesOptGroupLivraison){
-                                            echo '<option ';if($donneesClient['paysLivraison'] == $donneesOptGroupLivraison['alpha2']){echo 'selected ';} echo'value="'.$donneesOptGroupLivraison['alpha2'].'">'.$donneesOptGroupLivraison['nom_fr_fr'].'</option>';
-                                        $donneesOptGroupLivraison = $sqlOptgroupLivraison-> fetch();
-                                        }
-                                        ?>
-                                    </optgroup>
-                            <?php         
-                                }               
-                                foreach($donneesPays as $pays){
-                                
-                                    echo '<option value="'.$pays['alpha2'].'"';
-                                        if(isset($donneesClient['paysLivraison']) && $donneesClient['paysLivraison'] == $pays['alpha2']){
-                                            echo 'selected';
-                                        }
-                                    echo '>'.$pays['nom_fr_fr'].'</option>';
-                                 
-                                }
-                            ?>
+                                <?php          
+                                    foreach($donneesPays as $pays){
+                                        echo '<option value="'.$pays['alpha2'].'"';
+                                            if(isset($donneesClient['paysLivraison']) && $donneesClient['paysLivraison'] == $pays['alpha2']){
+                                                echo 'selected';
+                                            }
+                                        echo '>'.$pays['nom_fr_fr'].'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>

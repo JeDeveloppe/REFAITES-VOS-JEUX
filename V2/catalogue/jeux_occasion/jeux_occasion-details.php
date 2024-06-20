@@ -144,7 +144,13 @@ if(!isset($_GET['jeuOccasion'])){
                                                                 </span>
                                                                 <a class="btn btn-warning border-0 bg- p-1" id="boutonIdentificationRequise"><span class="p-1">Ajouter au panier</span></a>';
                                                     }else{
-                                                        if(!preg_match('#^14#',$cpClient)){
+                                                        if(strlen($cpClient) < 1){
+                                                            echo '<span id="precisionIdentification" class="col-11 mx-auto bg-vos p-2">
+                                                            <i class="fas fa-lightbulb text-info"></i> Pensez à renseigner votre <a href="../../membre/adresses/#secteurlivraison">adresse de livraison...</a>
+                                    
+                                                            </span>
+                                                            <a class="btn btn-warning border-0 bg- p-1" id="boutonIdentificationRequise"><span class="p-1">Ajouter au panier</span></a>';
+                                                        }else if(!preg_match('#^14#',$cpClient)){
                                                             echo '<span id="precisionIdentificationDetails" class="col-11 col-sm-10 mx-auto col-md-9 bg-vos p-2">
                                                             <i class="fas fa-lightbulb text-info"></i> Réservé au bassin de Caen pour le moment...
                                     
